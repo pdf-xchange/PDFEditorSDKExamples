@@ -79,7 +79,7 @@ namespace FullDemo
 			{
 				IFormHelper hlp = (IFormHelper)ui;
 				if (hlp != null)
-					hlp.Serialize(op);
+					hlp.OnSerialize(op);
 			}
 
 			uint flags = Flags;

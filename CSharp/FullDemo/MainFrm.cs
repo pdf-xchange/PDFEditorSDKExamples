@@ -100,10 +100,29 @@ namespace FullDemo
 		private bool fNeedLoadAllCommands = true;
 		private bool fNeedLoadUILangs = true;
 		private bool fNeedLoadAllOpers = true;
+		private Font FontDefault = null;
+		private Font FontMenu = null;
 
+		public PDFXEdit.IPXS_Inst pxsInst = null;
 		public PDFXEdit.IUIX_Inst uiInst = null;
 		public PDFXEdit.IAFS_Inst fsInst = null;
 		public PDFXEdit.IAUX_Inst auxInst = null;
+		private bool fCustomInitSDK = false;
+
+		public partial class UIEventDemoMon : PDFXEdit.IUIX_EventMonitor
+		{
+			public void OnEventMonitor(PDFXEdit.IUIX_Obj pTarget, PDFXEdit.IUIX_Event pEvent)
+			{
+				// Debug.WriteLine("OnEventMonitor(code={0})", pEvent.Code);
+				// pEvent.Code; - code of standard system’s message like: WM_CHAR, WM_KEYDOWN, WM_KEYUP, ... WM_MOUSEMOVE
+				// and parameters of standard system’s message
+				// pEvent.Param1; == wParam
+				// pEvent.Param2; == lParam
+
+			}
+		}
+
+		public UIEventDemoMon uiEventMon = null;
 
 		public static string FixupWord(string w)
 		{
@@ -116,6 +135,19 @@ namespace FullDemo
 			else if (w == "Annots")
 				return "Annotations";
 			return w;
+		}
+
+		public static string clr2str(Color c)
+		{
+			return "rgbd(" + c.R + "," + c.G + "," + c.B + ")";
+		}
+
+		public static Color rgb2clr(int c)
+		{
+			int r = c & 0x000000FF;
+			int g = (c & 0x0000FF00) >> 8;
+			int b = (c & 0x00FF0000) >> 16;
+			return Color.FromArgb(r, g, b);
 		}
 
 		public static string SID2DispName(string id)
@@ -200,32 +232,179 @@ namespace FullDemo
 			pdfCtl.Inst.ShowMsgBox(err, "", "", (uint)Handle, flags);
 		}
 
-		private void ReadLicKeyForSDKExamples(out string licKey)
+		private void SetCustColor(PDFXEdit.ICabNode clrArr, string clrID, string clrVal)
 		{
-			licKey = "";
+			int cnt = clrArr.Count;
+			PDFXEdit.ICabNode clr = null;
+			for (int i = 0; i < cnt; i++)
+			{
+				PDFXEdit.ICabNode it = clrArr[i];
+				string id = it["ID"].String;
+				if (clrID == id)
+				{
+					clr = it;
+					break;
+				}
+			}
+			if (clr == null)
+			{
+				clr = clrArr.Add();
+				if (clr == null)
+					return;
+			}
+			clr["ID"].v = clrID;
+			clr["Value"].v = clrVal;
+		}
 
+		private void SetCustFont(PDFXEdit.ICabNode fntArr, string fntID, string fntName, double fntSize)
+		{
+			int cnt = fntArr.Count;
+			PDFXEdit.ICabNode fnt = null;
+			for (int i = 0; i < cnt; i++)
+			{
+				PDFXEdit.ICabNode it = fntArr[i];
+				string id = it["ID"].String;
+				if (fntID == id)
+				{
+					fnt = it;
+					break;
+				}
+			}
+			if (fnt == null)
+			{
+				fnt = fntArr.Add();
+				if (fnt == null)
+					return;
+			}
+			fnt["ID"].v = fntID;
+			if (fntName != "")
+				fnt["Name"].v = fntName;
+			if (fntSize > 0.0)
+				fnt["Size"].v = fntSize;
+		}
+
+		public static string GetOptStr(string valName, string keyName = "", string defVal = "")
+		{
+			string path = "Software\\Tracker Software\\PDFEditorSDKExamples";
+			if (keyName != "")
+			{
+				path += "\\";
+				path += keyName;
+			}
+			string res = "";
 			try
 			{
-				RegistryKey rk = Registry.CurrentUser.OpenSubKey(@"Software\Tracker Software\PDFEditorSDKExamples");
-				string[] str_arr = (string [])rk.GetValue("LicKey"); // type is REG_MULTI_SZ
-				foreach (string s in str_arr)
+				RegistryKey rk = Registry.CurrentUser.OpenSubKey(path);
+				RegistryValueKind vk = rk.GetValueKind(valName);
+				if (vk == RegistryValueKind.String)
 				{
-					if (licKey.Length != 0)
-						licKey += "\r\n";
-					licKey += s;
+					res = (string)rk.GetValue(valName, defVal);
+				}
+				else if (vk == RegistryValueKind.MultiString || vk == RegistryValueKind.MultiString)
+				{
+					string[] str_arr = (string[])rk.GetValue(valName, defVal); // type is REG_MULTI_SZ
+					foreach (string s in str_arr)
+					{
+						if (res.Length != 0)
+							res += "\r\n";
+						res += s;
+					}
 				}
 			}
 			catch
 			{
-				licKey = "";
+				res = "";
 			}
+
+			if (res.Length == 0)
+				res = defVal;
+
+			return res;
 		}
 		
+		public static int GetOptInt(string valName, string keyName = "", int defVal = 0)
+		{
+			string path = "Software\\Tracker Software\\PDFEditorSDKExamples";
+			if (keyName != "")
+			{
+				path += "\\";
+				path += keyName;
+			}
+			int res = defVal;
+			try
+			{
+				RegistryKey rk = Registry.CurrentUser.OpenSubKey(path);
+				res = (int)rk.GetValue(valName, defVal);
+			}
+			catch { }
+			return res;
+		}
+
+		public static void SetOptStr(string valName, string val, string keyName = "")
+		{
+			string path = "Software\\Tracker Software\\PDFEditorSDKExamples";
+			if (keyName != "")
+			{
+				path += "\\";
+				path += keyName;
+			}
+			try
+			{
+				RegistryKey rk = Registry.CurrentUser.CreateSubKey(path);
+				rk.SetValue(valName, val);
+			}
+			catch { }
+		}		
+
+		public static void SetOptInt(string valName, int val, string keyName = "")
+		{
+			string path = "Software\\Tracker Software\\PDFEditorSDKExamples";
+			if (keyName != "")
+			{
+				path += "\\";
+				path += keyName;
+			}
+			try
+			{
+				RegistryKey rk = Registry.CurrentUser.CreateSubKey(path);
+				rk.SetValue(valName, val);
+			}
+			catch { }
+		}
+		
+		public static void SetOptBool(string valName, bool val, string keyName = "")
+		{
+			string path = "Software\\Tracker Software\\PDFEditorSDKExamples";
+			if (keyName != "")
+			{
+				path += "\\";
+				path += keyName;
+			}
+			try
+			{
+				RegistryKey rk = Registry.CurrentUser.CreateSubKey(path);
+				int v = val ? 1 : 0;
+				rk.SetValue(valName, v);
+			}
+			catch { }
+		}
+		
+		private void BuildHistFilesNames(string histDir, out string histFile, out string histThumbsFile)
+		{
+			histFile = "";
+			histThumbsFile = "";
+			if (histDir.Length == 0)
+				return;
+			histFile = histDir;
+			if (histFile[histFile.Length - 1] != '\\')
+				histFile += '\\';
+			histThumbsFile = histFile;
+			histFile += "History.dat";
+			histThumbsFile += "HistoryThumbs.dat";
+		}
+				
 		public MainFrm()
 		{
-
-			InitializeComponent();
-
 			//////////////////////////////////////////////////////////////////////////////////
 			// Setup SDK-license key
 			//////////////////////////////////////////////////////////////////////////////////
@@ -242,22 +421,72 @@ namespace FullDemo
 
 			string licKey = licKeyDEMO; // use here your private license key that was bought on tracker's official site... 
 
-			// >>>>> 
+			////////////////////////////////////////////////////////////////////
+			// >>>>>
 			// The code below is used only to simplify our development and testing
 			// of this Example for different modes: Licensed and DEMO.
 			// NOTE: it is not recommended to place and keep your private license
 			// key in public system's registry because it might be stolen by other people.
 			{
-				string pubLicKey;
-				ReadLicKeyForSDKExamples(out pubLicKey);
+				string pubLicKey = GetOptStr("LicKey");
 				if (pubLicKey.Length != 0)
 					licKey = pubLicKey;
 			}
 			// <<<<<
+			////////////////////////////////////////////////////////////////////
 
-			pdfCtl.SetLicKey(licKey);
-			
+			////////////////////////////////////////////////////////////////////
+			// >>>> Customization of SDK initialization process (OPTIONAL)
+			bool fLoadPrefs = GetOptInt("KeepPrefs") != 0;
+			bool fUseRegPrefs = GetOptInt("UsePrefsReg", "", 1) != 0;
+			string prefsRegPath = GetOptStr("PrefsRegPath", "", "HKCU\\Software\\MyApp\\PDFXEdit");
+			string prefsFilePath = GetOptStr("PrefsFilePath", "", "C:\\MyApp\\PDFXEdit\\Settings.dat");
+
+			bool fLoadHist = GetOptInt("KeepHist") != 0;
+			string histDir = GetOptStr("HistDir", "", "C:\\MyApp\\PDFXEdit");
+
+			if (fLoadPrefs || fLoadHist)
+			{
+				string prefsPath = "";
+				string histFile = "";
+				string histThumbsFile = "";
+				if (fLoadPrefs)
+					prefsPath = fUseRegPrefs ? prefsRegPath : prefsFilePath;
+				if (fLoadHist)
+					BuildHistFilesNames(histDir, out histFile, out histThumbsFile);
+
+				if (prefsPath.Length != 0 || histFile.Length != 0)
+				{
+					// firstly you must get access to main object of SDK, BEFORE of instantiation of first PXV_Control object (i.e. before call of InitializeComponent())
+					PDFXEdit.PXV_Inst Inst = new PDFXEdit.PXV_Inst();
+					
+					// now you may customize initialization of SDK
+					PDFXEdit.IString prefsPathStr = null;
+					PDFXEdit.IString histFileStr = null;
+					PDFXEdit.IString histThumbsFileStr = null;
+					if (prefsPath.Length != 0)
+						prefsPathStr = Inst.CreateString(prefsPath);
+					if (histFile.Length != 0)
+					{
+						histFileStr = Inst.CreateString(histFile);
+						histThumbsFileStr = Inst.CreateString(histThumbsFile);
+					}
+
+					Inst.Init(null, licKey, prefsPathStr, histFileStr, histThumbsFileStr);
+					Inst = null;
+
+					fCustomInitSDK = true;
+				}
+			}
+			// <<<<<
+			////////////////////////////////////////////////////////////////////
+
+			InitializeComponent();
+
 			InitIDS();
+
+			if (!fCustomInitSDK)
+				pdfCtl.SetLicKey(licKey);
 
 			cbPagesLayout.Items.Add(new ComboboxItem("Single Page", (int)PDFXEdit.PXC_PagesLayout.PageLayout_SinglePage));
 			cbPagesLayout.Items.Add(new ComboboxItem("One Column", (int)PDFXEdit.PXC_PagesLayout.PageLayout_OneColumn));
@@ -280,24 +509,181 @@ namespace FullDemo
 			uiInst = (PDFXEdit.IUIX_Inst)pdfCtl.Inst.GetExtension("UIX");
 			fsInst = (PDFXEdit.IAFS_Inst)pdfCtl.Inst.GetExtension("AFS");
 			auxInst = (PDFXEdit.IAUX_Inst)pdfCtl.Inst.GetExtension("AUX");
+			pxsInst = (PDFXEdit.IPXS_Inst)pdfCtl.Inst.GetExtension("PXS");
 
+			// load 'Program Preferences' opts
+			ckKeepPrefs.Checked = fLoadPrefs;
+
+			if (fUseRegPrefs)
+				rbPrefs_reg.Checked = true;
+			else
+				rbPrefs_file.Checked = true;
+
+			tPrefs_reg.Text = prefsRegPath;
+			tPrefs_file.Text = prefsFilePath;
+
+			// load 'Import/Export Settings' opts
+			tSettFile.Text = GetOptStr("SettFilePath", "", "C:\\MyApp\\PDFXEditSettings.xcs");
+			ckSettIncHist.Checked = GetOptInt("SettIncHist") != 0;
+
+			ckKeepHist.Checked = fLoadHist;
+			tHistDir.Text = histDir;
+			
+			UpdateSettingsIoTab();
+			
+//			// install UI-events demo-monitor
+// 			uiEventMon = new UIEventDemoMon();
+// 			uiInst.CurrentThreadCtx.RegisterEventMonitor(uiEventMon);
+
+//			// update comment-styles
+// 			{
+// 				int toolID = pdfCtl.Inst.Str2ID("tool.annot.square");
+// 
+// 				// Other Tools:
+// 				// tool.annot.square
+// 				// tool.annot.circle
+// 				// tool.annot.stickyNote
+// 				// tool.annot.fileAttachment
+// 				// tool.annot.sound
+// 				// tool.annot.line
+// 				// tool.annot.arrow
+// 				// tool.annot.distance
+// 				// tool.annot.polyline
+// 				// tool.annot.polygon
+// 				// tool.annot.cloud
+// 				// tool.annot.perimeter
+// 				// tool.annot.area
+// 				// tool.annot.textBox
+// 				// tool.annot.callout
+// 				// tool.annot.typeWriter
+// 				// tool.annot.editLinks
+// 				// tool.annot.redaction
+// 				// tool.annot.redaction = "Redaction Tool"
+// 				// tool.annot.pencil
+// 				// tool.annot.eraser
+// 				// tool.annot.stamp
+// 				// tool.annot.highlight
+// 				// tool.annot.underline
+// 				// tool.annot.strikeout
+// 				PDFXEdit.ICabNode styleParams = pdfCtl.Inst.CommentStylesManager.GetCurrentStyle(toolID);
+// 				if (styleParams != null)
+// 				{
+// 					styleParams["FC"].v = "rgb(1.0, 0.5, 0)"; // or "rgbd(255, 192, 0)"
+// 					styleParams["SC"].v = "rgb(0, 0.5, 1.0)";
+// 					pdfCtl.Inst.CommentStylesManager.OnChangedCurrentStyle(toolID); // to update 'live' icon in toolbars
+// 				}
+// 			}
+			
 			UpdateDocTab();
 
+//			// CustomizeToolbars: simple example to replace existing 'Open' command by 'Document Properties..'
+// 			if (false)
+// 			{
+// 				PDFXEdit.IUIX_CmdPane pane = pdfCtl.Inst.ActiveMainView.CmdPaneTop;
+// 				uint linesCnt = pane.Count;
+// 				for (uint i = 0; i < linesCnt; i++)
+// 				{
+// 					PDFXEdit.IUIX_CmdLine line = pane[i];
+// 					uint barsCnt = line.Count;
+// 					for (uint j = 0; j < barsCnt; j++)
+// 					{
+// 						PDFXEdit.IUIX_CmdBar bar = line[j];
+// 						if (bar.ID == pdfCtl.Inst.Str2ID("cmdbar.file"))	// "cmdbar.standard", "cmdbar.rotateView", "cmdbar.zoom", "cmdbar.contentEditing", "cmdbar.commenting", "cmdbar.measurement", "cmdbar.menubar"
+// 																			// also you may use pdfCtl.Inst.ID2Str(bar.ID)) to get corresponding string
+// 						{
+// 							int idx = bar.FlatFindFirstItemByCmdID(pdfCtl.Inst.Str2ID("cmd.open"));
+// 							if (idx >= 0)
+// 								bar.FlatDeleteItem(idx);
+// 							bar.FlatInsertItem2(pdfCtl.Inst.Str2ID("cmd.docProps"), 0);
+// 							break;
+// 						}
+// 					}
+// 				}
+// 			}
+						
 			RegisterEvents(true);
 		}
+
 
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			RegisterEvents(false);
 
+			// unregister UI-events demo-monitor
+			if (uiEventMon != null)
+			{
+				uiInst.CurrentThreadCtx.UnregisterEventMonitor(uiEventMon);
+				uiEventMon = null;
+			}
+			
+			uiInst = null;
+			fsInst = null;
+			auxInst = null;
+			pxsInst = null;
+
+			/////////////////////////////////////////////////////////
+			// >>>> Save all user preferences / save history of documents opening
+			/////////////////////////////////////////////////////////
+
+			bool fKeepPrefs = ckKeepPrefs.Checked;
+			bool fUseRegPrefs = rbPrefs_reg.Checked;
+			string prefsRegPath = tPrefs_reg.Text;
+			string prefsFilePath = tPrefs_file.Text;
+			
+			bool fKeepHist = ckKeepHist.Checked;
+			string histDir = tHistDir.Text;
+						
+			// user prefs
+			SetOptBool("KeepPrefs", fKeepPrefs);
+			SetOptBool("UsePrefsReg", fUseRegPrefs);
+			SetOptStr("PrefsRegPath", prefsRegPath);
+			SetOptStr("PrefsFilePath", prefsFilePath);
+			
+			// history
+			SetOptBool("KeepHist", fKeepHist);
+			SetOptStr("HistDir", histDir);
+			
+			// import/export settings
+			SetOptStr("SettFilePath", tSettFile.Text);
+			SetOptBool("SettIncHist", ckSettIncHist.Checked);
+
+			if (fKeepPrefs)
+			{
+				string path = fUseRegPrefs ? prefsRegPath : prefsFilePath;
+				if (path.Length != 0)
+				{
+					try
+					{
+						pdfCtl.Inst.SaveUserSettings(pdfCtl.Inst.CreateString(path));
+					}
+					catch { }
+				}
+			}
+
+			if (fKeepHist && (histDir.Length != 0))
+			{
+				string histFile = "";
+				string histThumbsFile = "";
+				BuildHistFilesNames(histDir, out histFile, out histThumbsFile);
+				try
+				{
+					pdfCtl.Inst.SaveHistory(pdfCtl.Inst.CreateString(histFile), pdfCtl.Inst.CreateString(histThumbsFile));
+				}
+				catch { }
+			}
+			// <<<<
+			/////////////////////////////////////////////////////////
+
+			if (fCustomInitSDK)
+			{
+				// It is critical to call Inst.Shutdown() directly because we already called Inst.Init() in MainFrm() constructor
+				pdfCtl.Inst.Shutdown();
+			}
+
 			/////////////////////////////////////////////////////////////////////////////////////
 			// Forced release of all COM-objects that may still captured by Garbage Collector. //
 			// It is critical to release them before destroying of pdfCtl!                     //
 			/////////////////////////////////////////////////////////////////////////////////////
-
-			uiInst = null;
-			fsInst = null;
-			auxInst = null;
 
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
@@ -762,8 +1148,16 @@ namespace FullDemo
 			ckSwitchToDest.Enabled = bHasDoc;
 			btnZoomIn.Enabled = bHasDoc;
 			btnZoomOut.Enabled = bHasDoc;
-		
+
+			UpdateDocumentsOpts();
+
 			fUpdateControls--;
+		}
+
+		private void UpdateDocumentsOpts()
+		{
+			ckMultDocs.Checked = !(bool)pdfCtl.Inst.Settings["Docs.SingleWnd"].v;
+			ckHideSingleTab.Checked = (bool)pdfCtl.Inst.Settings["Docs.HideSingleTab"].v;
 		}
 		
 		private void UpdateViewTab()
@@ -784,6 +1178,7 @@ namespace FullDemo
 			ckShowZoomBar.Checked = IsCmdBarVisible(IDS.cmdbar_zoom);
 			ckShowMeasureBar.Checked = IsCmdBarVisible(IDS.cmdbar_measurement);
 			ckShowContentEdtBar.Checked = IsCmdBarVisible(IDS.cmdbar_contentEditing);
+			ckShowRotateViewBar.Checked = IsCmdBarVisible(IDS.cmdbar_rotateView);
 
 			bool bHasDoc = pdfCtl.HasDoc;
 						
@@ -1039,7 +1434,51 @@ namespace FullDemo
 		{
 			Debug.WriteLine("pdfCtl.OnEvent: e.nEventID=={0}", e.nEventID);
 
-
+// 			PDFXEdit.IPXV_AnnotsEvent annotsEvent = (PDFXEdit.IPXV_AnnotsEvent)e.pEvent;
+// 			if (annotsEvent != null)
+// 			{
+// 				uint squareAnnotType = pxsInst.StrToAtom("Square");
+// 				// Other types:
+// 				//	Link,
+// 				//	Popup,
+// 				//	Movie,
+// 				//	Widget,
+// 				//	Screen,
+// 				//	PrinterMark,
+// 				//	TrapNet,
+// 				//	Watermark,
+// 				//	3D,
+// 				//	RichMedia,
+// 				//	Text,
+// 				//	FreeText,
+// 				//	Line,
+// 				//	Square,
+// 				//	Circle,
+// 				//	Polygon,
+// 				//	PolyLine,
+// 				//	Highlight,
+// 				//	Underline,
+// 				//	Squiggly,
+// 				//	StrikeOut,
+// 				//	Stamp,
+// 				//	Caret,
+// 				//	Ink,
+// 				//	FileAttachment,
+// 				//	Sound,
+// 				//	Redact,
+// 				//	Projection,
+// 
+// 				uint annotsCnt = annotsEvent.Items.Count;
+// 				for (uint i = 0; i < annotsCnt; i++)
+// 				{
+// 					PDFXEdit.IPXC_Annotation annot = annotsEvent.Items[i];
+// 					if (squareAnnotType == annot.Type)
+// 					{
+// 						uint pageIndex = annot.Page.Number;
+// 					}
+// 				}
+// 			}
+// 
 			if (e.nEventID == nIDS[(int)IDS.e_activeDocChanged])
 			{
 				UpdateDocTab();
@@ -1092,6 +1531,10 @@ namespace FullDemo
 			else if (tabCtl.SelectedTab == tabOpers)
 			{
 				UpdateOpersTab();
+			}
+			else if (tabCtl.SelectedTab == tabCustomUI)
+			{
+				UpdateCustomUITab();
 			}
 		}
 
@@ -1236,7 +1679,7 @@ namespace FullDemo
 			{
 				openFilesRes = pdfCtl.Inst.ShowOpenFilesDlg(sFilter, "", bAllowMult);
 			}
-			catch { }
+			catch { openFilesRes = null; }
 			
 			if (openFilesRes == null)
 				return null;
@@ -1423,11 +1866,14 @@ namespace FullDemo
 
 		private void btnBrowseForSaveAs_Click(object sender, EventArgs e)
 		{
-			PDFXEdit.IPXV_SaveFileDlgRes openFilesRes = pdfCtl.Inst.ShowSaveFileDlg("PDF Documents (*.pdf)|*.pdf|All Files (*.*)|*.*");
-			if (openFilesRes == null)
-				return;
-			tDestToSave.Text = openFilesRes.Name.FileSys.NameToString(openFilesRes.Name);
-
+			PDFXEdit.IPXV_SaveFileDlgRes saveFilesRes = null;
+			try
+			{
+				saveFilesRes = pdfCtl.Inst.ShowSaveFileDlg("PDF Documents (*.pdf)|*.pdf|All Files (*.*)|*.*");
+			}
+			catch { saveFilesRes = null; };
+			if (saveFilesRes != null)
+				tDestToSave.Text = saveFilesRes.Name.FileSys.NameToString(saveFilesRes.Name);
 		}
 
 		private void custSaveToStrDest(PDFXEdit.IPXV_Document doc)
@@ -1614,7 +2060,7 @@ namespace FullDemo
 					IFormHelper hlp = (IFormHelper)opOpts;
 					if (hlp != null)
 					{
-						hlp.Update();
+						hlp.OnUpdate();
 						bCanRun = bCanRun && hlp.IsValid();
 					}
 				}
@@ -1668,13 +2114,255 @@ namespace FullDemo
 			{
 				IFormHelper hlp = (IFormHelper)opOpts;
 				if (hlp != null)
-					hlp.Update();
+					hlp.OnUpdate();
 			}
 		}
 
 		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			System.Diagnostics.Process.Start("http://sdkhelp.tracker-software.com/view/Main_Page");
+		}
+
+		private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			System.Diagnostics.Process.Start("https://github.com/tracker-software/PDFEditorSDKExamples/tree/master/CSharp/FullDemo");
+		}
+
+		public static string fnt2str(Font f)
+		{
+			return f.Name + ", " + FormatNum(f.SizeInPoints) + " pt";
+		}
+
+		void UpdateCustomUITab()
+		{
+			fUpdateControls++;
+			
+			PDFXEdit.IUIX_Theme th = uiInst.Theme;
+
+			// update colors
+			btnFaceClr.BackColor = rgb2clr(th.StdColor[PDFXEdit.UIX_StdColor.UIX_StdColor_Base]);
+			btnWndClr.BackColor = rgb2clr(th.StdColor[PDFXEdit.UIX_StdColor.UIX_StdColor_Window]);
+			btnTextClr.BackColor = rgb2clr(th.StdColor[PDFXEdit.UIX_StdColor.UIX_StdColor_Text]);
+			btnSelClr.BackColor = rgb2clr(th.StdColor[PDFXEdit.UIX_StdColor.UIX_StdColor_CtlSel]);
+
+			// update fonts
+			PDFXEdit.IUIX_Font fnt = th.StdFont[PDFXEdit.UIX_StdFont.UIX_StdFont_Default];
+			FontDefault = new Font(fnt.FaceName, (float)fnt.Size);
+			fnt = th.StdFont[PDFXEdit.UIX_StdFont.UIX_StdFont_Command];
+			FontMenu = new Font(fnt.FaceName, (float)fnt.Size);
+
+			lbDefaultFnt.Text = fnt2str(FontDefault);
+			lbMenuFnt.Text = fnt2str(FontMenu);
+
+			fUpdateControls--;
+		}
+
+		void UpdateSettingsIoTab()
+		{
+			bool fKeep = ckKeepPrefs.Checked;
+			rbPrefs_file.Enabled = fKeep;
+			rbPrefs_reg.Enabled = fKeep;
+			
+			bool fUseReg = rbPrefs_reg.Checked;
+			tPrefs_reg.Enabled = fKeep;
+
+			tPrefs_file.Enabled = fKeep && !fUseReg;
+			btnBrowseForPrefsFile.Enabled = fKeep && !fUseReg;
+
+			tHistDir.Enabled = ckKeepHist.Checked;
+			btnBrowseForHistDir.Enabled = ckKeepHist.Checked;
+		}
+		
+		void ApplyCustomUI()
+		{
+			if (fUpdateControls != 0)
+				return;
+
+			PDFXEdit.ICabNode pr = pdfCtl.Inst.Settings["CustomUI"];
+
+			// setup colors
+			{
+				PDFXEdit.ICabNode clrArr = pr["Colors"];
+				SetCustColor(clrArr, "base",		clr2str(btnFaceClr.BackColor));
+				SetCustColor(clrArr, "window",		clr2str(btnWndClr.BackColor));
+				SetCustColor(clrArr, "text",		clr2str(btnTextClr.BackColor));
+				SetCustColor(clrArr, "selection",	clr2str(btnSelClr.BackColor));
+			}
+			
+			// setup fonts
+			{
+				PDFXEdit.ICabNode fntArr = pr["Fonts"];
+				SetCustFont(fntArr,	"default",	FontDefault.Name,	FontDefault.SizeInPoints);
+				SetCustFont(fntArr,	"menu",		FontMenu.Name,		FontMenu.SizeInPoints);
+			}
+
+			pdfCtl.Inst.FireAppPrefsChanged(PDFXEdit.PXV_AppPrefsChanges.PXV_AppPrefsChange_CustomUI);
+
+			UpdateCustomUITab();
+		}
+
+		private void btnFaceClr_Click(object sender, EventArgs e)
+		{
+			colorDialog1.Color = btnFaceClr.BackColor;
+			if (colorDialog1.ShowDialog() == DialogResult.OK)
+			{
+				btnFaceClr.BackColor = colorDialog1.Color;
+				ApplyCustomUI();
+			}
+		}
+
+		private void btnTextClr_Click(object sender, EventArgs e)
+		{
+			colorDialog1.Color = btnTextClr.BackColor;
+			if (colorDialog1.ShowDialog() == DialogResult.OK)
+			{
+				btnTextClr.BackColor = colorDialog1.Color;
+				ApplyCustomUI();
+			}
+		}
+
+		private void btnWndClr_Click(object sender, EventArgs e)
+		{
+			colorDialog1.Color = btnWndClr.BackColor;
+			if (colorDialog1.ShowDialog() == DialogResult.OK)
+			{
+				btnWndClr.BackColor = colorDialog1.Color;
+				ApplyCustomUI();
+			}
+		}
+
+		private void btnSelClr_Click(object sender, EventArgs e)
+		{
+			colorDialog1.Color = btnSelClr.BackColor;
+			if (colorDialog1.ShowDialog() == DialogResult.OK)
+			{
+				btnSelClr.BackColor = colorDialog1.Color;
+				ApplyCustomUI();
+			}
+		}
+
+		private void btnResetUI_Click(object sender, EventArgs e)
+		{
+			PDFXEdit.ICabNode pr = pdfCtl.Inst.Settings["CustomUI"];
+			pr.Clear();
+			pdfCtl.Inst.FireAppPrefsChanged(PDFXEdit.PXV_AppPrefsChanges.PXV_AppPrefsChange_CustomUI);
+			UpdateCustomUITab();
+		}
+
+		private void btnMenuFnt_Click(object sender, EventArgs e)
+		{
+			fontDialog1.Font = FontMenu;
+			if (fontDialog1.ShowDialog() == DialogResult.OK)
+			{
+				FontMenu = fontDialog1.Font;
+				ApplyCustomUI();
+			}
+		}
+
+		private void btnDefaultFnt_Click(object sender, EventArgs e)
+		{
+			fontDialog1.Font = FontDefault;
+			if (fontDialog1.ShowDialog() == DialogResult.OK)
+			{
+				FontDefault = fontDialog1.Font;
+				ApplyCustomUI();
+			}
+		}
+
+		private void ckKeepPrefs_CheckedChanged(object sender, EventArgs e)
+		{
+			UpdateSettingsIoTab();
+		}
+
+		private void rbPrefs_file_CheckedChanged(object sender, EventArgs e)
+		{
+			UpdateSettingsIoTab();
+		}
+
+		private void rbPrefs_reg_CheckedChanged(object sender, EventArgs e)
+		{
+			UpdateSettingsIoTab();
+		}
+
+		private void btnBrowseForPrefsFile_Click(object sender, EventArgs e)
+		{
+			PDFXEdit.IPXV_SaveFileDlgRes saveFilesRes = null;
+			try
+			{
+				saveFilesRes = pdfCtl.Inst.ShowSaveFileDlg("PDF-XChange Editor Preferences (*.dat)|*.dat|All Files (*.*)|*.*");
+			}
+			catch { saveFilesRes = null; };
+			if (saveFilesRes != null)
+				tPrefs_file.Text = saveFilesRes.Name.FileSys.NameToString(saveFilesRes.Name);
+		}
+
+		private void btnBrowseForSettFile_Click(object sender, EventArgs e)
+		{
+			PDFXEdit.IPXV_SaveFileDlgRes saveFilesRes = null;
+			try
+			{
+				saveFilesRes = pdfCtl.Inst.ShowSaveFileDlg("PDF-XChange Editor Settings (*.xcs)|*.xcs|All Files (*.*)|*.*");
+			}
+			catch { saveFilesRes = null; };
+			if (saveFilesRes != null)
+				tSettFile.Text = saveFilesRes.Name.FileSys.NameToString(saveFilesRes.Name);
+		}
+
+		private void btnSettLoad_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				PDFXEdit.IOperation op = pdfCtl.Inst.CreateOp(pdfCtl.Inst.Str2ID("op.settings.import"));
+				op.Params.Root["Options.History"].v = ckSettIncHist.Checked;
+				op.Params.Root["Input"].v = fsInst.DefaultFileSys.StringToName(tSettFile.Text);
+				op.Do();
+
+				UpdateDocumentsOpts();
+			}
+			catch { }
+		}
+
+		private void btnSettSave_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				PDFXEdit.IOperation op = pdfCtl.Inst.CreateOp(pdfCtl.Inst.Str2ID("op.settings.export"));
+				op.Params.Root["Options.History"].v = ckSettIncHist.Checked;
+				op.Params.Root["Input"].v = fsInst.DefaultFileSys.StringToName(tSettFile.Text);
+				op.Do();
+			}
+			catch { }
+		}
+
+		private void ckKeepHist_CheckedChanged(object sender, EventArgs e)
+		{
+			UpdateSettingsIoTab();
+		}
+
+		private void btnBrowseForHistDir_Click(object sender, EventArgs e)
+		{
+			folderBrowserDialog1.SelectedPath = tHistDir.Text;
+			if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+				tHistDir.Text = folderBrowserDialog1.SelectedPath;
+		}
+
+		private void ckMultDocs_CheckedChanged(object sender, EventArgs e)
+		{
+			pdfCtl.Inst.Settings["Docs.SingleWnd"].v = !ckMultDocs.Checked;
+			pdfCtl.Inst.FireAppPrefsChanged(PDFXEdit.PXV_AppPrefsChanges.PXV_AppPrefsChange_Documents);
+		}
+
+		private void ckHideSingleTab_CheckedChanged(object sender, EventArgs e)
+		{
+			pdfCtl.Inst.Settings["Docs.HideSingleTab"].v = ckHideSingleTab.Checked;
+			pdfCtl.Inst.FireAppPrefsChanged(PDFXEdit.PXV_AppPrefsChanges.PXV_AppPrefsChange_Documents);
+		}
+
+		private void ckShowRotateViewBar_CheckedChanged(object sender, EventArgs e)
+		{
+			if (fUpdateControls != 0) return;
+
+			ShowCmdBar(IDS.cmdbar_rotateView, (ckShowRotateViewBar.Checked));
 		}
 	}
 }

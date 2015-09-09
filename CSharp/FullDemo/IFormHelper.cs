@@ -8,8 +8,8 @@ namespace FullDemo
 {
 	interface IFormHelper
 	{
-		void Serialize(PDFXEdit.IOperation dest);
-		void Update();
 		bool IsValid();
+		void OnUpdate();
+		void OnSerialize(PDFXEdit.IOperation dest);
 	}
 }

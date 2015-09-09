@@ -29,8 +29,13 @@ namespace FullDemo
 		/////////////////////////////////////////////////////////////////
 		// IFormHelper
 		/////////////////////////////////////////////////////////////////
+
+		public bool IsValid()
+		{
+			return mainFrm.pdfCtl.HasDoc;
+		}
  
-		public void Update()
+		public void OnUpdate()
 		{
 			Enabled = IsValid();
 			if (Enabled)
@@ -39,12 +44,7 @@ namespace FullDemo
 				lbNumPages.Text = "";
 		}
 
-		public bool IsValid()
-		{
-			return mainFrm.pdfCtl.HasDoc;
-		}
-
-		public void Serialize(PDFXEdit.IOperation op)
+		public void OnSerialize(PDFXEdit.IOperation op)
 		{
 			if (op == null)
 				return;
