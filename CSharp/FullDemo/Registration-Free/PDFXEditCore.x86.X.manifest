@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+
+<assemblyIdentity
+   type="win32"
+   name="PDFXEditCore.x86.X"
+   version="1.0.0.0" />
+
+<file name = "PDFXEditCore.x86.dll">
+
+    <typelib tlbid="{0AAFF38C-CB91-4424-A8B9-F8B504ACBE0C}"
+           version="1.0" helpdir=""/>
+           
+    <comClass
+        clsid="{973BF60B-4CC6-4be0-B408-3D80E07FC2E6}"
+        threadingModel = "Apartment" />
+        
+    <comClass
+        clsid="{A1149909-4EDC-4421-B9E5-E93C25A000A1}"
+        threadingModel = "Apartment" />
+    
+</file>
+
+<comInterfaceExternalProxyStub 
+    name="IPXV_Inst" 
+    iid="{D726366D-34D6-49fc-A341-7B84C54CCA3E}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid = "{0AAFF38C-CB91-4424-A8B9-F8B504ACBE0C}" />
+    
+<comInterfaceExternalProxyStub 
+    name="IPXV_Control" 
+    iid="{71300D43-687F-436A-A699-2B37448D0803}"
+    proxyStubClsid32="{00020424-0000-0000-C000-000000000046}"
+    baseInterface="{00000000-0000-0000-C000-000000000046}"
+    tlbid = "{0AAFF38C-CB91-4424-A8B9-F8B504ACBE0C}" />
+    
+</assembly>
