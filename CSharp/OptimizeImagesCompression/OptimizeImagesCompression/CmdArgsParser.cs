@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace OptimizeImagesCompression
 {
-    class CmdArgsParser
+    static class CmdArgsParser
     {
-        public string GetCmdArgForParam(string param)
+        public static string GetCmdArgForParam(string param)
         {
             string[] allargsparams = Environment.GetCommandLineArgs();
             return ParseCmdArgs(allargsparams, param);
         }
 
-        private string ParseCmdArgs(string[] allargsparams, string param)
+        private static string ParseCmdArgs(string[] allargsparams, string param)
         {
             for (int i = 0; i < allargsparams.Length; i++)
             {
