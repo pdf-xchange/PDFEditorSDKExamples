@@ -23,6 +23,7 @@ namespace OptimizeImagesCompression
                     if (String.IsNullOrEmpty(allargsparams[i+1]))
                     {
                         Console.WriteLine("arg is null for parametr " + param + " terminating...");
+                        System.Diagnostics.Debug.WriteLine("arg is null for parametr " + param + " terminating...");
                         Environment.Exit(0);
                         return "Null";
                     }
@@ -33,7 +34,9 @@ namespace OptimizeImagesCompression
                 }
             }
             Console.WriteLine("arg is not found for " + param + " terminating...");
+            System.Diagnostics.Debug.WriteLine("arg is not found for " + param + " terminating...");
             Environment.Exit(0);
+            
             return "ArgNotFound";
         }
     }
