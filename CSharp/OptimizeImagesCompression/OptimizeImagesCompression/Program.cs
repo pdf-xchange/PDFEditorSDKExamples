@@ -25,6 +25,9 @@ namespace OptimizeImagesCompression
 
             PDFXEDIT editor = new PDFXEDIT();
             editor.InitPDFControl();
+            List<string> raw_statistic_file = new List<string>();
+            List<string> raw_statistic_options = new List<string>();
+            List<long> raw_statistic_file_size = new List<long>();
             for (int FileNumber = 0; FileNumber < InputFilePaths.Length; FileNumber++)//Do Optimization this for all files in folder
             {
                 string OpParams;
@@ -38,7 +41,7 @@ namespace OptimizeImagesCompression
                         {
                             for (int Quality = 1; Quality < 7; Quality++)
                             {
-                                OpParams = CompMode[compmode_number] + "_" + methods_number.ToString(CultureInfo.CurrentCulture) + "_" + (Quality - 1).ToString(CultureInfo.CurrentCulture);
+                                OpParams = CompMode[compmode_number] + "_" + TransformMethodToUserFriendly(CompMode[compmode_number],methods_number) + "_" + "Quality"+(Quality - 1).ToString(CultureInfo.CurrentCulture);
                                 logfile.WriteUnicodeString(log, "Start work on " + InputFilePaths[FileNumber] + " with params " + OpParams);
                                 string OutputFilePath = TransformFileName(InputFilePaths[FileNumber], FoderToSaveFiles, OpParams);
                                 if (!(File.Exists(OutputFilePath)))
@@ -48,13 +51,17 @@ namespace OptimizeImagesCompression
                                     watch.Stop();
                                     logfile.WriteUnicodeString(log, "Work  Ended with error code " + ErrCodes);
                                     logfile.WriteUnicodeString(log, "Time of Work = " + watch.ElapsedMilliseconds.ToString(CultureInfo.CurrentCulture));
+                                    raw_statistic_file.Add(InputFilePaths[FileNumber]);
+                                    raw_statistic_options.Add(OpParams);
+                                    FileInfo f = new FileInfo(OutputFilePath);
+                                    raw_statistic_file_size.Add(f.Length);
                                 }
                                 else { logfile.WriteUnicodeString(log, "File " + OutputFilePath + " exists skiping..."); }
                             }
                         }
                         else
                         {
-                            OpParams = CompMode[compmode_number] + "_" + methods_number.ToString(CultureInfo.CurrentCulture);
+                            OpParams = CompMode[compmode_number] + "_" + TransformMethodToUserFriendly(CompMode[compmode_number], methods_number);
                             logfile.WriteUnicodeString(log, "Start work on " + InputFilePaths[FileNumber] + " with params " + OpParams);
                             string OutputFilePath = TransformFileName(InputFilePaths[FileNumber], FoderToSaveFiles, OpParams);
                             if (!(File.Exists(OutputFilePath)))
@@ -64,6 +71,10 @@ namespace OptimizeImagesCompression
                                 watch.Stop();
                                 logfile.WriteUnicodeString(log, "Work  Ended with error code " + ErrCodes);
                                 logfile.WriteUnicodeString(log, "Time of Work = " + watch.ElapsedMilliseconds.ToString(CultureInfo.CurrentCulture));
+                                raw_statistic_file.Add(InputFilePaths[FileNumber]);
+                                raw_statistic_options.Add(OpParams);
+                                FileInfo f = new FileInfo(OutputFilePath);
+                                raw_statistic_file_size.Add(f.Length);
                             }
                             else { logfile.WriteUnicodeString(log, "File " + OutputFilePath + " exists skiping..."); }
                         }
@@ -80,16 +91,6 @@ namespace OptimizeImagesCompression
                 logfile.WriteUnicodeString(log, " Work ended");
             }
 
-
-            
-            StatisticInfo statistic = new StatisticInfo();
-            statistic.FolderWithOriginalFiles = FolderWithTestFilesPath;
-            statistic.FolderWithOptimizedFiles = FoderToSaveFiles;
-            string[] st_info=statistic.GetInfo();
-            for (int i=0;i<st_info.Length; i++)
-            {
-                logfile.WriteUnicodeString(log,st_info[i]);
-            }
             Logger.EndLogging(log);
 
         }
@@ -139,6 +140,102 @@ namespace OptimizeImagesCompression
 
             temp = SaveFolder + "\\" + temp;
             return temp;
+
+        }
+        static string TransformMethodToUserFriendly(string comp_mode, int Method)
+        {
+            switch (comp_mode)
+            {
+                case "Color":
+                    switch (Method)
+                    {
+                        case 0:
+                            return "Retain Existing";
+                            break;
+                        case 1:
+                            return "Jpeg2000";
+                            break;
+                        case 2:
+                            return "Jpeg";
+                            break;
+                        case 3:
+                            return "Zip";
+                            break;
+                        default:
+                            return "Error_Index";
+                            break;
+                    }
+                    break;
+                case "Grayscale":
+                    switch (Method)
+                    {
+                        case 0:
+                            return "Retain Existing";
+                            break;
+                        case 1:
+                            return "Jpeg2000";
+                            break;
+                        case 2:
+                            return "Jpeg";
+                            break;
+                        case 3:
+                            return "Zip";
+                            break;
+                        default:
+                            return "Error_Index";
+                            break;
+                    }
+                    break;
+                case "Indexed":
+                    switch (Method)
+                    {
+                        case 0:
+                            return "Retain Existing";
+                            break;
+                        case 1:
+                            return "Zip";
+                            break;
+                        case 2:
+                            return "RunLength";
+                            break;
+                        case 3:
+                            return "LZW";
+                            break;
+                        default:
+                            return "Error_Index";
+                            break;
+                    }
+                    break;
+                case "Mono":
+                    switch (Method)
+                    {
+                        case 0:
+                            return "Retain Existing";
+                            break;
+                        case 1:
+                            return "Jbig2";
+                            break;
+                        case 2:
+                            return "CCIT3";
+                            break;
+                        case 3:
+                            return "CCIT4";
+                            break;
+                        case 4:
+                            return "Zip";
+                            break;
+                        case 5:
+                            return "RunLength";
+                            break;
+                        default:
+                            return "Error_Index";
+                            break;
+                    }
+                    break;
+                default:
+                    return "Error_index_inCompMethod";
+                    break;
+            }
 
         }
 
