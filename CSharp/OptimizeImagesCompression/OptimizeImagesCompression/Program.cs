@@ -41,7 +41,7 @@ namespace OptimizeImagesCompression
                         {
                             for (int Quality = 1; Quality < 7; Quality++)
                             {
-                                OpParams = CompMode[compmode_number] + "_" + TransformMethodToUserFriendly(CompMode[compmode_number],methods_number) + "_" + "Quality"+(Quality - 1).ToString(CultureInfo.CurrentCulture);
+                                OpParams = CompMode[compmode_number] + "_" + TransformMethodToUserFriendly(CompMode[compmode_number], methods_number) + "_" + "Quality" + (Quality - 1).ToString(CultureInfo.CurrentCulture);
                                 logfile.WriteUnicodeString(log, "Start work on " + InputFilePaths[FileNumber] + " with params " + OpParams);
                                 string OutputFilePath = TransformFileName(InputFilePaths[FileNumber], FoderToSaveFiles, OpParams);
                                 if (!(File.Exists(OutputFilePath)))
@@ -88,9 +88,14 @@ namespace OptimizeImagesCompression
             if (InputFilePaths.Length == 0) { logfile.WriteUnicodeString(log, "No files in folder, work ended"); }
             else
             {
-                logfile.WriteUnicodeString(log, " Work ended");
+                logfile.WriteUnicodeString(log, "Work ended");
             }
-
+            logfile.WriteUnicodeString(log, "Statistic info:");
+            string[] got_statistic = StatisticInfo.GetInfo(raw_statistic_file, raw_statistic_options, raw_statistic_file_size);
+            for (int i = 0; i < got_statistic.Length; i++)
+            {
+                logfile.WriteUnicodeString(log, got_statistic[i]);
+            }
             Logger.EndLogging(log);
 
         }
