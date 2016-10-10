@@ -685,6 +685,9 @@ namespace FullDemo
 			// <<<<
 			/////////////////////////////////////////////////////////
 
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+
 			if (fCustomInitSDK)
 			{
 				// It is critical to call Inst.Shutdown() directly because we already called Inst.Init() in MainFrm() constructor
