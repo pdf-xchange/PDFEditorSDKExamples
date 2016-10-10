@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>PDF-XChange Viewer ActiveX test</title>
+<script>
+
+	function btnOpen_Click()
+	{
+		try {
+          PDFView.Src = "http://docu-track.co.uk/FeatureChartEU.pdf";;
+          docID = PDFView.Doc.ID;
+          //alert(docID);
+      }
+      catch (err) {}
+	}
+	
+	function btnClose_Click()
+	{
+		try {
+          PDFView.Doc.Close();
+      }
+      catch(err) { }  
+	}
+	
+	function btnPrint_Click()
+	{
+		try {
+          PDFView.PrintWithDlg(false, false);
+      }
+      catch (err) { }
+	}
+	
+	function btnToolbars_Click()
+	{
+		//PXV_VisibleCmdPanes_MainView = 1,
+		//PXV_VisibleCmdPanes_PagesView = 2,
+		//PXV_VisibleCmdPanes_All = 3
+		if (0 == PDFView.VisibleCmdPanes) 
+		 	PDFView.VisibleCmdPanes = 3;
+		else
+			PDFView.VisibleCmdPanes = 0;
+	}
+         
+</script>
+</head>
+<body>
+
+<p>
+	<input type="button" id="btnOpen" value="Open" onclick = "btnOpen_Click()">
+	<input type="button" id="btnClose" value="Close" onclick = "btnClose_Click()">
+	<input type="button" id="btnPrint" value="Print" onclick = "btnPrint_Click()">
+	<input type="button" id="btnToolbars" value="Toolbars" onclick = "btnToolbars_Click()">
+</p>
+
+<object id="PDFView" classid="CLSID:A1149909-4EDC-4421-B9E5-E93C25A000A1" width="100%" height="90%">
+</object>
+
+</body>
+</html>

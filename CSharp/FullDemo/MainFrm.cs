@@ -104,6 +104,7 @@ namespace FullDemo
 		private Font FontMenu = null;
 
 		public PDFXEdit.IPXS_Inst pxsInst = null;
+		public PDFXEdit.IPXC_Inst pxcInst = null;
 		public PDFXEdit.IUIX_Inst uiInst = null;
 		public PDFXEdit.IAFS_Inst fsInst = null;
 		public PDFXEdit.IAUX_Inst auxInst = null;
@@ -412,6 +413,15 @@ namespace FullDemo
 			histFile += "History.dat";
 			histThumbsFile += "HistoryThumbs.dat";
 		}
+
+		public bool HasIntersect(ref PDFXEdit.PXC_Rect r1, ref PDFXEdit.PXC_Rect r2)
+		{
+			if ((r1.left >= r2.right) || (r1.right <= r2.left))
+				return false;
+			if ((r1.top <= r2.bottom) || (r1.bottom >= r2.top))
+				return false;
+			return true;
+		}
 				
 		public MainFrm()
 		{
@@ -469,7 +479,7 @@ namespace FullDemo
 				{
 					// firstly you must get access to main object of SDK, BEFORE of instantiation of first PXV_Control object (i.e. before call of InitializeComponent())
 					PDFXEdit.PXV_Inst Inst = new PDFXEdit.PXV_Inst();
-					
+
 					// now you may customize initialization of SDK
 					PDFXEdit.IString prefsPathStr = null;
 					PDFXEdit.IString histFileStr = null;
@@ -520,6 +530,7 @@ namespace FullDemo
 			fsInst = (PDFXEdit.IAFS_Inst)pdfCtl.Inst.GetExtension("AFS");
 			auxInst = (PDFXEdit.IAUX_Inst)pdfCtl.Inst.GetExtension("AUX");
 			pxsInst = (PDFXEdit.IPXS_Inst)pdfCtl.Inst.GetExtension("PXS");
+			pxcInst = (PDFXEdit.IPXC_Inst)pdfCtl.Inst.GetExtension("PXC");
 
 			// load 'Program Preferences' opts
 			ckKeepPrefs.Checked = fLoadPrefs;
@@ -538,6 +549,8 @@ namespace FullDemo
 
 			ckKeepHist.Checked = fLoadHist;
 			tHistDir.Text = histDir;
+
+			pdfCtl.Inst.Settings["General.AppTitle"].v = "My App";
 			
 			UpdateSettingsIoTab();
 
@@ -545,72 +558,7 @@ namespace FullDemo
 //  		uiEventMon = new UIEventDemoMon();
 //  		uiInst.CurrentThreadCtx.RegisterEventMonitor(uiEventMon);
 
-
-//			// update comment-styles
-// 			{
-// 				int toolID = pdfCtl.Inst.Str2ID("tool.annot.square");
-// 
-// 				// Other Tools:
-// 				// tool.annot.square
-// 				// tool.annot.circle
-// 				// tool.annot.stickyNote
-// 				// tool.annot.fileAttachment
-// 				// tool.annot.sound
-// 				// tool.annot.line
-// 				// tool.annot.arrow
-// 				// tool.annot.distance
-// 				// tool.annot.polyline
-// 				// tool.annot.polygon
-// 				// tool.annot.cloud
-// 				// tool.annot.perimeter
-// 				// tool.annot.area
-// 				// tool.annot.textBox
-// 				// tool.annot.callout
-// 				// tool.annot.typeWriter
-// 				// tool.annot.editLinks
-// 				// tool.annot.redaction
-// 				// tool.annot.redaction = "Redaction Tool"
-// 				// tool.annot.pencil
-// 				// tool.annot.eraser
-// 				// tool.annot.stamp
-// 				// tool.annot.highlight
-// 				// tool.annot.underline
-// 				// tool.annot.strikeout
-// 				PDFXEdit.ICabNode styleParams = pdfCtl.Inst.CommentStylesManager.GetCurrentStyle(toolID);
-// 				if (styleParams != null)
-// 				{
-// 					styleParams["FC"].v = "rgb(1.0, 0.5, 0)"; // or "rgbd(255, 192, 0)"
-// 					styleParams["SC"].v = "rgb(0, 0.5, 1.0)";
-// 					pdfCtl.Inst.CommentStylesManager.OnChangedCurrentStyle(toolID); // to update 'live' icon in toolbars
-// 				}
-// 			}
-			
 			UpdateDocTab();
-
-//			// CustomizeToolbars: simple example to replace existing 'Open' command by 'Document Properties..'
-// 			if (false)
-// 			{
-// 				PDFXEdit.IUIX_CmdPane pane = pdfCtl.Inst.ActiveMainView.CmdPaneTop;
-// 				uint linesCnt = pane.Count;
-// 				for (uint i = 0; i < linesCnt; i++)
-// 				{
-// 					PDFXEdit.IUIX_CmdLine line = pane[i];
-// 					uint barsCnt = line.Count;
-// 					for (uint j = 0; j < barsCnt; j++)
-// 					{
-// 						PDFXEdit.IUIX_CmdBar bar = line[j];
-// 						if (bar.ID == pdfCtl.Inst.Str2ID("cmdbar.file"))	// "cmdbar.standard", "cmdbar.rotateView", "cmdbar.zoom", "cmdbar.contentEditing", "cmdbar.commenting", "cmdbar.measurement", "cmdbar.menubar"
-// 																			// also you may use pdfCtl.Inst.ID2Str(bar.ID)) to get corresponding string
-// 						{
-// 							int idx = bar.FlatFindFirstItemByCmdID(pdfCtl.Inst.Str2ID("cmd.open"));
-// 							if (idx >= 0)
-// 								bar.FlatDeleteItem(idx);
-// 							bar.FlatInsertItem2(pdfCtl.Inst.Str2ID("cmd.docProps"), 0);
-// 							break;
-// 						}
-// 					}
-// 				}
-// 			}
 						
 			RegisterEvents(true);
 		}
@@ -631,6 +579,7 @@ namespace FullDemo
 			fsInst = null;
 			auxInst = null;
 			pxsInst = null;
+			pxcInst = null;
 
 			/////////////////////////////////////////////////////////
 			// >>>> Save all user preferences / save history of documents opening
@@ -2210,6 +2159,16 @@ namespace FullDemo
 				SetCustFont(fntArr,	"menu",		FontMenu.Name,		FontMenu.SizeInPoints);
 			}
 
+			// {
+			// 	pdfCtl.Inst.Settings["CustomUI.Backgrounds.Main.Style"].v = "S"; // solid
+			// 	pdfCtl.Inst.Settings["CustomUI.Backgrounds.Main.ShowOverlay"].v = false; // no tob/bottom shadows
+			// }
+			// 
+			// {
+			// 	pdfCtl.Inst.Settings["CustomUI.Backgrounds.Dialog.Style"].v = "S"; // solid
+			// 	pdfCtl.Inst.Settings["CustomUI.Backgrounds.Dialog.ShowOverlay"].v = false; // no tob/bottom shadows
+			// }
+
 			pdfCtl.Inst.FireAppPrefsChanged(PDFXEdit.PXV_AppPrefsChanges.PXV_AppPrefsChange_CustomUI);
 
 			UpdateCustomUITab();
@@ -2364,6 +2323,10 @@ namespace FullDemo
 		{
 			pdfCtl.Inst.Settings["Docs.SingleWnd"].v = !ckMultDocs.Checked;
 			pdfCtl.Inst.FireAppPrefsChanged(PDFXEdit.PXV_AppPrefsChanges.PXV_AppPrefsChange_Documents);
+
+			// disable 'dock/undock/reorder' feature for main panes:
+			pdfCtl.Inst.ActiveMainView.Panes.Layout.Obj.SetStyle((Int64)PDFXEdit.UIX_LayoutStyleFlags.UIX_LayoutStyle_PanesNoReorder, (Int64)PDFXEdit.UIX_LayoutStyleFlags.UIX_LayoutStyle_PanesNoReorder);
+			pdfCtl.Inst.ActiveMainView.DocViewsArea.Panes.Layout.Obj.SetStyle((Int64)PDFXEdit.UIX_LayoutStyleFlags.UIX_LayoutStyle_PanesNoReorder, (Int64)PDFXEdit.UIX_LayoutStyleFlags.UIX_LayoutStyle_PanesNoReorder);
 		}
 
 		private void ckHideSingleTab_CheckedChanged(object sender, EventArgs e)

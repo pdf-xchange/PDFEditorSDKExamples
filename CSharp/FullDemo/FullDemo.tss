@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>D:\TEMP\10836$PDFXEdit.dll$v4.0.30319$NoDynamic\PDFXEdit.IPXS_Inst.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\TEMP\10836$PDFXEdit.dll$v4.0.30319$NoDynamic\PDFXEdit.IPXC_Page.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>F:\WORK\PDF5\PDFEditSDKExamples\CSharp\FullDemo\MainFrm.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>FullDemo</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\TEMP\10836$PDFXEdit.dll$v4.0.30319$NoDynamic\PDFXEdit.IUIX_LayoutItem.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>D:\TEMP\10836$PDFXEdit.dll$v4.0.30319$NoDynamic\PDFXEdit.IUIX_Layout.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>f:\WORK\PDF5\Trunk\PDFViewerLib\Inst.cpp</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>f:\WORK\PDF5\Trunk\PDFViewerLib\ViewBase.h</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>F:\WORK\PDF5\Trunk\DSUILib\Layout.cpp</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>
