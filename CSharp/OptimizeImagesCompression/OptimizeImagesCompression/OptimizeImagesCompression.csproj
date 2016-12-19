@@ -87,7 +87,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StatisticInfo.cs" />
+    <Compile Include="OperationParameters.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
 using OptimizeImagesCompression.Properties;
+using PDFXEdit;
 
 namespace OptimizeImagesCompression
 {
@@ -15,18 +16,24 @@ namespace OptimizeImagesCompression
             string folderWithTestFilesPath = CmdArgsParser.GetCmdArgForParam("-f");
             string logPath = CmdArgsParser.GetCmdArgForParam("-l");
             string foderToSaveFiles = CmdArgsParser.GetCmdArgForParam("-s");
-
-            FileStream log;
-            Logger logfile = new Logger();
-            logfile.StartLogging(logPath, out log);
             GetTestFiles.FolderWithTestFilesPath = folderWithTestFilesPath;
             string[] inputFilePaths = GetTestFiles.GetAllFilesInFolder();
-
+            List<OperationParameters> operationTask = GenerateTaskList(inputFilePaths, foderToSaveFiles);
             Pdfxedit editor = new Pdfxedit();
             editor.InitPdfControl();
-            List<string> rawStatisticFile = new List<string>();
-            List<string> rawStatisticOptions = new List<string>();
-            List<long> rawStatisticFileSize = new List<long>();
+            foreach (var operation in operationTask)
+            {
+                editor.OptimizeDocument(operation.FileName, operation.OutputFilePath, operation.CompMode, operation.MethodsNumber, operation.Quality, out operation.ErrCodes);
+            }
+            try { editor.m_Inst.Shutdown(); }
+            catch (Exception e)
+            { }
+
+        }
+
+        private static List<OperationParameters> GenerateTaskList(string[] inputFilePaths, string foderToSaveFiles)
+        {
+            var operationTaskParams = new List<OperationParameters>();
             foreach (string fileName in inputFilePaths)
             {
                 foreach (string compMode in CompMode)
@@ -34,64 +41,32 @@ namespace OptimizeImagesCompression
                     int methodsCount = GetValidCountMethodsForCompMode(compMode);
                     for (int methodsNumber = 0; methodsNumber < methodsCount; methodsNumber++) //Type of compression
                     {
-                        string opParams;
-                        string errCodes;
-                        if ((compMode == "Color" || compMode == " Grayscale") && (methodsNumber == 1 || methodsNumber == 2)) //Jpeg and Jpeg 200 have additional parametr Quality;
+                        int maxQuality = (compMode == "Color" || compMode == " Grayscale") &&
+                                     (methodsNumber == 1 || methodsNumber == 2)
+                            ? 6
+                            : 0;
+                        for (int quality = 0; quality <= maxQuality; quality++)
                         {
-                            for (int quality = 1; quality < 7; quality++)
-                            {
-                                opParams = compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber) + "_" + "Quality" + (quality - 1).ToString(CultureInfo.CurrentCulture);
-                                logfile.WriteUnicodeString(log, "Start work on " + fileName + " with params " + opParams);
-                                string outputFilePath = TransformFileName(fileName, foderToSaveFiles, opParams);
-                                if (!File.Exists(outputFilePath))
-                                {
-                                    var watch = System.Diagnostics.Stopwatch.StartNew();
-                                    editor.OptimizeDocument(fileName, outputFilePath, compMode, methodsNumber, quality, out errCodes);
-                                    watch.Stop();
-                                    logfile.WriteUnicodeString(log, "Work  Ended with error code " + errCodes);
-                                    logfile.WriteUnicodeString(log, "Time of Work = " + watch.ElapsedMilliseconds.ToString(CultureInfo.CurrentCulture));
-                                    rawStatisticFile.Add(fileName);
-                                    rawStatisticOptions.Add(opParams);
-                                    FileInfo f = new FileInfo(outputFilePath);
-                                    rawStatisticFileSize.Add(f.Length);
-                                }
-                                else { logfile.WriteUnicodeString(log, "File " + outputFilePath + " exists skiping..."); }
-                            }
-                        }
-                        else
-                        {
-                            opParams = compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber);
-                            logfile.WriteUnicodeString(log, "Start work on " + fileName + " with params " + opParams);
+                            string opParams = compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber) + "_"
+                                + quality.ToString(CultureInfo.CurrentCulture);
                             string outputFilePath = TransformFileName(fileName, foderToSaveFiles, opParams);
-                            if (!(File.Exists(outputFilePath)))
+                            if (!File.Exists(outputFilePath))
                             {
-                                var watch = System.Diagnostics.Stopwatch.StartNew();
-                                editor.OptimizeDocument(fileName, outputFilePath, compMode, methodsNumber, 0, out errCodes);
-                                watch.Stop();
-                                logfile.WriteUnicodeString(log, "Work  Ended with error code " + errCodes);
-                                logfile.WriteUnicodeString(log, "Time of Work = " + watch.ElapsedMilliseconds.ToString(CultureInfo.CurrentCulture));
-                                rawStatisticFile.Add(fileName);
-                                rawStatisticOptions.Add(opParams);
-                                FileInfo f = new FileInfo(outputFilePath);
-                                rawStatisticFileSize.Add(f.Length);
+                                var operationParameters = new OperationParameters
+                                {
+                                    FileName = fileName,
+                                    CompMode = compMode,
+                                    MethodsNumber = methodsNumber,
+                                    Quality = quality,
+                                    OutputFilePath = outputFilePath
+                                };
+                                operationTaskParams.Add(operationParameters);
                             }
-                            else { logfile.WriteUnicodeString(log, "File " + outputFilePath + " exists skiping..."); }
                         }
                     }
                 }
             }
-
-            try { editor.m_Inst.Shutdown(); }
-            catch (Exception e)
-            { logfile.WriteUnicodeString(log, "Work ended with error " + e.Message); }
-            logfile.WriteUnicodeString(log, inputFilePaths.Length == 0 ? "No files in folder, work ended" : "Work ended");
-            logfile.WriteUnicodeString(log, "Statistic info:");
-          //  string[] gotStatistic = StatisticInfo.GetInfo(rawStatisticFile, rawStatisticOptions, rawStatisticFileSize);
-           // foreach (string text in gotStatistic)
-          //  {
-          //      logfile.WriteUnicodeString(log, text);
-          //  }
-            Logger.EndLogging(log);
+            return operationTaskParams;
         }
 
         static void ShowHelp()
