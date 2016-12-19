@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OptimizeImagesCompression.Properties;
 
 namespace OptimizeImagesCompression
 {
@@ -20,12 +17,11 @@ namespace OptimizeImagesCompression
             {
                 if (allargsparams[i] == param)
                 {
-                    if (String.IsNullOrEmpty(allargsparams[i+1]))
+                    if (String.IsNullOrEmpty(allargsparams[i + 1]))
                     {
-                        Console.WriteLine("arg is null for parametr " + param + " terminating...");
-                        System.Diagnostics.Debug.WriteLine("arg is null for parametr " + param + " terminating...");
+                        Console.WriteLine(Resources.CmdArgsParser_ParseCmdArgs_arg_is_null_for_parametr_ + param + Resources.CmdArgsParser_ParseCmdArgs__terminating___);
+                        System.Diagnostics.Debug.WriteLine(Resources.CmdArgsParser_ParseCmdArgs_arg_is_null_for_parametr_ + param + Resources.CmdArgsParser_ParseCmdArgs__terminating___);
                         Environment.Exit(0);
-                        return "Null";
                     }
                     else
                     {
@@ -33,10 +29,9 @@ namespace OptimizeImagesCompression
                     }
                 }
             }
-            Console.WriteLine("arg is not found for " + param + " terminating...");
-            System.Diagnostics.Debug.WriteLine("arg is not found for " + param + " terminating...");
+            Console.WriteLine(Resources.CmdArgsParser_ParseCmdArgs_arg_is_not_found_for_ + param + Resources.CmdArgsParser_ParseCmdArgs__terminating___);
+            System.Diagnostics.Debug.WriteLine(Resources.CmdArgsParser_ParseCmdArgs_arg_is_not_found_for_ + param + Resources.CmdArgsParser_ParseCmdArgs__terminating___);
             Environment.Exit(0);
-            
             return "ArgNotFound";
         }
     }

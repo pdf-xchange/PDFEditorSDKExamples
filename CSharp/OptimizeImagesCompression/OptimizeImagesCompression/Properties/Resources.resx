@@ -98,4 +98,43 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
+  <data name="Program_ShowHelp_OptimizeImageCompression_ver_0_0_3" xml:space="preserve">
+    <value>OptimizeImageCompression ver 0.0.3</value>
+  </data>
+  <data name="Program_ShowHelp_For_correct_work_plugin_PDFOptimizer_pvp_must_be_in_the_same_directory_that_executable_project" xml:space="preserve">
+    <value>For correct work plugin PDFOptimizer.pvp must be in the same directory that executable project</value>
+  </data>
+  <data name="Program_ShowHelp_Supported_arguments" xml:space="preserve">
+    <value>Supported arguments</value>
+  </data>
+  <data name="Program_ShowHelp__f_path_to_folder_with_test_files" xml:space="preserve">
+    <value>-f path to folder with test files</value>
+  </data>
+  <data name="Program_ShowHelp__s_path_to_folder_in_which_files_will_be_saved" xml:space="preserve">
+    <value>-s path to folder in which files will be saved</value>
+  </data>
+  <data name="Program_ShowHelp__l_path_to_log_file_in_which_log_will_be_written" xml:space="preserve">
+    <value>-l path to log file in which log will be written</value>
+  </data>
+  <data name="Program_ShowHelp_" xml:space="preserve">
+    <value>===============================================================================================</value>
+  </data>
+  <data name="Program_ShowHelp_Limitations_" xml:space="preserve">
+    <value>Limitations:</value>
+  </data>
+  <data name="Program_ShowHelp_In_input__folder_must_be_only_pdf_files" xml:space="preserve">
+    <value>In input  folder must be only pdf files</value>
+  </data>
+  <data name="Program_ShowHelp_Output_folder_must_be_empty_if_you_want_to_see_corect_statistic" xml:space="preserve">
+    <value>Output folder must be empty if you want to see corect statistic</value>
+  </data>
+  <data name="CmdArgsParser_ParseCmdArgs_arg_is_null_for_parametr_" xml:space="preserve">
+    <value>arg is null for parametr </value>
+  </data>
+  <data name="CmdArgsParser_ParseCmdArgs__terminating___" xml:space="preserve">
+    <value> terminating...</value>
+  </data>
+  <data name="CmdArgsParser_ParseCmdArgs_arg_is_not_found_for_" xml:space="preserve">
+    <value>arg is not found for </value>
+  </data>
 </root>

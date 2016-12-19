@@ -59,5 +59,123 @@ namespace OptimizeImagesCompression.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  terminating....
+        /// </summary>
+        internal static string CmdArgsParser_ParseCmdArgs__terminating___ {
+            get {
+                return ResourceManager.GetString("CmdArgsParser_ParseCmdArgs__terminating___", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to arg is not found for .
+        /// </summary>
+        internal static string CmdArgsParser_ParseCmdArgs_arg_is_not_found_for_ {
+            get {
+                return ResourceManager.GetString("CmdArgsParser_ParseCmdArgs_arg_is_not_found_for_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to arg is null for parametr .
+        /// </summary>
+        internal static string CmdArgsParser_ParseCmdArgs_arg_is_null_for_parametr_ {
+            get {
+                return ResourceManager.GetString("CmdArgsParser_ParseCmdArgs_arg_is_null_for_parametr_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ===============================================================================================.
+        /// </summary>
+        internal static string Program_ShowHelp_ {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -f path to folder with test files.
+        /// </summary>
+        internal static string Program_ShowHelp__f_path_to_folder_with_test_files {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp__f_path_to_folder_with_test_files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -l path to log file in which log will be written.
+        /// </summary>
+        internal static string Program_ShowHelp__l_path_to_log_file_in_which_log_will_be_written {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp__l_path_to_log_file_in_which_log_will_be_written", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -s path to folder in which files will be saved.
+        /// </summary>
+        internal static string Program_ShowHelp__s_path_to_folder_in_which_files_will_be_saved {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp__s_path_to_folder_in_which_files_will_be_saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For correct work plugin PDFOptimizer.pvp must be in the same directory that executable project.
+        /// </summary>
+        internal static string Program_ShowHelp_For_correct_work_plugin_PDFOptimizer_pvp_must_be_in_the_same_directory_that_executable_project {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp_For_correct_work_plugin_PDFOptimizer_pvp_must_be_in_the_same_dir" +
+                        "ectory_that_executable_project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In input  folder must be only pdf files.
+        /// </summary>
+        internal static string Program_ShowHelp_In_input__folder_must_be_only_pdf_files {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp_In_input__folder_must_be_only_pdf_files", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Limitations:.
+        /// </summary>
+        internal static string Program_ShowHelp_Limitations_ {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp_Limitations_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OptimizeImageCompression ver 0.0.3.
+        /// </summary>
+        internal static string Program_ShowHelp_OptimizeImageCompression_ver_0_0_3 {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp_OptimizeImageCompression_ver_0_0_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output folder must be empty if you want to see corect statistic.
+        /// </summary>
+        internal static string Program_ShowHelp_Output_folder_must_be_empty_if_you_want_to_see_corect_statistic {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp_Output_folder_must_be_empty_if_you_want_to_see_corect_statistic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported arguments.
+        /// </summary>
+        internal static string Program_ShowHelp_Supported_arguments {
+            get {
+                return ResourceManager.GetString("Program_ShowHelp_Supported_arguments", resourceCulture);
+            }
+        }
     }
 }
