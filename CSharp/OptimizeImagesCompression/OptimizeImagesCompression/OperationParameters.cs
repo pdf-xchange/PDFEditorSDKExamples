@@ -7,7 +7,7 @@ namespace OptimizeImagesCompression
         public string FileName;
         public string OutputFilePath;
         public string CompMode;
-        public int MethodsNumber;
+        public int Method;
         public int Quality;
         public string ErrCodes;
     }

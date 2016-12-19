@@ -79,7 +79,7 @@
     <Compile Include="CmdArgsParser.cs" />
     <Compile Include="GetTestFiles.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="PDFXEDIT.cs" />
+    <Compile Include="Pdfxedit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

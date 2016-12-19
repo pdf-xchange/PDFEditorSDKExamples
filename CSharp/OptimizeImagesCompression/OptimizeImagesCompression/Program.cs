@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
 using OptimizeImagesCompression.Properties;
-using PDFXEdit;
+
 
 namespace OptimizeImagesCompression
 {
@@ -14,20 +14,22 @@ namespace OptimizeImagesCompression
         {
             ShowHelp();
             string folderWithTestFilesPath = CmdArgsParser.GetCmdArgForParam("-f");
-            string logPath = CmdArgsParser.GetCmdArgForParam("-l");
+            //string logPath = CmdArgsParser.GetCmdArgForParam("-l");
             string foderToSaveFiles = CmdArgsParser.GetCmdArgForParam("-s");
             GetTestFiles.FolderWithTestFilesPath = folderWithTestFilesPath;
             string[] inputFilePaths = GetTestFiles.GetAllFilesInFolder();
             List<OperationParameters> operationTask = GenerateTaskList(inputFilePaths, foderToSaveFiles);
+
             Pdfxedit editor = new Pdfxedit();
             editor.InitPdfControl();
             foreach (var operation in operationTask)
             {
-                editor.OptimizeDocument(operation.FileName, operation.OutputFilePath, operation.CompMode, operation.MethodsNumber, operation.Quality, out operation.ErrCodes);
+                editor.OptimizeDocument(operation.FileName, operation.OutputFilePath, operation.CompMode, operation.Method, operation.Quality, out operation.ErrCodes);
             }
-            try { editor.m_Inst.Shutdown(); }
-            catch (Exception e)
-            { }
+            editor.m_Inst.Shutdown();
+
+
+
 
         }
 
@@ -41,13 +43,20 @@ namespace OptimizeImagesCompression
                     int methodsCount = GetValidCountMethodsForCompMode(compMode);
                     for (int methodsNumber = 0; methodsNumber < methodsCount; methodsNumber++) //Type of compression
                     {
-                        int maxQuality = (compMode == "Color" || compMode == " Grayscale") &&
-                                     (methodsNumber == 1 || methodsNumber == 2)
-                            ? 6
-                            : 0;
+                        int maxQuality=0;
+                        if (compMode == "Grayscale" | compMode == "Color")
+                        switch (methodsNumber)
+                        {
+                            case 1:
+                                maxQuality = 5;
+                                break;
+                            case 2:
+                                maxQuality = 4;
+                                break;
+                        }
                         for (int quality = 0; quality <= maxQuality; quality++)
                         {
-                            string opParams = compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber) + "_"
+                            string opParams = "_"+compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber) + "_"
                                 + quality.ToString(CultureInfo.CurrentCulture);
                             string outputFilePath = TransformFileName(fileName, foderToSaveFiles, opParams);
                             if (!File.Exists(outputFilePath))
@@ -56,7 +65,7 @@ namespace OptimizeImagesCompression
                                 {
                                     FileName = fileName,
                                     CompMode = compMode,
-                                    MethodsNumber = methodsNumber,
+                                    Method = methodsNumber,
                                     Quality = quality,
                                     OutputFilePath = outputFilePath
                                 };
