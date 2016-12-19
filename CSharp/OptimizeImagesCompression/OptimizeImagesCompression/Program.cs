@@ -9,6 +9,7 @@ namespace OptimizeImagesCompression
 {
     class Program
     {
+        private System.ComponentModel.IContainer components = null;
         private static readonly string[] CompMode = { "Color", "Grayscale", "Indexed", "Mono" };
         private static void Main()
         {
@@ -25,13 +26,14 @@ namespace OptimizeImagesCompression
             foreach (var operation in operationTask)
             {
                 editor.OptimizeDocument(operation.FileName, operation.OutputFilePath, operation.CompMode, operation.Method, operation.Quality, out operation.ErrCodes);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
             }
-            editor.m_Inst.Shutdown();
-
-
-
-
+         
+            editor.MInst.Shutdown();
+          
         }
+       
 
         private static List<OperationParameters> GenerateTaskList(string[] inputFilePaths, string foderToSaveFiles)
         {
