@@ -9,7 +9,7 @@ namespace OptimizeImagesCompression
     class Program
     {
         private static readonly string[] CompMode = { "Color", "Grayscale", "Indexed", "Mono" };
-        static void Main()
+        private static void Main()
         {
             ShowHelp();
             string folderWithTestFilesPath = CmdArgsParser.GetCmdArgForParam("-f");
@@ -43,7 +43,7 @@ namespace OptimizeImagesCompression
                                 opParams = compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber) + "_" + "Quality" + (quality - 1).ToString(CultureInfo.CurrentCulture);
                                 logfile.WriteUnicodeString(log, "Start work on " + fileName + " with params " + opParams);
                                 string outputFilePath = TransformFileName(fileName, foderToSaveFiles, opParams);
-                                if (!(File.Exists(outputFilePath)))
+                                if (!File.Exists(outputFilePath))
                                 {
                                     var watch = System.Diagnostics.Stopwatch.StartNew();
                                     editor.OptimizeDocument(fileName, outputFilePath, compMode, methodsNumber, quality, out errCodes);
@@ -86,13 +86,12 @@ namespace OptimizeImagesCompression
             { logfile.WriteUnicodeString(log, "Work ended with error " + e.Message); }
             logfile.WriteUnicodeString(log, inputFilePaths.Length == 0 ? "No files in folder, work ended" : "Work ended");
             logfile.WriteUnicodeString(log, "Statistic info:");
-            string[] gotStatistic = StatisticInfo.GetInfo(rawStatisticFile, rawStatisticOptions, rawStatisticFileSize);
-            foreach (string text in gotStatistic)
-            {
-                logfile.WriteUnicodeString(log, text);
-            }
+          //  string[] gotStatistic = StatisticInfo.GetInfo(rawStatisticFile, rawStatisticOptions, rawStatisticFileSize);
+           // foreach (string text in gotStatistic)
+          //  {
+          //      logfile.WriteUnicodeString(log, text);
+          //  }
             Logger.EndLogging(log);
-
         }
 
         static void ShowHelp()
