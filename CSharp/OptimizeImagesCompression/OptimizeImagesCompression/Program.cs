@@ -1,103 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Globalization;
+using System.IO;
 using OptimizeImagesCompression.Properties;
-
 
 namespace OptimizeImagesCompression
 {
-    class Program
+    internal class Program
     {
-        private static readonly string[] CompMode = { "Color", "Grayscale", "Indexed", "Mono" };
+        private static readonly string[] CompMode = {"Color", "Grayscale", "Indexed", "Mono"};
+
         private static void Main()
         {
             ShowHelp();
-            string folderWithTestFilesPath = CmdArgsParser.GetCmdArgForParam("-f");
-            string logPath = CmdArgsParser.GetCmdArgForParam("-l");
-            string foderToSaveFiles = CmdArgsParser.GetCmdArgForParam("-s");
+            var folderWithTestFilesPath = CmdArgsParser.GetCmdArgForParam("-f");
+            var logPath = CmdArgsParser.GetCmdArgForParam("-l");
+            var foderToSaveFiles = CmdArgsParser.GetCmdArgForParam("-s");
             GetTestFiles.FolderWithTestFilesPath = folderWithTestFilesPath;
-            string[] inputFilePaths = GetTestFiles.GetAllFilesInFolder();
-            List<OperationParameters> operationTask = GenerateTaskList(inputFilePaths, foderToSaveFiles);
-            Pdfxedit editor = new Pdfxedit();
-            Logger logger = new Logger();
+            var inputFilePaths = GetTestFiles.GetAllFilesInFolder();
+            var operationTask = GenerateTaskList(inputFilePaths, foderToSaveFiles);
+            var editor = new Pdfxedit();
+            var logger = new Logger();
+            logger.Path = logPath;
             editor.InitPdfControl();
             foreach (var operation in operationTask)
             {
-                // var watch = System.Diagnostics.Stopwatch.StartNew();
-                editor.OptimizeDocument(operation.FilePath, operation.OutputFilePath, operation.CompMode, operation.Method, operation.Quality, out operation.ErrCodes);
-                //watch.Stop();
-                // operation.Time = watch.ElapsedMilliseconds;
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+                editor.OptimizeDocument(operation);
+                watch.Stop();
+                operation.Time = watch.ElapsedMilliseconds;
                 if (File.Exists(operation.OutputFilePath))
                 {
-                    FileInfo rezFile = new FileInfo(operation.OutputFilePath);
+                    var rezFile = new FileInfo(operation.OutputFilePath);
                     operation.OptimazedFileSize = rezFile.Length;
                 }
-                FileInfo originFile = new FileInfo(operation.FilePath);
+                var originFile = new FileInfo(operation.FilePath);
                 operation.OriginalFileSize = originFile.Length;
+                logger.StartLogging();
+                logger.WriteOperationToLog(operation);
+                logger.EndLogging();
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
             editor.MInst.Shutdown();
-            FileStream log;
-            logger.StartLogging(logPath, out log);
-            StatisticFunctions statisitic = new StatisticFunctions();
-            List<OperationParameters> problemFiles = statisitic.GetFilesWithError(operationTask);
-            if (problemFiles.Count != 0)
-            {
-                logger.WriteDelimitrToLog(log);
-                logger.WriteUnicodeString(log, "Files wit error");
-                logger.WriteObjectListToLog(log, problemFiles);
-                logger.WriteDelimitrToLog(log);
-            }
-            else
-            {
-                logger.WriteDelimitrToLog(log);
-                logger.WriteUnicodeString(log, "Files with errors not found");
-                logger.WriteDelimitrToLog(log);
-            }
-            logger.EndLogging(log);
         }
 
 
         private static List<OperationParameters> GenerateTaskList(string[] inputFilePaths, string foderToSaveFiles)
         {
             var operationTaskParams = new List<OperationParameters>();
-            foreach (string fileName in inputFilePaths)
+            foreach (var fileName in inputFilePaths)
+            foreach (var compMode in CompMode)
             {
-                foreach (string compMode in CompMode)
+                var methodsCount = GetValidCountMethodsForCompMode(compMode);
+                for (var methodsNumber = 0; methodsNumber < methodsCount; methodsNumber++) //Type of compression
                 {
-                    int methodsCount = GetValidCountMethodsForCompMode(compMode);
-                    for (int methodsNumber = 0; methodsNumber < methodsCount; methodsNumber++) //Type of compression
-                    {
-                        int maxQuality = 0;
-                        if (compMode == "Grayscale" | compMode == "Color")
-                            switch (methodsNumber)
-                            {
-                                case 1:
-                                    maxQuality = 5;
-                                    break;
-                                case 2:
-                                    maxQuality = 4;
-                                    break;
-                            }
-                        for (int quality = 0; quality <= maxQuality; quality++)
+                    var maxQuality = 0;
+                    if ((compMode == "Grayscale") | (compMode == "Color"))
+                        switch (methodsNumber)
                         {
-                            string opParams = "_" + compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber) + "_"
-                                + quality.ToString(CultureInfo.CurrentCulture);
-                            string outputFilePath = TransformFileName(fileName, foderToSaveFiles, opParams);
-                            if (!File.Exists(outputFilePath))
+                            case 1:
+                                maxQuality = 5;
+                                break;
+                            case 2:
+                                maxQuality = 4;
+                                break;
+                        }
+                    for (var quality = 0; quality <= maxQuality; quality++)
+                    {
+                        var opParams = "_" + compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber) +
+                                       "_"
+                                       + quality.ToString(CultureInfo.CurrentCulture);
+                        var outputFilePath = TransformFileName(fileName, foderToSaveFiles, opParams);
+                        if (!File.Exists(outputFilePath))
+                        {
+                            var operationParameters = new OperationParameters
                             {
-                                var operationParameters = new OperationParameters
-                                {
-                                    FilePath = fileName,
-                                    CompMode = compMode,
-                                    Method = methodsNumber,
-                                    Quality = quality,
-                                    OutputFilePath = outputFilePath
-                                };
-                                operationTaskParams.Add(operationParameters);
-                            }
+                                FilePath = fileName,
+                                CompMode = compMode,
+                                Method = methodsNumber,
+                                Quality = quality,
+                                OutputFilePath = outputFilePath
+                            };
+                            operationTaskParams.Add(operationParameters);
                         }
                     }
                 }
@@ -105,10 +90,12 @@ namespace OptimizeImagesCompression
             return operationTaskParams;
         }
 
-        static void ShowHelp()
+        private static void ShowHelp()
         {
             Console.WriteLine(Resources.Program_ShowHelp_OptimizeImageCompression_ver_0_0_3);
-            Console.WriteLine(Resources.Program_ShowHelp_For_correct_work_plugin_PDFOptimizer_pvp_must_be_in_the_same_directory_that_executable_project);
+            Console.WriteLine(
+                Resources
+                    .Program_ShowHelp_For_correct_work_plugin_PDFOptimizer_pvp_must_be_in_the_same_directory_that_executable_project);
             Console.WriteLine(Resources.Program_ShowHelp_Supported_arguments);
             Console.WriteLine(Resources.Program_ShowHelp__f_path_to_folder_with_test_files);
             Console.WriteLine(Resources.Program_ShowHelp__s_path_to_folder_in_which_files_will_be_saved);
@@ -119,7 +106,7 @@ namespace OptimizeImagesCompression
             Console.WriteLine(Resources.Program_ShowHelp_Output_folder_must_be_empty_if_you_want_to_see_corect_statistic);
         }
 
-        static int GetValidCountMethodsForCompMode(string compMode)
+        private static int GetValidCountMethodsForCompMode(string compMode)
         {
             switch (compMode)
             {
@@ -138,12 +125,13 @@ namespace OptimizeImagesCompression
 
         private static string TransformFileName(string inputFile, string saveFolder, string options)
         {
-            string temp = Path.GetFileNameWithoutExtension(inputFile);
+            var temp = Path.GetFileNameWithoutExtension(inputFile);
             temp += options;
             temp += Path.GetExtension(inputFile);
             temp = saveFolder + "\\" + temp;
             return temp;
         }
+
         private static string TransformMethodToUserFriendly(string compMode, int method)
         {
             switch (compMode)

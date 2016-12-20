@@ -1,5 +1,7 @@
 ﻿
 
+using System.IO;
+
 namespace OptimizeImagesCompression
 {
     class OperationParameters
@@ -13,5 +15,8 @@ namespace OptimizeImagesCompression
         public long Time;
         public long OptimazedFileSize;
         public long OriginalFileSize;
+        
     }
+
+
 }

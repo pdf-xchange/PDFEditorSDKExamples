@@ -1,59 +1,59 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
-using System.Globalization;
 
 namespace OptimizeImagesCompression
 {
-    class Logger
+    internal class Logger
     {
-        public  void StartLogging( string path ,out FileStream log)
+        public string Path;
+        public FileStream Log;
+
+        public void StartLogging()
         {
-            log = File.Open(path, FileMode.Append);
-            WriteDelimitrToLog(log);
-            WriteUnicodeString(log, DateTime.Now.ToString("h:mm:ss tt", CultureInfo.CurrentCulture) + " Start logger"+"\n");
-            byte[] newline = Encoding.ASCII.GetBytes(Environment.NewLine);
-            log.Write(newline, 0, newline.Length);
-        }
-        public  void EndLogging(FileStream log)
-        {
-            log.Close();
-        }
-        public void WriteUnicodeString(FileStream log,string info)
-        {
-            Console.WriteLine(info);
-            byte[] infoB = new UTF8Encoding(true).GetBytes(info);
-            log.Write(infoB, 0, infoB.Length);    
-            byte[] newline = Encoding.ASCII.GetBytes(Environment.NewLine);
-            log.Write(newline, 0, newline.Length);
+            Log = File.Open(Path, FileMode.Append);
+            WriteDelimitrToLog(Log);
+            WriteUnicodeString(DateTime.Now.ToString("h:mm:ss tt", CultureInfo.CurrentCulture) + " Start logger" + "\n");
+            var newline = Encoding.ASCII.GetBytes(Environment.NewLine);
+            Log.Write(newline, 0, newline.Length);
         }
 
-       public void WriteDelimitrToLog(FileStream log)
+        public void EndLogging()
         {
-            byte[] infoB = new UTF8Encoding(true).GetBytes("===================================================================="+"\n");
+            Log.Close();
+        }
+
+        public void WriteUnicodeString(string info)
+        {
+            Console.WriteLine(info);
+            var infoB = new UTF8Encoding(true).GetBytes(info);
+            Log.Write(infoB, 0, infoB.Length);
+            var newline = Encoding.ASCII.GetBytes(Environment.NewLine);
+            Log.Write(newline, 0, newline.Length);
+        }
+
+        public void WriteDelimitrToLog(FileStream log)
+        {
+            var infoB =
+                new UTF8Encoding(true).GetBytes("====================================================================" +
+                                                "\n");
             log.Write(infoB, 0, infoB.Length);
-            byte[] newline = Encoding.ASCII.GetBytes(Environment.NewLine);
+            var newline = Encoding.ASCII.GetBytes(Environment.NewLine);
             log.Write(newline, 0, newline.Length);
             Console.WriteLine(newline.ToString());
         }
 
-        public void WriteObjectListToLog(FileStream log,List<OperationParameters> objectCollection )
+        public void WriteOperationToLog(OperationParameters operation)
         {
-
-            foreach (var operation in objectCollection)
-            {
-               WriteUnicodeString(log,"Original file path          = " + operation.FilePath);
-               WriteUnicodeString(log,"Params and output file name = "+operation.OutputFilePath);
-               WriteUnicodeString(log,"Error code                  = " + operation.ErrCodes);
-            }
-            
+            WriteUnicodeString("Original file path          = " + operation.FilePath);
+            WriteUnicodeString("Params and output file name = " + operation.OutputFilePath);
+            if (operation.ErrCodes == string.Empty)
+                WriteUnicodeString("Error code                  = None");
+            else
+                WriteUnicodeString("Error code                  = " + operation.ErrCodes);
+            WriteUnicodeString("Time of convertation        = " + operation.Time);
+            WriteUnicodeString("Params and output file name = " + operation.OutputFilePath);
         }
-       
-
-
-
-
-
     }
 }

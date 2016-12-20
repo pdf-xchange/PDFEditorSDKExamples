@@ -67,9 +67,9 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdArgsParser.cs" />
@@ -84,7 +84,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="OperationParameters.cs" />
-    <Compile Include="StatisticFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
