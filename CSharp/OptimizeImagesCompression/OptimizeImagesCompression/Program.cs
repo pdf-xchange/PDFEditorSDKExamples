@@ -9,31 +9,56 @@ namespace OptimizeImagesCompression
 {
     class Program
     {
-        private System.ComponentModel.IContainer components = null;
         private static readonly string[] CompMode = { "Color", "Grayscale", "Indexed", "Mono" };
         private static void Main()
         {
             ShowHelp();
             string folderWithTestFilesPath = CmdArgsParser.GetCmdArgForParam("-f");
-            //string logPath = CmdArgsParser.GetCmdArgForParam("-l");
+            string logPath = CmdArgsParser.GetCmdArgForParam("-l");
             string foderToSaveFiles = CmdArgsParser.GetCmdArgForParam("-s");
             GetTestFiles.FolderWithTestFilesPath = folderWithTestFilesPath;
             string[] inputFilePaths = GetTestFiles.GetAllFilesInFolder();
             List<OperationParameters> operationTask = GenerateTaskList(inputFilePaths, foderToSaveFiles);
-
             Pdfxedit editor = new Pdfxedit();
+            Logger logger = new Logger();
             editor.InitPdfControl();
             foreach (var operation in operationTask)
             {
-                editor.OptimizeDocument(operation.FileName, operation.OutputFilePath, operation.CompMode, operation.Method, operation.Quality, out operation.ErrCodes);
+                // var watch = System.Diagnostics.Stopwatch.StartNew();
+                editor.OptimizeDocument(operation.FilePath, operation.OutputFilePath, operation.CompMode, operation.Method, operation.Quality, out operation.ErrCodes);
+                //watch.Stop();
+                // operation.Time = watch.ElapsedMilliseconds;
+                if (File.Exists(operation.OutputFilePath))
+                {
+                    FileInfo rezFile = new FileInfo(operation.OutputFilePath);
+                    operation.OptimazedFileSize = rezFile.Length;
+                }
+                FileInfo originFile = new FileInfo(operation.FilePath);
+                operation.OriginalFileSize = originFile.Length;
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
             }
-         
             editor.MInst.Shutdown();
-          
+            FileStream log;
+            logger.StartLogging(logPath, out log);
+            StatisticFunctions statisitic = new StatisticFunctions();
+            List<OperationParameters> problemFiles = statisitic.GetFilesWithError(operationTask);
+            if (problemFiles.Count != 0)
+            {
+                logger.WriteDelimitrToLog(log);
+                logger.WriteUnicodeString(log, "Files wit error");
+                logger.WriteObjectListToLog(log, problemFiles);
+                logger.WriteDelimitrToLog(log);
+            }
+            else
+            {
+                logger.WriteDelimitrToLog(log);
+                logger.WriteUnicodeString(log, "Files with errors not found");
+                logger.WriteDelimitrToLog(log);
+            }
+            logger.EndLogging(log);
         }
-       
+
 
         private static List<OperationParameters> GenerateTaskList(string[] inputFilePaths, string foderToSaveFiles)
         {
@@ -45,27 +70,27 @@ namespace OptimizeImagesCompression
                     int methodsCount = GetValidCountMethodsForCompMode(compMode);
                     for (int methodsNumber = 0; methodsNumber < methodsCount; methodsNumber++) //Type of compression
                     {
-                        int maxQuality=0;
+                        int maxQuality = 0;
                         if (compMode == "Grayscale" | compMode == "Color")
-                        switch (methodsNumber)
-                        {
-                            case 1:
-                                maxQuality = 5;
-                                break;
-                            case 2:
-                                maxQuality = 4;
-                                break;
-                        }
+                            switch (methodsNumber)
+                            {
+                                case 1:
+                                    maxQuality = 5;
+                                    break;
+                                case 2:
+                                    maxQuality = 4;
+                                    break;
+                            }
                         for (int quality = 0; quality <= maxQuality; quality++)
                         {
-                            string opParams = "_"+compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber) + "_"
+                            string opParams = "_" + compMode + "_" + TransformMethodToUserFriendly(compMode, methodsNumber) + "_"
                                 + quality.ToString(CultureInfo.CurrentCulture);
                             string outputFilePath = TransformFileName(fileName, foderToSaveFiles, opParams);
                             if (!File.Exists(outputFilePath))
                             {
                                 var operationParameters = new OperationParameters
                                 {
-                                    FileName = fileName,
+                                    FilePath = fileName,
                                     CompMode = compMode,
                                     Method = methodsNumber,
                                     Quality = quality,

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Globalization;
@@ -15,7 +16,7 @@ namespace OptimizeImagesCompression
             byte[] newline = Encoding.ASCII.GetBytes(Environment.NewLine);
             log.Write(newline, 0, newline.Length);
         }
-        public static void EndLogging(FileStream log)
+        public  void EndLogging(FileStream log)
         {
             log.Close();
         }
@@ -35,6 +36,18 @@ namespace OptimizeImagesCompression
             byte[] newline = Encoding.ASCII.GetBytes(Environment.NewLine);
             log.Write(newline, 0, newline.Length);
             Console.WriteLine(newline.ToString());
+        }
+
+        public void WriteObjectListToLog(FileStream log,List<OperationParameters> objectCollection )
+        {
+
+            foreach (var operation in objectCollection)
+            {
+               WriteUnicodeString(log,"Original file path          = " + operation.FilePath);
+               WriteUnicodeString(log,"Params and output file name = "+operation.OutputFilePath);
+               WriteUnicodeString(log,"Error code                  = " + operation.ErrCodes);
+            }
+            
         }
        
 

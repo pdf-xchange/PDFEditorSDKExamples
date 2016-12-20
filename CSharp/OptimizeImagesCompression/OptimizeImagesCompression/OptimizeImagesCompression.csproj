@@ -84,6 +84,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="OperationParameters.cs" />
+    <Compile Include="StatisticFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
