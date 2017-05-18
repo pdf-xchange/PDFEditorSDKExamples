@@ -34,7 +34,8 @@
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(12, 12);
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Location = new System.Drawing.Point(393, 140);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(147, 23);
 			this.button1.TabIndex = 0;
@@ -44,9 +45,10 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(186, 14);
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.Location = new System.Drawing.Point(546, 140);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(172, 20);
+			this.button2.Size = new System.Drawing.Size(172, 23);
 			this.button2.TabIndex = 1;
 			this.button2.Text = "Save To Folder";
 			this.button2.UseVisualStyleBackColor = true;
