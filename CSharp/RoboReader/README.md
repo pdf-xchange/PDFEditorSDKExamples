@@ -1,1 +1,1 @@
-![Preview RoboReader](RoboReader/RoboReader.gif?raw=true)
+![Preview RoboReader](RoboReader.gif?raw=true)
