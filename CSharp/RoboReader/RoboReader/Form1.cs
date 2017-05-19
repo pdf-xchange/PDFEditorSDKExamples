@@ -122,18 +122,6 @@ namespace RoboReader
 		{
 			InitializeComponent();
 
-			string licKey =
-"1KtnXer5QgSVFDoC7lHnbe4H+QGvCzx0a8f+XdVtMNHtxMOdfRJFZsoh8d/nCqHqUM40nNuI" +
-"Sm+ZRwyS79lO3utKksp9GKpFtRWAL0ocpKx+ojn0eGyyHGJB2ReqPRQMouZe+3HwTxbt94Go" +
-"xqoeqz708KB4L6NnJrKvfYnsH9MQymw9JE5zJIB2KDGG+lETLPbfSkTYaQFcA4DsCJ/MIfyd" +
-"fuxW6rDUEmvwoRT+kFqZHU93vSWLjypGX6ewnsq+8KcrVmfoVgiloSICKYgEiq38D4LPKaKN" +
-"RDdvf2nygV8Kx24rDHqjAD3svv1YfSqzky3PeTqOQBqxhXLoL6FNiC8RgLsqOKd6SuUCxYQ4" +
-"RQiujCg6/mYMydmfFwbq8hqdEU8Y7Ga6RY8w6yHAQOKb8ku4KEd3i3jzqckCvamI1MbfTO13" +
-"LyfmPfHtvdi5aIj9SePGvG/OyXdCp03JfpW6t0FfgRQllNZBX+oJ/ZxP2lEe46ipQt4J1mGg" +
-"7+W+/sljA4RA6vegdwE8QrUWXl32vxD2ncYLvexESvkT=";
-
-			pdfCtl.SetLicKey(licKey);
-			
 			dha.nSize = System.Runtime.InteropServices.Marshal.SizeOf(dha);
 			dha.nRoundRadius = 2;
 
