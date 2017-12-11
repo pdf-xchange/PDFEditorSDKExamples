@@ -2338,5 +2338,13 @@ namespace FullDemo
 
 			ShowCmdBar(IDS.cmdbar_rotateView, (ckShowRotateViewBar.Checked));
 		}
-	}
+
+        private void ckRibbonUI_CheckedChanged(object sender, EventArgs e)
+        {
+            if (pdfCtl == null || pdfCtl.Frame == null)
+                return;
+
+            pdfCtl.Inst.EnableRibbonUI(!pdfCtl.Frame.View.IsRibbonMode);
+        }
+    }
 }
