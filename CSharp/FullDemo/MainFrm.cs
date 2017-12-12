@@ -14,13 +14,13 @@ using Microsoft.Win32;
 namespace FullDemo
 {
 	public enum IDS
-	{ 
+	{
 		// cmdbars
 		cmdbar_menubar,
 		cmdbar_standard,
 		cmdbar_file,
-		cmdbar_rotateView,
-		cmdbar_zoom,
+		cmdbar_view,
+		cmdbar_pageZoom,
 		cmdbar_pageNav,
 		cmdbar_contentEditing,
 		cmdbar_pageLayout,
@@ -30,6 +30,7 @@ namespace FullDemo
 		cmdbar_properties,
 		cmdbar_launchApp,
 		cmdbar_addon,
+		cmdbar_form,
 
 		// panes/views
 		pageThumbnailsView,
@@ -82,7 +83,7 @@ namespace FullDemo
 		_e_begin_,
 
 		// events
-		e_activeDocChanged, 
+		e_activeDocChanged,
 		e_document_modStateChanged,
 		e_document_sourceChanged,
 		e_pagesView_endLayoutChanging,
@@ -332,7 +333,7 @@ namespace FullDemo
 
 			return res;
 		}
-		
+
 		public static int GetOptInt(string valName, string keyName = "", int defVal = 0)
 		{
 			string path = "Software\\Tracker Software\\PDFEditorSDKExamples";
@@ -365,7 +366,7 @@ namespace FullDemo
 				rk.SetValue(valName, val);
 			}
 			catch { }
-		}		
+		}
 
 		public static void SetOptInt(string valName, int val, string keyName = "")
 		{
@@ -382,7 +383,7 @@ namespace FullDemo
 			}
 			catch { }
 		}
-		
+
 		public static void SetOptBool(string valName, bool val, string keyName = "")
 		{
 			string path = "Software\\Tracker Software\\PDFEditorSDKExamples";
@@ -399,7 +400,7 @@ namespace FullDemo
 			}
 			catch { }
 		}
-		
+
 		private void BuildHistFilesNames(string histDir, out string histFile, out string histThumbsFile)
 		{
 			histFile = "";
@@ -422,7 +423,7 @@ namespace FullDemo
 				return false;
 			return true;
 		}
-				
+
 		public MainFrm()
 		{
 			//////////////////////////////////////////////////////////////////////////////////
@@ -439,7 +440,7 @@ namespace FullDemo
 "b3vn58E2dEMobiBmg4qkdOpLtjcYxh69t3BVtKxmu6uyXZd+gO0NZxHkQT+6/U1334DEMO+H" +
 "oou1/TmICS9GS6p+nfTQLZpButSOkGfaT7V17n6NkTvSKwLtrwDEMO==";
 
-			string licKey = licKeyDEMO; // use here your private license key that was bought on tracker's official site... 
+			string licKey = licKeyDEMO; // use here your private license key that was bought on tracker's official site...
 
 			////////////////////////////////////////////////////////////////////
 			// >>>>>
@@ -551,7 +552,7 @@ namespace FullDemo
 			tHistDir.Text = histDir;
 
 			pdfCtl.Inst.Settings["General.AppTitle"].v = "My App";
-			
+
 			UpdateSettingsIoTab();
 
 //			// install UI-events demo-monitor
@@ -559,7 +560,7 @@ namespace FullDemo
 //  		uiInst.CurrentThreadCtx.RegisterEventMonitor(uiEventMon);
 
 			UpdateDocTab();
-						
+
 			RegisterEvents(true);
 		}
 
@@ -574,7 +575,7 @@ namespace FullDemo
 				uiInst.CurrentThreadCtx.UnregisterEventMonitor(uiEventMon);
 				uiEventMon = null;
 			}
-			
+
 			uiInst = null;
 			fsInst = null;
 			auxInst = null;
@@ -589,20 +590,20 @@ namespace FullDemo
 			bool fUseRegPrefs = rbPrefs_reg.Checked;
 			string prefsRegPath = tPrefs_reg.Text;
 			string prefsFilePath = tPrefs_file.Text;
-			
+
 			bool fKeepHist = ckKeepHist.Checked;
 			string histDir = tHistDir.Text;
-						
+
 			// user prefs
 			SetOptBool("KeepPrefs", fKeepPrefs);
 			SetOptBool("UsePrefsReg", fUseRegPrefs);
 			SetOptStr("PrefsRegPath", prefsRegPath);
 			SetOptStr("PrefsFilePath", prefsFilePath);
-			
+
 			// history
 			SetOptBool("KeepHist", fKeepHist);
 			SetOptStr("HistDir", histDir);
-			
+
 			// import/export settings
 			SetOptStr("SettFilePath", tSettFile.Text);
 			SetOptBool("SettIncHist", ckSettIncHist.Checked);
@@ -759,7 +760,7 @@ namespace FullDemo
 			}
 			return v;
 		}
-		
+
 
 		private void InitIDS()
 		{
@@ -845,7 +846,7 @@ namespace FullDemo
 
 			fUpdateControls--;
 		}
-		
+
 		private void UpdatePagesView()
 		{
 			fUpdateControls++;
@@ -1002,7 +1003,7 @@ namespace FullDemo
 				}
 
 				object sel = null;
-				
+
 				foreach (OperationDemo it in cbOpers.Items)
 				{
 					if (it.ID == nIDS[(int)IDS.op_document_printPages])
@@ -1044,28 +1045,28 @@ namespace FullDemo
 			string sModDate = "";
 			uint nPagesCnt = 0;
 			bool bHasDoc = doc != null;
-			
+
 			if (bHasDoc)
 			{
 				try
 				{
 					uint id = doc.CoreDoc.ID;
 					uint sv = doc.CoreDoc.Props.SpecVersion;
- 					uint sv_mj = sv / 65536;
- 					uint sv_mn = sv % 65536;
- 					sSpecVer = String.Format("{0}.{1}", sv_mj, sv_mn);
- 					sPDFStd = GetPDFStandard(doc.CoreDoc.Props.PDFStandard);
- 					sPDFForm = GetPDFFormType(doc.CoreDoc.AcroForm.Type);
- 					nPagesCnt = doc.CoreDoc.Pages.Count;
- 					sCreatDate = doc.CoreDoc.Info.CreationDate.ToShortDateString() + ". " + doc.CoreDoc.Info.CreationDate.ToShortTimeString();
- 					sModDate = doc.CoreDoc.Info.ModificationDate.ToShortDateString() + ". " + doc.CoreDoc.Info.ModificationDate.ToShortTimeString();
- 				
- 					sTitle		= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Title];
- 					sAuthor		= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Author];
- 					sProducer	= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Producer];
- 					sCreator	= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Creator];
- 					sSubj		= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Subject];
- 					sKeyw		= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Keywords];
+					uint sv_mj = sv / 65536;
+					uint sv_mn = sv % 65536;
+					sSpecVer = String.Format("{0}.{1}", sv_mj, sv_mn);
+					sPDFStd = GetPDFStandard(doc.CoreDoc.Props.PDFStandard);
+					sPDFForm = GetPDFFormType(doc.CoreDoc.AcroForm.Type);
+					nPagesCnt = doc.CoreDoc.Pages.Count;
+					sCreatDate = doc.CoreDoc.Info.CreationDate.ToShortDateString() + ". " + doc.CoreDoc.Info.CreationDate.ToShortTimeString();
+					sModDate = doc.CoreDoc.Info.ModificationDate.ToShortDateString() + ". " + doc.CoreDoc.Info.ModificationDate.ToShortTimeString();
+
+					sTitle		= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Title];
+					sAuthor		= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Author];
+					sProducer	= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Producer];
+					sCreator	= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Creator];
+					sSubj		= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Subject];
+					sKeyw		= doc.CoreDoc.Info[PDFXEdit.PXC_DocumentInfoKey.DocInfo_Keywords];
 
 					ckModified.Checked = doc.Modified;
 				}
@@ -1119,7 +1120,7 @@ namespace FullDemo
 			ckMultDocs.Checked = !(bool)pdfCtl.Inst.Settings["Docs.SingleWnd"].v;
 			ckHideSingleTab.Checked = (bool)pdfCtl.Inst.Settings["Docs.HideSingleTab"].v;
 		}
-		
+
 		private void UpdateViewTab()
 		{
 			fUpdateControls++;
@@ -1135,23 +1136,36 @@ namespace FullDemo
 			ckShowStdBar.Checked = IsCmdBarVisible(IDS.cmdbar_standard);
 			ckShowPropBar.Checked = IsCmdBarVisible(IDS.cmdbar_properties);
 			ckShowCommentBar.Checked = IsCmdBarVisible(IDS.cmdbar_commenting);
-			ckShowZoomBar.Checked = IsCmdBarVisible(IDS.cmdbar_zoom);
 			ckShowMeasureBar.Checked = IsCmdBarVisible(IDS.cmdbar_measurement);
 			ckShowContentEdtBar.Checked = IsCmdBarVisible(IDS.cmdbar_contentEditing);
-			ckShowRotateViewBar.Checked = IsCmdBarVisible(IDS.cmdbar_rotateView);
+			ckShowRotateViewBar.Checked = IsCmdBarVisible(IDS.cmdbar_view);
+			ckShowFormViewBar.Checked = IsCmdBarVisible(IDS.cmdbar_form);
 
 			bool bHasDoc = pdfCtl.HasDoc;
-						
+			bool bClassic = !pdfCtl.Frame.View.IsRibbonMode;
+
 			// document's bars
 			ckShowPagesLayoutBar.Checked = IsCmdBarVisible(IDS.cmdbar_pageLayout);
 			ckShowPagesNavBar.Checked = IsCmdBarVisible(IDS.cmdbar_pageNav);
+			ckShowPageZoomBar.Checked = IsCmdBarVisible(IDS.cmdbar_pageZoom);
 			ckShowDocLaunchBar.Checked = IsCmdBarVisible(IDS.cmdbar_launchApp);
 			ckShowDocOptsBar.Checked = IsCmdBarVisible(IDS.cmdbar_docOptions);
 
-			ckShowPagesLayoutBar.Enabled = bHasDoc;
-			ckShowPagesNavBar.Enabled = bHasDoc;
-			ckShowDocLaunchBar.Enabled = bHasDoc;
-			ckShowDocOptsBar.Enabled = bHasDoc;
+			ckShowPagesLayoutBar.Enabled = bHasDoc | bClassic;
+			ckShowPagesNavBar.Enabled = bHasDoc | bClassic;
+			ckShowPageZoomBar.Enabled = bHasDoc | bClassic;
+			ckShowDocLaunchBar.Enabled = bHasDoc | bClassic;
+			ckShowDocOptsBar.Enabled = bHasDoc | bClassic;
+
+			ckShowMenu.Enabled = bClassic;
+			ckShowFileBar.Enabled = bClassic;
+			ckShowStdBar.Enabled = bClassic;
+			ckShowPropBar.Enabled = bClassic;
+			ckShowCommentBar.Enabled = bClassic;
+			ckShowMeasureBar.Enabled = bClassic;
+			ckShowContentEdtBar.Enabled = bClassic;
+			ckShowRotateViewBar.Enabled = bClassic;
+			ckShowFormViewBar.Enabled = bClassic;
 
 			// main panes
 			ckShowPanZoom.Checked = IsPaneVisible(IDS.panzoomView);
@@ -1199,7 +1213,7 @@ namespace FullDemo
 			int nVis = pdfCtl.GetPaneVisibility2(nIDS[(int)paneID]);
 			return (nVis > 0);
 		}
-		
+
 		private void ckShowCmdPanes_CheckedChanged(object sender, EventArgs e)
 		{
 			if (fUpdateControls != 0) return;
@@ -1230,8 +1244,8 @@ namespace FullDemo
 
 		private void ckShowMenu_CheckedChanged(object sender, EventArgs e)
 		{
-			if (fUpdateControls != 0) return; 
-			
+			if (fUpdateControls != 0) return;
+
 			ShowCmdBar(IDS.cmdbar_menubar, (ckShowMenu.Checked));
 		}
 
@@ -1260,7 +1274,7 @@ namespace FullDemo
 		{
 			if (fUpdateControls != 0) return;
 
-			ShowCmdBar(IDS.cmdbar_zoom, (ckShowZoomBar.Checked));
+			ShowCmdBar(IDS.cmdbar_pageZoom, (ckShowPageZoomBar.Checked));
 		}
 
 		private void ckShowCommentBar_CheckedChanged(object sender, EventArgs e)
@@ -1427,7 +1441,7 @@ namespace FullDemo
 // 				//	Sound,
 // 				//	Redact,
 // 				//	Projection,
-// 
+//
 // 				uint annotsCnt = annotsEvent.Items.Count;
 // 				for (uint i = 0; i < annotsCnt; i++)
 // 				{
@@ -1438,7 +1452,7 @@ namespace FullDemo
 // 					}
 // 				}
 // 			}
-// 
+//
 			if (e.nEventID == nIDS[(int)IDS.e_activeDocChanged])
 			{
 				UpdateDocTab();
@@ -1640,7 +1654,7 @@ namespace FullDemo
 				openFilesRes = pdfCtl.Inst.ShowOpenFilesDlg(sFilter, "", bAllowMult);
 			}
 			catch { openFilesRes = null; }
-			
+
 			if (openFilesRes == null)
 				return null;
 
@@ -1917,7 +1931,7 @@ namespace FullDemo
 				if (destStream != null)
 				{
 					IStreamWrapper destIStream = new IStreamWrapper(destStream);
-					
+
 					if (destIStream != null)
 						doc.Save(destIStream, saveDocFlags);
 
@@ -1932,7 +1946,7 @@ namespace FullDemo
 			catch { }
 		}
 
-		
+
 		private void btnSaveToCustDest_Click(object sender, EventArgs e)
 		{
 			PDFXEdit.IPXV_Document doc = pdfCtl.Doc;
@@ -2096,7 +2110,7 @@ namespace FullDemo
 		void UpdateCustomUITab()
 		{
 			fUpdateControls++;
-			
+
 			PDFXEdit.IUIX_Theme th = uiInst.Theme;
 
 			// update colors
@@ -2122,7 +2136,7 @@ namespace FullDemo
 			bool fKeep = ckKeepPrefs.Checked;
 			rbPrefs_file.Enabled = fKeep;
 			rbPrefs_reg.Enabled = fKeep;
-			
+
 			bool fUseReg = rbPrefs_reg.Checked;
 			tPrefs_reg.Enabled = fKeep;
 
@@ -2132,7 +2146,7 @@ namespace FullDemo
 			tHistDir.Enabled = ckKeepHist.Checked;
 			btnBrowseForHistDir.Enabled = ckKeepHist.Checked;
 		}
-		
+
 		void ApplyCustomUI()
 		{
 			if (fUpdateControls != 0)
@@ -2148,7 +2162,7 @@ namespace FullDemo
 				SetCustColor(clrArr, "text",		clr2str(btnTextClr.BackColor));
 				SetCustColor(clrArr, "selection",	clr2str(btnSelClr.BackColor));
 			}
-			
+
 			// setup fonts
 			{
 				PDFXEdit.ICabNode fntArr = pr["Fonts"];
@@ -2160,7 +2174,7 @@ namespace FullDemo
 			// 	pdfCtl.Inst.Settings["CustomUI.Backgrounds.Main.Style"].v = "S"; // solid
 			// 	pdfCtl.Inst.Settings["CustomUI.Backgrounds.Main.ShowOverlay"].v = false; // no tob/bottom shadows
 			// }
-			// 
+			//
 			// {
 			// 	pdfCtl.Inst.Settings["CustomUI.Backgrounds.Dialog.Style"].v = "S"; // solid
 			// 	pdfCtl.Inst.Settings["CustomUI.Backgrounds.Dialog.ShowOverlay"].v = false; // no tob/bottom shadows
@@ -2336,7 +2350,38 @@ namespace FullDemo
 		{
 			if (fUpdateControls != 0) return;
 
-			ShowCmdBar(IDS.cmdbar_rotateView, (ckShowRotateViewBar.Checked));
+			ShowCmdBar(IDS.cmdbar_view, (ckShowRotateViewBar.Checked));
+		}
+
+		private void cbShowFormViewbar_CheckedChanged(object sender, EventArgs e)
+		{
+			if (fUpdateControls != 0) return;
+
+			ShowCmdBar(IDS.cmdbar_form, (ckShowFormViewBar.Checked));
+		}
+		private void ckRibbonUI_CheckedChanged(object sender, EventArgs e)
+		{
+			if (pdfCtl == null || pdfCtl.Frame == null)
+				return;
+
+
+			pdfCtl.Inst.EnableRibbonUI(!pdfCtl.Frame.View.IsRibbonMode);
+
+			bool bClassic = !pdfCtl.Frame.View.IsRibbonMode;
+			ckShowPagesLayoutBar.Enabled = bClassic;
+			ckShowPagesNavBar.Enabled = bClassic;
+			ckShowPageZoomBar.Enabled = bClassic;
+			ckShowDocLaunchBar.Enabled = bClassic;
+			ckShowDocOptsBar.Enabled = bClassic;
+			ckShowMenu.Enabled = bClassic;
+			ckShowFileBar.Enabled = bClassic;
+			ckShowStdBar.Enabled = bClassic;
+			ckShowPropBar.Enabled = bClassic;
+			ckShowCommentBar.Enabled = bClassic;
+			ckShowMeasureBar.Enabled = bClassic;
+			ckShowContentEdtBar.Enabled = bClassic;
+			ckShowRotateViewBar.Enabled = bClassic;
+			ckShowFormViewBar.Enabled = bClassic;
 		}
 
         private void ckRibbonUI_CheckedChanged(object sender, EventArgs e)
