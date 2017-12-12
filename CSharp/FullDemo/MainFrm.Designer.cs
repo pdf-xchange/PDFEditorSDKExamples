@@ -49,12 +49,16 @@ namespace FullDemo
 			this.btnCmdExec = new System.Windows.Forms.Button();
 			this.ckAllowShortcuts = new System.Windows.Forms.CheckBox();
 			this.tabView = new System.Windows.Forms.TabPage();
+			this.ckRibbonUI = new System.Windows.Forms.CheckBox();
+			this.ckShowFormViewBar = new System.Windows.Forms.CheckBox();
+			this.label44 = new System.Windows.Forms.Label();
+			this.ckShowRotateViewBar = new System.Windows.Forms.CheckBox();
 			this.ckShowDocOptsBar = new System.Windows.Forms.CheckBox();
 			this.ckShowDocLaunchBar = new System.Windows.Forms.CheckBox();
 			this.ckLockCmdPanes = new System.Windows.Forms.CheckBox();
 			this.ckShowPagesLayoutBar = new System.Windows.Forms.CheckBox();
 			this.ckShowPagesNavBar = new System.Windows.Forms.CheckBox();
-			this.ckShowZoomBar = new System.Windows.Forms.CheckBox();
+			this.ckShowPageZoomBar = new System.Windows.Forms.CheckBox();
 			this.ckShowMeasureBar = new System.Windows.Forms.CheckBox();
 			this.ckShowContentEdtBar = new System.Windows.Forms.CheckBox();
 			this.ckShowCommentBar = new System.Windows.Forms.CheckBox();
@@ -206,8 +210,6 @@ namespace FullDemo
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.fontDialog1 = new System.Windows.Forms.FontDialog();
 			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-			this.ckShowRotateViewBar = new System.Windows.Forms.CheckBox();
-			this.label44 = new System.Windows.Forms.Label();
 			this.tabJS.SuspendLayout();
 			this.tabCmds.SuspendLayout();
 			this.tabView.SuspendLayout();
@@ -428,6 +430,8 @@ namespace FullDemo
 			// 
 			// tabView
 			// 
+			this.tabView.Controls.Add(this.ckRibbonUI);
+			this.tabView.Controls.Add(this.ckShowFormViewBar);
 			this.tabView.Controls.Add(this.label44);
 			this.tabView.Controls.Add(this.ckShowRotateViewBar);
 			this.tabView.Controls.Add(this.ckShowDocOptsBar);
@@ -435,7 +439,7 @@ namespace FullDemo
 			this.tabView.Controls.Add(this.ckLockCmdPanes);
 			this.tabView.Controls.Add(this.ckShowPagesLayoutBar);
 			this.tabView.Controls.Add(this.ckShowPagesNavBar);
-			this.tabView.Controls.Add(this.ckShowZoomBar);
+			this.tabView.Controls.Add(this.ckShowPageZoomBar);
 			this.tabView.Controls.Add(this.ckShowMeasureBar);
 			this.tabView.Controls.Add(this.ckShowContentEdtBar);
 			this.tabView.Controls.Add(this.ckShowCommentBar);
@@ -473,10 +477,54 @@ namespace FullDemo
 			this.tabView.UseVisualStyleBackColor = true;
 			this.tabView.Click += new System.EventHandler(this.tabView_Click);
 			// 
+			// ckRibbonUI
+			// 
+			this.ckRibbonUI.AutoSize = true;
+			this.ckRibbonUI.Location = new System.Drawing.Point(30, 157);
+			this.ckRibbonUI.Name = "ckRibbonUI";
+			this.ckRibbonUI.Size = new System.Drawing.Size(140, 24);
+			this.ckRibbonUI.TabIndex = 59;
+			this.ckRibbonUI.Text = "Use Ribbon UI";
+			this.ckRibbonUI.UseVisualStyleBackColor = true;
+			this.ckRibbonUI.CheckedChanged += new System.EventHandler(this.ckRibbonUI_CheckedChanged);
+			// 
+			// ckShowFormViewBar
+			// 
+			this.ckShowFormViewBar.AutoSize = true;
+			this.ckShowFormViewBar.Location = new System.Drawing.Point(334, 216);
+			this.ckShowFormViewBar.Margin = new System.Windows.Forms.Padding(4);
+			this.ckShowFormViewBar.Name = "ckShowFormViewBar";
+			this.ckShowFormViewBar.Size = new System.Drawing.Size(181, 24);
+			this.ckShowFormViewBar.TabIndex = 59;
+			this.ckShowFormViewBar.Text = "Show Form View bar";
+			this.ckShowFormViewBar.UseVisualStyleBackColor = true;
+			this.ckShowFormViewBar.CheckedChanged += new System.EventHandler(this.cbShowFormViewbar_CheckedChanged);
+			// 
+			// label44
+			// 
+			this.label44.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.label44.Location = new System.Drawing.Point(321, 289);
+			this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label44.Name = "label44";
+			this.label44.Size = new System.Drawing.Size(277, 1);
+			this.label44.TabIndex = 58;
+			// 
+			// ckShowRotateViewBar
+			// 
+			this.ckShowRotateViewBar.AutoSize = true;
+			this.ckShowRotateViewBar.Location = new System.Drawing.Point(30, 440);
+			this.ckShowRotateViewBar.Margin = new System.Windows.Forms.Padding(4);
+			this.ckShowRotateViewBar.Name = "ckShowRotateViewBar";
+			this.ckShowRotateViewBar.Size = new System.Drawing.Size(193, 24);
+			this.ckShowRotateViewBar.TabIndex = 57;
+			this.ckShowRotateViewBar.Text = "Show Rotate View bar";
+			this.ckShowRotateViewBar.UseVisualStyleBackColor = true;
+			this.ckShowRotateViewBar.CheckedChanged += new System.EventHandler(this.ckShowRotateViewBar_CheckedChanged);
+			// 
 			// ckShowDocOptsBar
 			// 
 			this.ckShowDocOptsBar.AutoSize = true;
-			this.ckShowDocOptsBar.Location = new System.Drawing.Point(334, 358);
+			this.ckShowDocOptsBar.Location = new System.Drawing.Point(334, 408);
 			this.ckShowDocOptsBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowDocOptsBar.Name = "ckShowDocOptsBar";
 			this.ckShowDocOptsBar.Size = new System.Drawing.Size(239, 24);
@@ -488,7 +536,7 @@ namespace FullDemo
 			// ckShowDocLaunchBar
 			// 
 			this.ckShowDocLaunchBar.AutoSize = true;
-			this.ckShowDocLaunchBar.Location = new System.Drawing.Point(334, 327);
+			this.ckShowDocLaunchBar.Location = new System.Drawing.Point(334, 377);
 			this.ckShowDocLaunchBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowDocLaunchBar.Name = "ckShowDocLaunchBar";
 			this.ckShowDocLaunchBar.Size = new System.Drawing.Size(237, 24);
@@ -512,7 +560,7 @@ namespace FullDemo
 			// ckShowPagesLayoutBar
 			// 
 			this.ckShowPagesLayoutBar.AutoSize = true;
-			this.ckShowPagesLayoutBar.Location = new System.Drawing.Point(334, 293);
+			this.ckShowPagesLayoutBar.Location = new System.Drawing.Point(334, 343);
 			this.ckShowPagesLayoutBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowPagesLayoutBar.Name = "ckShowPagesLayoutBar";
 			this.ckShowPagesLayoutBar.Size = new System.Drawing.Size(203, 24);
@@ -524,7 +572,7 @@ namespace FullDemo
 			// ckShowPagesNavBar
 			// 
 			this.ckShowPagesNavBar.AutoSize = true;
-			this.ckShowPagesNavBar.Location = new System.Drawing.Point(334, 262);
+			this.ckShowPagesNavBar.Location = new System.Drawing.Point(334, 312);
 			this.ckShowPagesNavBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowPagesNavBar.Name = "ckShowPagesNavBar";
 			this.ckShowPagesNavBar.Size = new System.Drawing.Size(229, 24);
@@ -533,22 +581,22 @@ namespace FullDemo
 			this.ckShowPagesNavBar.UseVisualStyleBackColor = true;
 			this.ckShowPagesNavBar.CheckedChanged += new System.EventHandler(this.ckShowPagesNavBar_CheckedChanged);
 			// 
-			// ckShowZoomBar
+			// ckShowPageZoomBar
 			// 
-			this.ckShowZoomBar.AutoSize = true;
-			this.ckShowZoomBar.Location = new System.Drawing.Point(30, 328);
-			this.ckShowZoomBar.Margin = new System.Windows.Forms.Padding(4);
-			this.ckShowZoomBar.Name = "ckShowZoomBar";
-			this.ckShowZoomBar.Size = new System.Drawing.Size(147, 24);
-			this.ckShowZoomBar.TabIndex = 51;
-			this.ckShowZoomBar.Text = "Show Zoom bar";
-			this.ckShowZoomBar.UseVisualStyleBackColor = true;
-			this.ckShowZoomBar.CheckedChanged += new System.EventHandler(this.ckShowZoomBar_CheckedChanged);
+			this.ckShowPageZoomBar.AutoSize = true;
+			this.ckShowPageZoomBar.Location = new System.Drawing.Point(334, 440);
+			this.ckShowPageZoomBar.Margin = new System.Windows.Forms.Padding(4);
+			this.ckShowPageZoomBar.Name = "ckShowPageZoomBar";
+			this.ckShowPageZoomBar.Size = new System.Drawing.Size(147, 24);
+			this.ckShowPageZoomBar.TabIndex = 51;
+			this.ckShowPageZoomBar.Text = "Show Zoom bar";
+			this.ckShowPageZoomBar.UseVisualStyleBackColor = true;
+			this.ckShowPageZoomBar.CheckedChanged += new System.EventHandler(this.ckShowZoomBar_CheckedChanged);
 			// 
 			// ckShowMeasureBar
 			// 
 			this.ckShowMeasureBar.AutoSize = true;
-			this.ckShowMeasureBar.Location = new System.Drawing.Point(30, 424);
+			this.ckShowMeasureBar.Location = new System.Drawing.Point(30, 406);
 			this.ckShowMeasureBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowMeasureBar.Name = "ckShowMeasureBar";
 			this.ckShowMeasureBar.Size = new System.Drawing.Size(204, 24);
@@ -560,7 +608,7 @@ namespace FullDemo
 			// ckShowContentEdtBar
 			// 
 			this.ckShowContentEdtBar.AutoSize = true;
-			this.ckShowContentEdtBar.Location = new System.Drawing.Point(30, 393);
+			this.ckShowContentEdtBar.Location = new System.Drawing.Point(30, 375);
 			this.ckShowContentEdtBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowContentEdtBar.Name = "ckShowContentEdtBar";
 			this.ckShowContentEdtBar.Size = new System.Drawing.Size(216, 24);
@@ -572,7 +620,7 @@ namespace FullDemo
 			// ckShowCommentBar
 			// 
 			this.ckShowCommentBar.AutoSize = true;
-			this.ckShowCommentBar.Location = new System.Drawing.Point(30, 362);
+			this.ckShowCommentBar.Location = new System.Drawing.Point(30, 344);
 			this.ckShowCommentBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowCommentBar.Name = "ckShowCommentBar";
 			this.ckShowCommentBar.Size = new System.Drawing.Size(196, 24);
@@ -584,7 +632,7 @@ namespace FullDemo
 			// ckShowPropBar
 			// 
 			this.ckShowPropBar.AutoSize = true;
-			this.ckShowPropBar.Location = new System.Drawing.Point(30, 297);
+			this.ckShowPropBar.Location = new System.Drawing.Point(30, 312);
 			this.ckShowPropBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowPropBar.Name = "ckShowPropBar";
 			this.ckShowPropBar.Size = new System.Drawing.Size(178, 24);
@@ -596,7 +644,7 @@ namespace FullDemo
 			// ckShowStdBar
 			// 
 			this.ckShowStdBar.AutoSize = true;
-			this.ckShowStdBar.Location = new System.Drawing.Point(30, 266);
+			this.ckShowStdBar.Location = new System.Drawing.Point(30, 281);
 			this.ckShowStdBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowStdBar.Name = "ckShowStdBar";
 			this.ckShowStdBar.Size = new System.Drawing.Size(172, 24);
@@ -608,7 +656,7 @@ namespace FullDemo
 			// ckShowMenu
 			// 
 			this.ckShowMenu.AutoSize = true;
-			this.ckShowMenu.Location = new System.Drawing.Point(30, 201);
+			this.ckShowMenu.Location = new System.Drawing.Point(30, 216);
 			this.ckShowMenu.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowMenu.Name = "ckShowMenu";
 			this.ckShowMenu.Size = new System.Drawing.Size(146, 24);
@@ -620,7 +668,7 @@ namespace FullDemo
 			// ckShowFileBar
 			// 
 			this.ckShowFileBar.AutoSize = true;
-			this.ckShowFileBar.Location = new System.Drawing.Point(30, 232);
+			this.ckShowFileBar.Location = new System.Drawing.Point(30, 247);
 			this.ckShowFileBar.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowFileBar.Name = "ckShowFileBar";
 			this.ckShowFileBar.Size = new System.Drawing.Size(131, 24);
@@ -632,7 +680,7 @@ namespace FullDemo
 			// label15
 			// 
 			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(16, 166);
+			this.label15.Location = new System.Drawing.Point(8, 192);
 			this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(121, 20);
@@ -642,7 +690,7 @@ namespace FullDemo
 			// label27
 			// 
 			this.label27.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label27.Location = new System.Drawing.Point(146, 177);
+			this.label27.Location = new System.Drawing.Point(137, 203);
 			this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label27.Name = "label27";
 			this.label27.Size = new System.Drawing.Size(450, 3);
@@ -651,7 +699,7 @@ namespace FullDemo
 			// label26
 			// 
 			this.label26.AutoSize = true;
-			this.label26.Location = new System.Drawing.Point(16, 466);
+			this.label26.Location = new System.Drawing.Point(16, 481);
 			this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label26.Name = "label26";
 			this.label26.Size = new System.Drawing.Size(95, 20);
@@ -661,7 +709,7 @@ namespace FullDemo
 			// label25
 			// 
 			this.label25.AutoSize = true;
-			this.label25.Location = new System.Drawing.Point(16, 640);
+			this.label25.Location = new System.Drawing.Point(16, 655);
 			this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label25.Name = "label25";
 			this.label25.Size = new System.Drawing.Size(135, 20);
@@ -671,7 +719,7 @@ namespace FullDemo
 			// label24
 			// 
 			this.label24.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label24.Location = new System.Drawing.Point(118, 476);
+			this.label24.Location = new System.Drawing.Point(118, 491);
 			this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(476, 2);
@@ -680,7 +728,7 @@ namespace FullDemo
 			// ckShowPanZoom
 			// 
 			this.ckShowPanZoom.AutoSize = true;
-			this.ckShowPanZoom.Location = new System.Drawing.Point(30, 598);
+			this.ckShowPanZoom.Location = new System.Drawing.Point(30, 613);
 			this.ckShowPanZoom.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowPanZoom.Name = "ckShowPanZoom";
 			this.ckShowPanZoom.Size = new System.Drawing.Size(227, 24);
@@ -692,7 +740,7 @@ namespace FullDemo
 			// ckShowStampsPalette
 			// 
 			this.ckShowStampsPalette.AutoSize = true;
-			this.ckShowStampsPalette.Location = new System.Drawing.Point(30, 566);
+			this.ckShowStampsPalette.Location = new System.Drawing.Point(30, 581);
 			this.ckShowStampsPalette.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowStampsPalette.Name = "ckShowStampsPalette";
 			this.ckShowStampsPalette.Size = new System.Drawing.Size(188, 24);
@@ -704,7 +752,7 @@ namespace FullDemo
 			// ckShowCommentStyles
 			// 
 			this.ckShowCommentStyles.AutoSize = true;
-			this.ckShowCommentStyles.Location = new System.Drawing.Point(30, 502);
+			this.ckShowCommentStyles.Location = new System.Drawing.Point(30, 517);
 			this.ckShowCommentStyles.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowCommentStyles.Name = "ckShowCommentStyles";
 			this.ckShowCommentStyles.Size = new System.Drawing.Size(249, 24);
@@ -716,7 +764,7 @@ namespace FullDemo
 			// ckShowSearchPane
 			// 
 			this.ckShowSearchPane.AutoSize = true;
-			this.ckShowSearchPane.Location = new System.Drawing.Point(30, 534);
+			this.ckShowSearchPane.Location = new System.Drawing.Point(30, 549);
 			this.ckShowSearchPane.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowSearchPane.Name = "ckShowSearchPane";
 			this.ckShowSearchPane.Size = new System.Drawing.Size(170, 24);
@@ -728,7 +776,7 @@ namespace FullDemo
 			// label17
 			// 
 			this.label17.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label17.Location = new System.Drawing.Point(159, 650);
+			this.label17.Location = new System.Drawing.Point(159, 665);
 			this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(436, 2);
@@ -737,7 +785,7 @@ namespace FullDemo
 			// ckSyncDocPanesLayout
 			// 
 			this.ckSyncDocPanesLayout.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-			this.ckSyncDocPanesLayout.Location = new System.Drawing.Point(360, 664);
+			this.ckSyncDocPanesLayout.Location = new System.Drawing.Point(334, 671);
 			this.ckSyncDocPanesLayout.Margin = new System.Windows.Forms.Padding(4);
 			this.ckSyncDocPanesLayout.Name = "ckSyncDocPanesLayout";
 			this.ckSyncDocPanesLayout.Size = new System.Drawing.Size(212, 81);
@@ -749,7 +797,7 @@ namespace FullDemo
 			// ckShowAttachments
 			// 
 			this.ckShowAttachments.AutoSize = true;
-			this.ckShowAttachments.Location = new System.Drawing.Point(30, 837);
+			this.ckShowAttachments.Location = new System.Drawing.Point(30, 852);
 			this.ckShowAttachments.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowAttachments.Name = "ckShowAttachments";
 			this.ckShowAttachments.Size = new System.Drawing.Size(202, 24);
@@ -761,7 +809,7 @@ namespace FullDemo
 			// ckShowSignatures
 			// 
 			this.ckShowSignatures.AutoSize = true;
-			this.ckShowSignatures.Location = new System.Drawing.Point(30, 806);
+			this.ckShowSignatures.Location = new System.Drawing.Point(30, 821);
 			this.ckShowSignatures.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowSignatures.Name = "ckShowSignatures";
 			this.ckShowSignatures.Size = new System.Drawing.Size(196, 24);
@@ -773,7 +821,7 @@ namespace FullDemo
 			// ckShowLayers
 			// 
 			this.ckShowLayers.AutoSize = true;
-			this.ckShowLayers.Location = new System.Drawing.Point(30, 772);
+			this.ckShowLayers.Location = new System.Drawing.Point(30, 787);
 			this.ckShowLayers.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowLayers.Name = "ckShowLayers";
 			this.ckShowLayers.Size = new System.Drawing.Size(166, 24);
@@ -785,7 +833,7 @@ namespace FullDemo
 			// ckShowComments
 			// 
 			this.ckShowComments.AutoSize = true;
-			this.ckShowComments.Location = new System.Drawing.Point(30, 741);
+			this.ckShowComments.Location = new System.Drawing.Point(30, 756);
 			this.ckShowComments.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowComments.Name = "ckShowComments";
 			this.ckShowComments.Size = new System.Drawing.Size(196, 24);
@@ -797,7 +845,7 @@ namespace FullDemo
 			// ckShowBookm
 			// 
 			this.ckShowBookm.AutoSize = true;
-			this.ckShowBookm.Location = new System.Drawing.Point(30, 710);
+			this.ckShowBookm.Location = new System.Drawing.Point(30, 725);
 			this.ckShowBookm.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowBookm.Name = "ckShowBookm";
 			this.ckShowBookm.Size = new System.Drawing.Size(199, 24);
@@ -809,7 +857,7 @@ namespace FullDemo
 			// ckShowThumbs
 			// 
 			this.ckShowThumbs.AutoSize = true;
-			this.ckShowThumbs.Location = new System.Drawing.Point(30, 676);
+			this.ckShowThumbs.Location = new System.Drawing.Point(30, 691);
 			this.ckShowThumbs.Margin = new System.Windows.Forms.Padding(4);
 			this.ckShowThumbs.Name = "ckShowThumbs";
 			this.ckShowThumbs.Size = new System.Drawing.Size(200, 24);
@@ -2201,27 +2249,6 @@ namespace FullDemo
 			this.pdfCtl.TabIndex = 0;
 			this.pdfCtl.OnEvent += new AxPDFXEdit._IPXV_ControlEvents_OnEventEventHandler(this.pdfCtl_OnEvent);
 			// 
-			// ckShowRotateViewBar
-			// 
-			this.ckShowRotateViewBar.AutoSize = true;
-			this.ckShowRotateViewBar.Location = new System.Drawing.Point(334, 201);
-			this.ckShowRotateViewBar.Margin = new System.Windows.Forms.Padding(4);
-			this.ckShowRotateViewBar.Name = "ckShowRotateViewBar";
-			this.ckShowRotateViewBar.Size = new System.Drawing.Size(193, 24);
-			this.ckShowRotateViewBar.TabIndex = 57;
-			this.ckShowRotateViewBar.Text = "Show Rotate View bar";
-			this.ckShowRotateViewBar.UseVisualStyleBackColor = true;
-			this.ckShowRotateViewBar.CheckedChanged += new System.EventHandler(this.ckShowRotateViewBar_CheckedChanged);
-			// 
-			// label44
-			// 
-			this.label44.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label44.Location = new System.Drawing.Point(321, 240);
-			this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label44.Name = "label44";
-			this.label44.Size = new System.Drawing.Size(277, 1);
-			this.label44.TabIndex = 58;
-			// 
 			// MainFrm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -2283,7 +2310,7 @@ namespace FullDemo
 		private System.Windows.Forms.TabPage tabView;
 		private System.Windows.Forms.CheckBox ckShowPagesLayoutBar;
 		private System.Windows.Forms.CheckBox ckShowPagesNavBar;
-		private System.Windows.Forms.CheckBox ckShowZoomBar;
+		private System.Windows.Forms.CheckBox ckShowPageZoomBar;
 		private System.Windows.Forms.CheckBox ckShowMeasureBar;
 		private System.Windows.Forms.CheckBox ckShowContentEdtBar;
 		private System.Windows.Forms.CheckBox ckShowCommentBar;
@@ -2456,9 +2483,8 @@ namespace FullDemo
 		private System.Windows.Forms.CheckBox ckMultDocs;
 		private System.Windows.Forms.CheckBox ckShowRotateViewBar;
 		private System.Windows.Forms.Label label44;
-
-
-
+		private System.Windows.Forms.CheckBox ckShowFormViewBar;
+		private System.Windows.Forms.CheckBox ckRibbonUI;
 	}
 }
 
