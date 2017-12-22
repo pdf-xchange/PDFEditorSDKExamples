@@ -2383,13 +2383,5 @@ namespace FullDemo
 			ckShowRotateViewBar.Enabled = bClassic;
 			ckShowFormViewBar.Enabled = bClassic;
 		}
-
-        private void ckRibbonUI_CheckedChanged(object sender, EventArgs e)
-        {
-            if (pdfCtl == null || pdfCtl.Frame == null)
-                return;
-
-            pdfCtl.Inst.EnableRibbonUI(!pdfCtl.Frame.View.IsRibbonMode);
-        }
     }
 }
