@@ -189,3 +189,5 @@ _Pvt_Extensions/
 ModelManifest.xml
 /CSharp/FullDemo/.vs/
 /CustomPane/.vs/CustomPane/v15
+/.vs
+/CSharp/CustomPane/.vs/CustomPane/v15
