@@ -65,12 +65,12 @@ namespace CustomPane
 								   //UIX_LayoutItemFlag_Client = 0x4,
 								   //UIX_LayoutItemFlag_Minimized = 0x8,
 				kid["F"].v = 0;
-				//This will be displayed in the pane's title 
+				//This will be displayed in the pane's title
 				kid["Title"].v = "My Custom View";
 			} while (false);
 
 			//Creating a view creator so that the control will know how to initialize our Custom pane
-			CustomViewCreator myViewCreator = new CustomViewCreator(Inst, m_sCustomPaneID);
+			CustomViewCreator myViewCreator = new CustomViewCreator(Inst, m_sCustomPaneID, this);
 			Inst.RegisterViewCreator(myViewCreator);
 			//Loading panes layout
 			Inst.ActiveMainView.LoadPanesLayout();
@@ -110,10 +110,12 @@ namespace CustomPane
 		{
 			PDFXEdit.IPXV_Inst Inst = null;
 			public string m_sCustomPaneID;
-			public CustomViewCreator(PDFXEdit.IPXV_Inst vInst, string sID)
+			private Form1 m_frm;
+			public CustomViewCreator(PDFXEdit.IPXV_Inst vInst, string sID, Form1 frm)
 			{
 				Inst = vInst;
 				m_sCustomPaneID = sID;
+				m_frm = frm;
 			}
 			public void CreateNewView(PDFXEdit.IPXV_View pParentView, PDFXEdit.IUIX_Obj pParentObj, int nViewID, string sCustomTag, ref PDFXEdit.tagRECT stPos, out PDFXEdit.IPXV_View pNewView)
 			{
@@ -129,20 +131,38 @@ namespace CustomPane
 					mainView = pParentView as PDFXEdit.IPXV_MainView;
 				if (sID == m_sCustomPaneID)
 				{
-					CustomView CV = new CustomView(nViewID);
+					PDFXEdit.IUIX_Inst uiInst = (PDFXEdit.IUIX_Inst)Inst.GetExtension("UIX");
+
+					CustomView CV = new CustomView(nViewID, m_frm.userControl11);
+
 					PDFXEdit.UIX_CreateObjParams cp = new PDFXEdit.UIX_CreateObjParams();
 					cp.pImpl = CV as PDFXEdit.IUIX_ObjImpl;
 					cp.pParent = pParentObj;
 					cp.nCreateFlags = (int)PDFXEdit.UIX_CreateObjFlags.UIX_CreateObj_Windowed | (int)PDFXEdit.UIX_CreateObjFlags.UIX_CreateObj_TouchWindow;
 					cp.pID = sID;
-					cp.nStdClass = (int)PDFXEdit.UIX_StdClasses.UIX_StdClass_PropList; //For this sample we will create a Property Pane class View
-					PDFXEdit.IUIX_Inst uiInst = (PDFXEdit.IUIX_Inst)Inst.GetExtension("UIX");
-					cp.nObjStyle = uiInst.MakeObjStyle((int)PDFXEdit.UIX_ObjStyleFlags.UIX_ObjStyle_NoBorder | (int)PDFXEdit.UIX_ListStyleFlags.UIX_ListStyle_ShowGroupTitles, (int)PDFXEdit.UIX_ListStyleExFlags.UIX_ListStyleEx_AllowSelByMouseDown);
+					cp.nStdClass = (int)PDFXEdit.UIX_StdClasses.UIX_StdClass_Blank; //For this sample we will create a Property Pane class View
+					cp.nObjStyle = uiInst.MakeObjStyle((int)PDFXEdit.UIX_ObjStyleFlags.UIX_ObjStyle_NoBorder);
 					cp.rc = stPos;
 					// create UI-object
 					PDFXEdit.IUIX_Obj newView = null;
 					uiInst.CreateScrollableObj(cp, (long)PDFXEdit.UIX_ScrollStyleFlags.UIX_ScrollStyle_Vert, out newView);
+
+					UIX_CreateObjParams cp2 = new PDFXEdit.UIX_CreateObjParams();
+					cp2.nStdClass = (int)PDFXEdit.UIX_StdClasses.UIX_StdClass_Blank;
+					cp2.hWndParent = CV.Obj.WndHandle;
+					cp2.hWnd = Convert.ToUInt32(CV.userControl.Handle.ToInt64());
+					cp2.nObjStyle = uiInst.MakeObjStyle(0, (int)PDFXEdit.UIX_ObjStyleExFlags.UIX_ObjStyleEx_SimpleWndWrapper);
+					cp2.rc = stPos;
+					IUIX_Obj parentBase = uiInst.CreateObj(ref cp2);
+
 					pNewView = CV;
+
+					//long idHwnd = Convert.ToInt64(parentBase.WndHandle);
+					//long idHwnd = Convert.ToInt64(pParentView.Obj.WndHandle);
+					//IntPtr ptr = new IntPtr(idHwnd);
+					//long idTest = ptr.ToInt64();
+					//Control cls1 = Control.FromChildHandle(ptr);
+					//Control cls2 = Control.FromHandle(ptr);
 				}
 			}
 		}
@@ -155,9 +175,12 @@ namespace CustomPane
 			PDFXEdit.IPXV_View m_Parent = null;
 			PDFXEdit.IPXV_ViewPanesCollection m_Panes = null;
 
-			public CustomView(int nID)
+			public UserControl1 userControl = null;
+
+			public CustomView(int nID, UserControl1 userCtrl)
 			{
 				m_nID = nID;
+				userControl = userCtrl;
 			}
 
 			public PDFXEdit.IPXV_View Focus
@@ -184,6 +207,14 @@ namespace CustomPane
 				else if (pEvent.Code == (int)PDFXEdit.UIX_EventCodes.e_Last)
 				{
 					m_Obj = null;
+				}
+				else if (pEvent.Code == (int)PDFXEdit.UIX_EventCodes.e_PositionChanged)
+				{
+					var rc = m_Obj.get_Rect();
+					userControl.Left = rc.left;
+					userControl.Top = rc.top;
+					userControl.Width = rc.right - rc.left;
+					userControl.Height = rc.bottom - rc.top;
 				}
 			}
 
@@ -285,6 +316,11 @@ namespace CustomPane
 
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
