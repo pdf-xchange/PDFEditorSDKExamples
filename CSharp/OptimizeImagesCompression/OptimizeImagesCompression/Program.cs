@@ -10,7 +10,7 @@ namespace OptimizeImagesCompression
 	{
 		private static readonly string[] CompMode = { "Color", "Grayscale", "Indexed", "Mono" };
 
-		private static void Main()
+		public static void Main()
 		{
 			ShowHelp();
 			var folderWithTestFilesPath = CmdArgsParser.GetCmdArgForParam("-f");
