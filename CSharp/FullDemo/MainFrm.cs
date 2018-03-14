@@ -2383,5 +2383,5 @@ namespace FullDemo
 			ckShowRotateViewBar.Enabled = bClassic;
 			ckShowFormViewBar.Enabled = bClassic;
 		}
-    }
+	}
 }
