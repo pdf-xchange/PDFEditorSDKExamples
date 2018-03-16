@@ -15,6 +15,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+.vs/
 
 # Roslyn cache directories
 *.ide/
@@ -188,6 +189,7 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 /CSharp/FullDemo/.vs/
+/CSharp/OptimizeImagesCompression/OptimizeImagesCompression.VC.VC.opendb
 /CustomPane/.vs/CustomPane/v15
 /.vs
 /CSharp/CustomPane/.vs/CustomPane/v15
