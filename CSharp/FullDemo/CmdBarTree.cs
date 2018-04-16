@@ -55,11 +55,7 @@ class CmdBarTree
 		public List<ToolbarInfo> m_MainBars = new List<ToolbarInfo>();
 		public List<ToolbarInfo> m_DocBars = new List<ToolbarInfo>();
 		ToolbarInfo[] m_Groups = new ToolbarInfo[(int)eGI.Group_Max];
-		ItemID m_HighlightedBarID;
-		bool m_bPopup = false;
 		bool m_bRibbonUI = false;
-		bool m_bNeedReload = true;
-		int m_nSkipTreeNotifications = 0;
 		int m_nActiveTabID = 0;
 		bool m_bEnabled = true;
 
@@ -243,10 +239,10 @@ class CmdBarTree
 				sTitle = m_Inst.GetLocalStr2(Bar.ID);
 			RemoveAllPrefixes(sTitle, out BarInfo.m_sTitle, out n);
 			
-			BarInfo.m_bStd = m_uiInst.CmdManager.IsStdBar[BarInfo.m_nID];
+			BarInfo.m_bStd = m_uiInst.CmdManager.IsStdBar(BarInfo.m_nID);
 			BarInfo.m_bHidden = Bar.IsHidden || ((Bar.Line != null) && (Bar.Line.Pane != null) && Bar.Line.Pane.IsHidden);
 			BarInfo.m_bVisible = !BarInfo.m_bHidden;
-			BarInfo.m_bSpecial = Bar.SpecialFlags != 0;
+			BarInfo.m_bSpecial = Bar.IsSpecial;
 			BarInfo.m_bTemp = Bar.IsTemp;
 
 
@@ -272,7 +268,7 @@ class CmdBarTree
 			for (uint i = 0; i < CMan.CmdBarsCount; i++)
 			{
 				IUIX_CmdBar Bar = CMan.CmdBar[(int)i];
-				if ((Bar.Owner != MainView.Obj) || Bar.IsPopupBox || Bar.IsPopupMenu || (Bar.SpecialFlags != 0) || (Bar.AppMenuContainer != null))
+				if ((Bar.Owner != MainView.Obj) || Bar.IsPopupBox || Bar.IsPopupMenu || Bar.IsSpecial || (Bar.AppMenuContainer != null))
 					continue;
 				mainBars.Add(Bar);
 			}
@@ -303,7 +299,7 @@ class CmdBarTree
 					for (uint j = 0; j < CMan.CmdBarsCount; j++)
 					{
 						IUIX_CmdBar Bar = CMan.CmdBar[(int)j];
-						if ((Bar.Owner != obj) || Bar.IsPopupBox || Bar.IsPopupMenu || (Bar.SpecialFlags != 0) || (Bar.AppMenuContainer != null))
+						if ((Bar.Owner != obj) || Bar.IsPopupBox || Bar.IsPopupMenu || Bar.IsSpecial || (Bar.AppMenuContainer != null))
 							continue;
 						viewBars.Add(Bar);
 					}
@@ -335,7 +331,7 @@ class CmdBarTree
 
 						int n = 0;
 						RemoveAllPrefixes(title, out TI.m_sTitle, out n);
-						TI.m_bStd = CMan.IsStdRibbonTab[TI.m_nID];
+						TI.m_bStd = CMan.IsStdRibbonTab(TI.m_nID);
 						TI.m_bHidden = Tab.Hidden || ICPane.IsHidden;
 						TI.m_bVisible = !TI.m_bHidden;
 						TI.m_bTemp = Tab.IsTemp;
@@ -372,7 +368,7 @@ class CmdBarTree
 
 				if (Tabs != null)
 				{
-					if (Tabs.IsContextualBar[Bar.ID])
+					if (Tabs.IsContextualBar(Bar.ID))
 						continue;
 				}
 
