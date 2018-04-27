@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImportConverter", "ImportConverter\ImportConverter.vcxproj", "{23C3D18E-D95C-460F-8200-28715A4EEE16}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImportConverter", "ImportConverter.vcxproj", "{23C3D18E-D95C-460F-8200-28715A4EEE16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {90B3BB36-E763-4AFB-B96C-6A304F7CF29E}
+		SolutionGuid = {179CD7B6-A94D-47C1-AE67-DB60C8221948}
 	EndGlobalSection
 EndGlobal

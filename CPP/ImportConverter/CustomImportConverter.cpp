@@ -48,6 +48,7 @@ HRESULT ConverterCSV2PDF(IPXC_Inst* pxcInst, IStream* pFile, IProgressMon * pPro
 	ss.cbSize;
 	if (pProgress)
 	{
+		pProgress->put_Style(ProgressStyle_Normal | ProgressStyle_AllowCancel);
 		pProgress->put_Duration(ss.cbSize.QuadPart);
 		pProgress->put_Pos(fPos);
 	}
@@ -69,7 +70,10 @@ HRESULT ConverterCSV2PDF(IPXC_Inst* pxcInst, IStream* pFile, IProgressMon * pPro
 			VARIANT_BOOL bCancel = VARIANT_FALSE;
 			pProgress->get_Canceled(&bCancel);
 			if (bCancel)
+			{
+				hr = ECANCELED;
 				break;
+			}
 
 			pProgress->put_Pos(fPos);
 		}
