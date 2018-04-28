@@ -14,7 +14,7 @@ namespace TiffExtractor
 {
 	public partial class Form1 : Form
 	{
-		List<string> m_aFiles = new List<string>();
+		public BindingList<string> m_aFiles = new BindingList<string>();
 		PDFXEdit.PXV_Inst m_Inst = null;
 		PDFXEdit.IPXC_Inst m_pxcInst = null;
 		int m_nID = 0;
@@ -23,6 +23,8 @@ namespace TiffExtractor
 		public Form1()
 		{
 			InitializeComponent();
+			listBox1.DataSource = m_aFiles;
+			listBox1.DisplayMember = "sDoc";
 			InitPDFControl();
 		}
 
@@ -34,6 +36,10 @@ namespace TiffExtractor
 			m_nID = m_Inst.Str2ID("op.document.exportToImages", false);
 		}
 
+		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			m_Inst.Shutdown();
+		}
 		private void FillFilesArray()
 		{
 			// Create an instance of the open file dialog box.
@@ -76,8 +82,6 @@ namespace TiffExtractor
 
 		public void BrowseForFolder()
 		{
-			FolderBrowserDialog folderBrowserDialog1 = new FolderBrowserDialog();
-			folderBrowserDialog1.RootFolder = Environment.SpecialFolder.Personal;
 			// Show the FolderBrowserDialog.
 			DialogResult result = folderBrowserDialog1.ShowDialog();
 			if (result == DialogResult.OK)
@@ -127,7 +131,7 @@ namespace TiffExtractor
 				//Y DPI
 				fmtParams["DPIY"].v = 150;
 				//Image format
-				fmtParams["FMT"].v = 1414088262; //TIFF
+				fmtParams["FMT"].v = PDFXEdit.IXC_ImageFileFormatIDs.FMT_TIFF_ID;//TIFF
 				//Image type
 				fmtParams["ITYP"].v = 16; //24 TrueColor
 				//Use Predictor
@@ -146,9 +150,9 @@ namespace TiffExtractor
 			}
 		}
 
-		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+		private void label1_Click(object sender, EventArgs e)
 		{
-			m_Inst.Shutdown();
+
 		}
 	}
 }
