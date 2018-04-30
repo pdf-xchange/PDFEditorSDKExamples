@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2005
+VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptimizeImagesCompression", "OptimizeImagesCompression\OptimizeImagesCompression.csproj", "{6D415137-3281-4CB9-9703-8670DBC26508}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptimizeImagesCompression", "OptimizeImagesCompression.csproj", "{6D415137-3281-4CB9-9703-8670DBC26508}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +32,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {425C1911-55B5-4C81-956E-D813E9B7C14A}
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = src\CommandLine\CommandLine.csproj
+		SolutionGuid = {597424F0-253B-40AE-9DB1-FBC1BA69F77D}
 	EndGlobalSection
 EndGlobal
