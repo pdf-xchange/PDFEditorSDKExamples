@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomPane", "CustomPane\CustomPane.csproj", "{DF6963C7-590D-43E5-AEE7-84E039CADE2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomPane", "CustomPane.csproj", "{DF6963C7-590D-43E5-AEE7-84E039CADE2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {FA444AF6-A5F9-4FE2-9B3D-20E9CC4F42CC}
+		SolutionGuid = {17A93340-0583-4645-BC80-994D6D75478C}
 	EndGlobalSection
 EndGlobal
