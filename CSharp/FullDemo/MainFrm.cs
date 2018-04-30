@@ -1121,7 +1121,16 @@ namespace FullDemo
 			ckHideSingleTab.Checked = (bool)pdfCtl.Inst.Settings["Docs.HideSingleTab"].v;
 		}
 
-		private void UpdateViewTab()
+		private void UpdateCmdBarsTree()
+		{
+			CmdBarTree Tree = new CmdBarTree(pdfCtl.Inst, ref cmdBarsTree);
+			this.cmdBarsTree.AfterCheck -= new System.Windows.Forms.TreeViewEventHandler(this.cmdBarsTree_AfterCheck);
+			Tree.Load();
+			cmdBarsTree.ExpandAll();
+			this.cmdBarsTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.cmdBarsTree_AfterCheck);
+		}
+
+		private void UpdateViewTab(bool bUpdateTree = true)
 		{
 			fUpdateControls++;
 
@@ -1129,6 +1138,10 @@ namespace FullDemo
 			ckLockCmdPanes.Checked = pdfCtl.LockedCmdPanes;
 			ckUnlockCmdBars.Checked = !pdfCtl.LockedCmdBars;
 			ckHideSb.Checked = !pdfCtl.VisibleScrollbars;
+			if (bUpdateTree)
+				UpdateCmdBarsTree();
+
+			ckRibbonUI.CheckState = pdfCtl.Frame.View.IsRibbonMode ? CheckState.Checked : CheckState.Unchecked;
 
 			// main bars
 			ckShowMenu.Checked = IsCmdBarVisible(IDS.cmdbar_menubar);
@@ -1219,6 +1232,8 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			pdfCtl.VisibleCmdPanes = ckShowCmdPanes.Checked ? (uint)PDFXEdit.PXV_VisibleCmdPanes.PXV_VisibleCmdPanes_All : 0;
+
+			UpdateViewTab();
 		}
 
 		private void ckUnlockCmdBars_CheckedChanged(object sender, EventArgs e)
@@ -1247,6 +1262,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_menubar, (ckShowMenu.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowFileBar_CheckedChanged(object sender, EventArgs e)
@@ -1254,6 +1270,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_file, (ckShowFileBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowStdBar_CheckedChanged(object sender, EventArgs e)
@@ -1261,6 +1278,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_standard, (ckShowStdBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowPropBar_CheckedChanged(object sender, EventArgs e)
@@ -1268,6 +1286,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_properties, (ckShowPropBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowZoomBar_CheckedChanged(object sender, EventArgs e)
@@ -1275,6 +1294,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_pageZoom, (ckShowPageZoomBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowCommentBar_CheckedChanged(object sender, EventArgs e)
@@ -1282,6 +1302,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_commenting, (ckShowCommentBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowContentEdtBar_CheckedChanged(object sender, EventArgs e)
@@ -1289,6 +1310,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_contentEditing, (ckShowContentEdtBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowMeasureBar_CheckedChanged(object sender, EventArgs e)
@@ -1296,6 +1318,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_measurement, (ckShowMeasureBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowPagesNavBar_CheckedChanged(object sender, EventArgs e)
@@ -1303,6 +1326,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_pageNav, (ckShowPagesNavBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowPagesLayoutBar_CheckedChanged(object sender, EventArgs e)
@@ -1310,6 +1334,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_pageLayout, (ckShowPagesLayoutBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowDocLaunchBar_CheckedChanged(object sender, EventArgs e)
@@ -1317,6 +1342,7 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_launchApp, (ckShowDocLaunchBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowDocOptsBar_CheckedChanged(object sender, EventArgs e)
@@ -1324,6 +1350,23 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_docOptions, (ckShowDocOptsBar.Checked));
+			UpdateCmdBarsTree();
+		}
+
+		private void ckShowRotateViewBar_CheckedChanged(object sender, EventArgs e)
+		{
+			if (fUpdateControls != 0) return;
+
+			ShowCmdBar(IDS.cmdbar_view, (ckShowRotateViewBar.Checked));
+			UpdateCmdBarsTree();
+		}
+
+		private void cbShowFormViewbar_CheckedChanged(object sender, EventArgs e)
+		{
+			if (fUpdateControls != 0) return;
+
+			ShowCmdBar(IDS.cmdbar_form, (ckShowFormViewBar.Checked));
+			UpdateCmdBarsTree();
 		}
 
 		private void ckShowCommentStyles_CheckedChanged(object sender, EventArgs e)
@@ -2346,24 +2389,12 @@ namespace FullDemo
 			pdfCtl.Inst.FireAppPrefsChanged(PDFXEdit.PXV_AppPrefsChanges.PXV_AppPrefsChange_Documents);
 		}
 
-		private void ckShowRotateViewBar_CheckedChanged(object sender, EventArgs e)
-		{
-			if (fUpdateControls != 0) return;
-
-			ShowCmdBar(IDS.cmdbar_view, (ckShowRotateViewBar.Checked));
-		}
-
-		private void cbShowFormViewbar_CheckedChanged(object sender, EventArgs e)
-		{
-			if (fUpdateControls != 0) return;
-
-			ShowCmdBar(IDS.cmdbar_form, (ckShowFormViewBar.Checked));
-		}
+		
 		private void ckRibbonUI_CheckedChanged(object sender, EventArgs e)
 		{
 			if (pdfCtl == null || pdfCtl.Frame == null)
 				return;
-
+			if (fUpdateControls != 0) return;
 
 			pdfCtl.Inst.EnableRibbonUI(!pdfCtl.Frame.View.IsRibbonMode);
 
@@ -2382,6 +2413,51 @@ namespace FullDemo
 			ckShowContentEdtBar.Enabled = bClassic;
 			ckShowRotateViewBar.Enabled = bClassic;
 			ckShowFormViewBar.Enabled = bClassic;
+
+			UpdateViewTab();
+		}
+
+		private void cmdBarsTree_AfterCheck(object sender, TreeViewEventArgs e)
+		{
+			if (fUpdateControls != 0) return;
+
+			ToolbarInfo TI = (ToolbarInfo)e.Node.Tag;
+			if (TI.IsGroup())
+				return;
+
+			TI.m_bHidden = !e.Node.Checked;
+
+			if (TI.IsTab())
+			{
+				pdfCtl.Inst.ShowRibbonTab2(TI.m_nID, !TI.m_bHidden);
+			}
+			else
+			{
+				pdfCtl.Inst.ShowCmdBar2(TI.m_nID, !TI.m_bHidden);
+			}
+
+			UpdateViewTab(false);
+		}
+
+		private void cmdBarsTree_DrawNode(object sender, DrawTreeNodeEventArgs e)
+		{
+			//if (e.Node.IsVisible && e.Bounds.Location.X >= 0 && e.Bounds.Location.Y >= 0)
+			//{
+			//	if (e.Node.Parent == null)
+			//	{
+			//		// draw entry without checkbox
+			//		e.DrawDefault = false;
+			//		Font useFont = null;
+			//		Brush useBrush = null;
+			//		useFont = e.Node.TreeView.Font;
+			//		useBrush = SystemBrushes.WindowText;
+			//		e.Graphics.DrawString(e.Node.Text, useFont, useBrush, e.Bounds.Location);
+			//		return;
+			//	}
+			//}
+
+			//e.DrawDefault = true;
+			//return;
 		}
 	}
 }
