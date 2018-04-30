@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFPreviewSimple", "PDFPreviewSimple\PDFPreviewSimple.csproj", "{31716E5D-14D9-4635-8FD5-F2DE3527F58F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFPreviewSimple", "PDFPreviewSimple.csproj", "{31716E5D-14D9-4635-8FD5-F2DE3527F58F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {14EAB1B3-95A2-4520-BAE9-4F6A80EFD399}
+		SolutionGuid = {8FEBCC2C-3C1B-4928-A48E-B60A3F2E7DF7}
 	EndGlobalSection
 EndGlobal
