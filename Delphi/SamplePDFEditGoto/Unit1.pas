@@ -11,9 +11,9 @@ type
   TForm1 = class(TForm)
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
-    PXV_Control1: TPXV_Control;
     ToolButton2: TToolButton;
     FileOpenDialog1: TFileOpenDialog;
+    PXV_Control1: TPXV_Control;
     procedure ToolButton2Click(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
   private

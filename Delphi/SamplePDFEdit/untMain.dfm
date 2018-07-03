@@ -24,10 +24,13 @@ object Form1: TForm1
     Height = 675
     Align = alClient
     TabOrder = 0
-    OnEvent = PXV_Control1Event
-    ExplicitLeft = -56
-    ExplicitTop = -32
-    ControlData = {000C0000EA5C0000C3450000}
+    ExplicitLeft = 288
+    ExplicitTop = 192
+    ExplicitWidth = 192
+    ExplicitHeight = 192
+    ControlData = {
+      000E0000EA5C0000C34500000800000000001300000000000B00FFFF0B00FFFF
+      0B0000000B000000130003000000}
   end
   object MainMenu1: TMainMenu
     Left = 40

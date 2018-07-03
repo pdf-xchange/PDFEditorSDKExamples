@@ -45,11 +45,13 @@ object Form1: TForm1
     Height = 331
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 200
-    ExplicitTop = 104
+    ExplicitLeft = 120
+    ExplicitTop = 112
     ExplicitWidth = 192
     ExplicitHeight = 192
-    ControlData = {000C0000273C000036220000}
+    ControlData = {
+      000E0000273C0000362200000800000000001300000000000B00FFFF0B00FFFF
+      0B0000000B000000130003000000}
   end
   object FileOpenDialog1: TFileOpenDialog
     FavoriteLinks = <>
