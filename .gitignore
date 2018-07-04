@@ -192,9 +192,9 @@ ModelManifest.xml
 /CSharp/OptimizeImagesCompression/OptimizeImagesCompression.VC.VC.opendb
 /CustomPane/.vs/CustomPane/v15
 /.vs
-/CSharp/CustomPane/.vs/CustomPane/v15
+/CSharp/CustomPane/.vs/
 /CSharp/PreviewCtrl/.vs
-/CPP/ImportConverter/.vs/ImportConverter/v15
+/CPP/ImportConverter/.vs
 /CPP/ImportConverter/Release.x64
 /CPP/ImportConverter/Release.x86
 /CPP/ImportConverter/_tempbuild/.x64
@@ -203,3 +203,5 @@ ModelManifest.xml
 /CPP/ImportConverter/_tempbuild/.x86
 /PDFEditorSDKExamples.x64
 /PDFEditorSDKExamples.x86
+/Delphi/SamplePDFEditGoto/*.local
+/Delphi/SamplePDFEditGoto/*.identcache
