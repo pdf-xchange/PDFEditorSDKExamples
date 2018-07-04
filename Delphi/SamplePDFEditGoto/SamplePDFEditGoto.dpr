@@ -1,4 +1,4 @@
-program Project1;
+program SamplePDFEditGoto;
 
 uses
   Vcl.Forms,

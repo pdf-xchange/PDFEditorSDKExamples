@@ -63,7 +63,6 @@
     <None Include="res\ImportConverter.rc2">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="github_repos.csv" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ImportConverter.ico">
@@ -75,5 +74,8 @@
     <Image Include="res\Toolbar256.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="github_repos.csv" />
   </ItemGroup>
 </Project>
