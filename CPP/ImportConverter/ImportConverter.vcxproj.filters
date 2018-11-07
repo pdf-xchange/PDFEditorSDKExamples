@@ -50,6 +50,9 @@
     <ClCompile Include="CPXV_Control.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CustomImportConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ImportConverter.rc">
@@ -71,5 +74,8 @@
     <Image Include="res\Toolbar256.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="github_repos.csv" />
   </ItemGroup>
 </Project>

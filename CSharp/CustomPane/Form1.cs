@@ -79,7 +79,7 @@ namespace CustomPane
 			for (uint i = 0; i < Inst.ActiveMainView.Panes.Count; i++)
 			{
 				IPXV_View view = Inst.ActiveMainView.Panes[i];
-				if (view.ID == nViewID)
+				if (view?.ID == nViewID)
 				{
 					Inst.ActiveMainView.Panes.Show(view);
 					break;
