@@ -205,3 +205,5 @@ ModelManifest.xml
 /PDFEditorSDKExamples.x86
 /Delphi/SamplePDFEditGoto/*.local
 /Delphi/SamplePDFEditGoto/*.identcache
+/CPP/ImportConverter
+/tempbuild/Debug.x86
