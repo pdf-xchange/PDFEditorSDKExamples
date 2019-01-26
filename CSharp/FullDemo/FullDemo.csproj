@@ -126,6 +126,12 @@
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="IFormHelper.cs" />
+    <Compile Include="MovePages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MovePages.Designer.cs">
+      <DependentUpon>MovePages.cs</DependentUpon>
+    </Compile>
     <Compile Include="OperationDemo.cs" />
     <Compile Include="IStreamWrapper.cs" />
     <Compile Include="AddWatermarkForm.cs">
@@ -142,6 +148,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rename.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Rename.Designer.cs">
+      <DependentUpon>Rename.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DeletePages.resx">
       <DependentUpon>DeletePages.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddWatermarkForm.resx">
       <DependentUpon>AddWatermarkForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovePages.resx">
+      <DependentUpon>MovePages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintForm.resx">
       <DependentUpon>PrintForm.cs</DependentUpon>
