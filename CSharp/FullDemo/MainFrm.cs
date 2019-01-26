@@ -1008,7 +1008,7 @@ namespace FullDemo
 				{
 					if (it.ID == nIDS[(int)IDS.op_document_printPages])
 					{
-						sel = it;
+						//sel = it; це обирає завжди прінт
 						break;
 					}
 				}
