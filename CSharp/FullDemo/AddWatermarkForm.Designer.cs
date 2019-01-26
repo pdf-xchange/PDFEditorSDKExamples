@@ -156,6 +156,7 @@
 			this.rbPages.TabIndex = 2;
 			this.rbPages.Text = "Pages:";
 			this.rbPages.UseVisualStyleBackColor = true;
+			this.rbPages.CheckedChanged += new System.EventHandler(this.rbPages_CheckedChanged);
 			// 
 			// rbCurPage
 			// 

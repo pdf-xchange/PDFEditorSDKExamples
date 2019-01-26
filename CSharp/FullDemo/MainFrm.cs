@@ -903,6 +903,8 @@ namespace FullDemo
 			{
 				case IDS.op_document_addWatermarks:
 					return new AddWatermarkForm(this);
+				case IDS.op_document_deletePages:
+					return new DeletePages(this);
 				case IDS.op_document_printPages:
 					return new PrintForm(this);
 				case IDS.op_document_insertPages:

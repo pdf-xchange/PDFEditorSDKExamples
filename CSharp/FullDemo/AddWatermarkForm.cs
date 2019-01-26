@@ -180,5 +180,10 @@ namespace FullDemo
 				*/
 			}
 		}
+
+		private void rbPages_CheckedChanged(object sender, EventArgs e)
+		{
+			tPages.Focus();
+		}
 	}
 }
