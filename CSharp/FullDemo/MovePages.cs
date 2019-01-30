@@ -13,7 +13,6 @@ namespace FullDemo
 	public partial class MovePages : Form, IFormHelper
 	{
 		private MainFrm mainFrm = null;
-		string[] m_Location = new string[] {"Before", "After"};
 		public MovePages(MainFrm mainFrm)
 		{
 			this.mainFrm = mainFrm;
@@ -22,7 +21,6 @@ namespace FullDemo
 
 			
 			cbPagesSubset.SelectedIndex = 0;
-			cbLocation.Items.AddRange(m_Location);
 			cbLocation.SelectedIndex = 0;
 		}
 
@@ -68,24 +66,17 @@ namespace FullDemo
 				rangeType = PDFXEdit.RangeType.RangeType_Even;
 			pagesRange["Filter"].v = rangeType;
 			int nNumberPage = 1;
-			if (cbLocation.SelectedIndex == 0)
-			{
-				if (rbFirst.Checked)
-					nNumberPage = 0;
-				if (rbLast.Checked)
-					nNumberPage = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count - 1;
-				if (rbPage.Checked)
-					nNumberPage = (int)tNumPage.Value;
-			}
-			else 
-			{
-				if (rbFirst.Checked)
-					nNumberPage = 2;
-				if (rbLast.Checked)
-					nNumberPage = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
-				if (rbPage.Checked)
-					nNumberPage = (int)tNumPage.Value+1;
-			}
+			bool blancase = cbLocation.SelectedIndex == 0;
+
+			if (rbFirst.Checked)
+				nNumberPage = blancase ? 0 : 2;
+			if (rbLast.Checked)
+				nNumberPage = blancase ?
+				(int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count - 1 :
+				(int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
+			if (rbPage.Checked)
+				nNumberPage = blancase ? (int)tNumPage.Value : nNumberPage = (int)tNumPage.Value + 1;
+					
 			opts["InsertBefore"].v = nNumberPage;
 		}
 

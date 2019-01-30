@@ -30,6 +30,14 @@
 		{
 			this.rbPages = new System.Windows.Forms.RadioButton();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.lbNumPage = new System.Windows.Forms.Label();
+			this.tNumPage = new System.Windows.Forms.NumericUpDown();
+			this.rbPage = new System.Windows.Forms.RadioButton();
+			this.rbLast = new System.Windows.Forms.RadioButton();
+			this.rbFirst = new System.Windows.Forms.RadioButton();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cbLocation = new System.Windows.Forms.ComboBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.cbPagesSubset = new System.Windows.Forms.ComboBox();
@@ -37,18 +45,10 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.tPages = new System.Windows.Forms.TextBox();
 			this.rbCurPage = new System.Windows.Forms.RadioButton();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.cbLocation = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.rbFirst = new System.Windows.Forms.RadioButton();
-			this.rbLast = new System.Windows.Forms.RadioButton();
-			this.rbPage = new System.Windows.Forms.RadioButton();
-			this.tNumPage = new System.Windows.Forms.NumericUpDown();
-			this.lbNumPage = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tNumPage)).BeginInit();
+			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// rbPages
@@ -72,6 +72,96 @@
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Delete Pages";
+			// 
+			// groupBox3
+			// 
+			this.groupBox3.Controls.Add(this.lbNumPage);
+			this.groupBox3.Controls.Add(this.tNumPage);
+			this.groupBox3.Controls.Add(this.rbPage);
+			this.groupBox3.Controls.Add(this.rbLast);
+			this.groupBox3.Controls.Add(this.rbFirst);
+			this.groupBox3.Controls.Add(this.label1);
+			this.groupBox3.Controls.Add(this.cbLocation);
+			this.groupBox3.Location = new System.Drawing.Point(9, 154);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(455, 115);
+			this.groupBox3.TabIndex = 9;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Destination";
+			// 
+			// lbNumPage
+			// 
+			this.lbNumPage.AutoSize = true;
+			this.lbNumPage.Location = new System.Drawing.Point(165, 85);
+			this.lbNumPage.Name = "lbNumPage";
+			this.lbNumPage.Size = new System.Drawing.Size(0, 13);
+			this.lbNumPage.TabIndex = 6;
+			// 
+			// tNumPage
+			// 
+			this.tNumPage.Location = new System.Drawing.Point(77, 83);
+			this.tNumPage.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+			this.tNumPage.Name = "tNumPage";
+			this.tNumPage.Size = new System.Drawing.Size(82, 20);
+			this.tNumPage.TabIndex = 5;
+			// 
+			// rbPage
+			// 
+			this.rbPage.AutoSize = true;
+			this.rbPage.Location = new System.Drawing.Point(24, 83);
+			this.rbPage.Name = "rbPage";
+			this.rbPage.Size = new System.Drawing.Size(53, 17);
+			this.rbPage.TabIndex = 4;
+			this.rbPage.Text = "Page:";
+			this.rbPage.UseVisualStyleBackColor = true;
+			this.rbPage.CheckedChanged += new System.EventHandler(this.rbPage_CheckedChanged_1);
+			// 
+			// rbLast
+			// 
+			this.rbLast.AutoSize = true;
+			this.rbLast.Checked = true;
+			this.rbLast.Location = new System.Drawing.Point(24, 60);
+			this.rbLast.Name = "rbLast";
+			this.rbLast.Size = new System.Drawing.Size(45, 17);
+			this.rbLast.TabIndex = 3;
+			this.rbLast.TabStop = true;
+			this.rbLast.Text = "Last";
+			this.rbLast.UseVisualStyleBackColor = true;
+			// 
+			// rbFirst
+			// 
+			this.rbFirst.AutoSize = true;
+			this.rbFirst.Location = new System.Drawing.Point(24, 37);
+			this.rbFirst.Name = "rbFirst";
+			this.rbFirst.Size = new System.Drawing.Size(44, 17);
+			this.rbFirst.TabIndex = 2;
+			this.rbFirst.Text = "First";
+			this.rbFirst.UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(21, 17);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(51, 13);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Location:";
+			// 
+			// cbLocation
+			// 
+			this.cbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbLocation.FormattingEnabled = true;
+			this.cbLocation.Items.AddRange(new object[] {
+            "Before",
+            "After"});
+			this.cbLocation.Location = new System.Drawing.Point(77, 14);
+			this.cbLocation.Name = "cbLocation";
+			this.cbLocation.Size = new System.Drawing.Size(154, 21);
+			this.cbLocation.TabIndex = 0;
 			// 
 			// groupBox2
 			// 
@@ -147,88 +237,6 @@
 			this.rbCurPage.Text = "Current page";
 			this.rbCurPage.UseVisualStyleBackColor = true;
 			// 
-			// groupBox3
-			// 
-			this.groupBox3.Controls.Add(this.lbNumPage);
-			this.groupBox3.Controls.Add(this.tNumPage);
-			this.groupBox3.Controls.Add(this.rbPage);
-			this.groupBox3.Controls.Add(this.rbLast);
-			this.groupBox3.Controls.Add(this.rbFirst);
-			this.groupBox3.Controls.Add(this.label1);
-			this.groupBox3.Controls.Add(this.cbLocation);
-			this.groupBox3.Location = new System.Drawing.Point(9, 154);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(455, 115);
-			this.groupBox3.TabIndex = 9;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Destination";
-			// 
-			// cbLocation
-			// 
-			this.cbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbLocation.FormattingEnabled = true;
-			this.cbLocation.Location = new System.Drawing.Point(77, 14);
-			this.cbLocation.Name = "cbLocation";
-			this.cbLocation.Size = new System.Drawing.Size(154, 21);
-			this.cbLocation.TabIndex = 0;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(21, 17);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(51, 13);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Location:";
-			// 
-			// rbFirst
-			// 
-			this.rbFirst.AutoSize = true;
-			this.rbFirst.Location = new System.Drawing.Point(24, 37);
-			this.rbFirst.Name = "rbFirst";
-			this.rbFirst.Size = new System.Drawing.Size(44, 17);
-			this.rbFirst.TabIndex = 2;
-			this.rbFirst.Text = "First";
-			this.rbFirst.UseVisualStyleBackColor = true;
-			// 
-			// rbLast
-			// 
-			this.rbLast.AutoSize = true;
-			this.rbLast.Checked = true;
-			this.rbLast.Location = new System.Drawing.Point(24, 60);
-			this.rbLast.Name = "rbLast";
-			this.rbLast.Size = new System.Drawing.Size(45, 17);
-			this.rbLast.TabIndex = 3;
-			this.rbLast.TabStop = true;
-			this.rbLast.Text = "Last";
-			this.rbLast.UseVisualStyleBackColor = true;
-			// 
-			// rbPage
-			// 
-			this.rbPage.AutoSize = true;
-			this.rbPage.Location = new System.Drawing.Point(24, 83);
-			this.rbPage.Name = "rbPage";
-			this.rbPage.Size = new System.Drawing.Size(53, 17);
-			this.rbPage.TabIndex = 4;
-			this.rbPage.Text = "Page:";
-			this.rbPage.UseVisualStyleBackColor = true;
-			this.rbPage.CheckedChanged += new System.EventHandler(this.rbPage_CheckedChanged_1);
-			// 
-			// tNumPage
-			// 
-			this.tNumPage.Location = new System.Drawing.Point(77, 83);
-			this.tNumPage.Name = "tNumPage";
-			this.tNumPage.Size = new System.Drawing.Size(82, 20);
-			this.tNumPage.TabIndex = 5;
-			// 
-			// lbNumPage
-			// 
-			this.lbNumPage.AutoSize = true;
-			this.lbNumPage.Location = new System.Drawing.Point(165, 85);
-			this.lbNumPage.Name = "lbNumPage";
-			this.lbNumPage.Size = new System.Drawing.Size(0, 13);
-			this.lbNumPage.TabIndex = 6;
-			// 
 			// MovePages
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -240,11 +248,11 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "MovePages";
 			this.groupBox1.ResumeLayout(false);
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tNumPage)).EndInit();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}

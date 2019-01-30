@@ -70,7 +70,6 @@ namespace FullDemo
 		op_document_cropPages,
 		op_document_resizePages,
 		op_document_addWatermarks,
-		op_layers_rename,
 
 		// export comments & fields
 		op_document_summarizeAnnots,
@@ -911,8 +910,6 @@ namespace FullDemo
 					return new DeletePages(this);
 				case IDS.op_document_movePages:
 					return new MovePages(this);
-				case IDS.op_layers_rename:
-					return new Rename(this);
 				case IDS.op_document_printPages:
 					return new PrintForm(this);
 				case IDS.op_document_insertPages:
@@ -933,8 +930,8 @@ namespace FullDemo
 				fNeedLoadAllOpers = false;
 
 				{
-					IDS id = IDS.op_layers_rename;
-					cbOpers.Items.Add(new OperationDemo(OpId2DispName(id), nIDS[(int)id], OpId2Form(id)));
+					IDS id = IDS.op_document_cropPages;
+					cbOpers.Items.Add(new OperationDemo(OpId2DispName(id), nIDS[(int)id], OpId2Form(id), (uint)DemoFlags.Input_Doc));
 				}
 
 				{
