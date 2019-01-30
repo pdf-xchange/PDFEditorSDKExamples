@@ -100,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdBarTree.cs" />
+    <Compile Include="CropPages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CropPages.Designer.cs">
+      <DependentUpon>CropPages.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeletePages.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CropPages.resx">
+      <DependentUpon>CropPages.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeletePages.resx">
       <DependentUpon>DeletePages.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +192,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

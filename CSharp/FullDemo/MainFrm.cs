@@ -910,6 +910,9 @@ namespace FullDemo
 					return new DeletePages(this);
 				case IDS.op_document_movePages:
 					return new MovePages(this);
+				case IDS.op_document_cropPages:
+					return new CropPages(this);
+
 				case IDS.op_document_printPages:
 					return new PrintForm(this);
 				case IDS.op_document_insertPages:
