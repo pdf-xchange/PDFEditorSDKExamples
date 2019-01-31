@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PDFXEdit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,44 +15,32 @@ namespace FullDemo
 	{
 		private MainFrm mainFrm = null;
 
-		enum flags_operation
+		enum eOperaionFlags
 		{
 			None				= 0,
-			Media				= 1,
-			Crop				= 2,
-			Trip				= 4,
-			Art					= 8,
-			Bleed				= 16,
+			Media				= 0x001,
+			Crop				= 0x002,
+			Trip				= 0x004,
+			Art					= 0x008,
+			Bleed				= 0x010,
 
-			WithRedaction		= 512,
-			RemoveHorzWhiteSp	= 1024,
-			RemoveVertWhiteSp	= 2048
+			WithRedaction		= 0x200,
+			RemoveHorzWhiteSp	= 0x400,
+			RemoveVertWhiteSp	= 0x800,
 		}
 			
 
-		public struct Rect
-		{
-			public double left;
-			public double top;
-			public double right;
-			public double bottom;
-		}
-		Rect CropBox, BleedBox, TrimBox, ArtBox, MediaBox;
+		PXC_Rect m_rcCropBox, m_rcBleedBox, m_rcTrimBox, m_rcArtBox, m_rcMediaBox;
 		public CropPages(MainFrm mainFrm)
 		{
 			this.mainFrm = mainFrm;
 
 			InitializeComponent();
-
-			MediaBox.left = 0;
-			MediaBox.top = 0;
-			MediaBox.right = 0;
-			MediaBox.bottom = 0;
-
-			ArtBox = MediaBox;
-			CropBox = MediaBox;
-			BleedBox = MediaBox;
-			TrimBox = MediaBox;
+			m_rcMediaBox = default(PXC_Rect);
+			m_rcArtBox = default(PXC_Rect);
+			m_rcCropBox = default(PXC_Rect);
+			m_rcBleedBox = default(PXC_Rect);
+			m_rcTrimBox = default(PXC_Rect);
 
 			cbPagesSubset.SelectedIndex = 0;
 			cbCropMethod.SelectedIndex = 0;
@@ -86,72 +75,71 @@ namespace FullDemo
 			var RectPage = mainFrm.pdfCtl.Doc.CoreDoc.Pages[0].get_Box(PDFXEdit.PXC_BoxType.PBox_PageBox);
 
 			PDFXEdit.ICabNode opts = op.Params.Root["Options"];
-			int flags = 0;
+			int flags = (int)eOperaionFlags.None;
 			if (cbCropMethod.SelectedIndex == 1)
-				flags = (int)flags_operation.WithRedaction;
+				flags = (int)eOperaionFlags.WithRedaction;
 			else if (cbCropMethod.SelectedIndex == 2)
-				flags = (int)flags_operation.RemoveVertWhiteSp;
+				flags = (int)eOperaionFlags.RemoveVertWhiteSp;
 			else if (cbCropMethod.SelectedIndex == 3)
-				flags = (int)flags_operation.RemoveHorzWhiteSp;
+				flags = (int)eOperaionFlags.RemoveHorzWhiteSp;
 			else
 			{
-				if (ckCrop.Checked)
-				{
-					flags += (int)flags_operation.Crop;
-					PDFXEdit.ICabNode Crop = opts["MediaBox"];
-					Crop["left"].v = RectPage.left + CropBox.left;
-					Crop["top"].v = RectPage.top - CropBox.top;
-					Crop["right"].v = RectPage.right - CropBox.right;
-					Crop["bottom"].v = RectPage.bottom + CropBox.bottom;
+				//if (ckCrop.Checked)
+				//{
+				//	flags += (int)flags_operation.Crop;
+				//	PDFXEdit.ICabNode Crop = opts["MediaBox"];
+				//	Crop["left"].v = RectPage.left + CropBox.left;
+				//	Crop["top"].v = RectPage.top - CropBox.top;
+				//	Crop["right"].v = RectPage.right - CropBox.right;
+				//	Crop["bottom"].v = RectPage.bottom + CropBox.bottom;
 
-					if (ckAdjustMedia.Checked)
-					{
-						flags += (int)flags_operation.Media;
-						PDFXEdit.ICabNode Media = opts["MediaBox"];
-						Media["left"].v = Crop["left"].v;
-						Media["top"].v = Crop["top"].v;
-						Media["right"].v = Crop["right"].v;
-						Media["bottom"].v = Crop["bottom"].v;
-					}
-				}
+				//	if (ckAdjustMedia.Checked)
+				//	{
+				//		flags += (int)flags_operation.Media;
+				//		PDFXEdit.ICabNode Media = opts["MediaBox"];
+				//		Media["left"].v = Crop["left"].v;
+				//		Media["top"].v = Crop["top"].v;
+				//		Media["right"].v = Crop["right"].v;
+				//		Media["bottom"].v = Crop["bottom"].v;
+				//	}
+				//}
 				
-				if (ckArt.Checked)
-				{
-					flags += (int)flags_operation.Art;
-					PDFXEdit.ICabNode Art = opts["ArtBox"];
-					Art["left"].v = RectPage.left + ArtBox.left;
-					Art["top"].v = RectPage.top - ArtBox.top;
-					Art["right"].v = RectPage.right - ArtBox.right;
-					Art["bottom"].v = RectPage.bottom + ArtBox.bottom;
-				}
+				//if (ckArt.Checked)
+				//{
+				//	flags += (int)flags_operation.Art;
+				//	PDFXEdit.ICabNode Art = opts["ArtBox"];
+				//	Art["left"].v = RectPage.left + ArtBox.left;
+				//	Art["top"].v = RectPage.top - ArtBox.top;
+				//	Art["right"].v = RectPage.right - ArtBox.right;
+				//	Art["bottom"].v = RectPage.bottom + ArtBox.bottom;
+				//}
 				
 				
-				if (CkTrim.Checked)
-				{
-					flags += (int)flags_operation.Trip;
-					PDFXEdit.ICabNode Trim = opts["MediaBox"];
-					Trim["left"].v = RectPage.left + TrimBox.left;
-					Trim["top"].v = RectPage.top - TrimBox.top;
-					Trim["right"].v = RectPage.right - TrimBox.right;
-					Trim["bottom"].v = RectPage.bottom + TrimBox.bottom;
-				}
-				if (ckBleed.Checked)
-				{
-					flags += (int)flags_operation.Bleed;
-					PDFXEdit.ICabNode Bleed = opts["MediaBox"];
-					Bleed["left"].v = RectPage.left + BleedBox.left;
-					Bleed["top"].v = RectPage.top - BleedBox.top;
-					Bleed["right"].v = RectPage.right - BleedBox.right;
-					Bleed["bottom"].v = RectPage.bottom + BleedBox.bottom;
-				}
+				//if (CkTrim.Checked)
+				//{
+				//	flags += (int)flags_operation.Trip;
+				//	PDFXEdit.ICabNode Trim = opts["MediaBox"];
+				//	Trim["left"].v = RectPage.left + TrimBox.left;
+				//	Trim["top"].v = RectPage.top - TrimBox.top;
+				//	Trim["right"].v = RectPage.right - TrimBox.right;
+				//	Trim["bottom"].v = RectPage.bottom + TrimBox.bottom;
+				//}
+				//if (ckBleed.Checked)
+				//{
+				//	flags += (int)flags_operation.Bleed;
+				//	PDFXEdit.ICabNode Bleed = opts["MediaBox"];
+				//	Bleed["left"].v = RectPage.left + BleedBox.left;
+				//	Bleed["top"].v = RectPage.top - BleedBox.top;
+				//	Bleed["right"].v = RectPage.right - BleedBox.right;
+				//	Bleed["bottom"].v = RectPage.bottom + BleedBox.bottom;
+				//}
 			}
 			opts["Flags"].v = flags;
 		}
 
 		private void cbCropMethod_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			bool blancase = cbCropMethod.SelectedIndex == 0;
-			groupBox4.Enabled = blancase;
+			groupBox4.Enabled = (cbCropMethod.SelectedIndex == 0);
 		}
 
 		private void btnToZero_Click(object sender, EventArgs e)
@@ -167,16 +155,16 @@ namespace FullDemo
 			switch (cbBox.SelectedIndex)
 			{
 				case 0:
-					UpDateValueBox(out CropBox);
+					UpdateValueBox(out m_rcCropBox);
 					break;
 				case 1:
-					UpDateValueBox(out BleedBox);
+					UpdateValueBox(out m_rcBleedBox);
 					break;
 				case 2:
-					UpDateValueBox(out TrimBox);
+					UpdateValueBox(out m_rcTrimBox);
 					break;
 				case 3:
-					UpDateValueBox(out ArtBox);
+					UpdateValueBox(out m_rcArtBox);
 					break;
 			}
 		}
@@ -186,27 +174,27 @@ namespace FullDemo
 			switch (cbBox.SelectedIndex)
 			{
 				case 0:
-					UpDateValueControl(CropBox);
+					UpdateValueControl(m_rcCropBox);
 					break;
 				case 1:
-					UpDateValueControl(BleedBox);
+					UpdateValueControl(m_rcBleedBox);
 					break;
 				case 2:
-					UpDateValueControl(TrimBox);
+					UpdateValueControl(m_rcTrimBox);
 					break;
 				case 3:
-					UpDateValueControl(ArtBox);
+					UpdateValueControl(m_rcArtBox);
 					break;
 			}
 		}
-		public void UpDateValueBox(out Rect rect)
+		public void UpdateValueBox(out PXC_Rect rect)
 		{			
 			rect.left = (double)tLeft.Value;
 			rect.top = (double)tTop.Value;
 			rect.right = (double)tRight.Value;
 			rect.bottom = (double)tBottom.Value;
 		}
-		public void UpDateValueControl(Rect rect)
+		public void UpdateValueControl(PXC_Rect rect)
 		{
 			tLeft.Value = (decimal)rect.left;
 			tTop.Value = (decimal)rect.top;
