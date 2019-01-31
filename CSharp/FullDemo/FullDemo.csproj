@@ -118,6 +118,12 @@
     <Compile Include="ExtractPagesForm.Designer.cs">
       <DependentUpon>ExtractPagesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InsertEmptyPages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertEmptyPages.Designer.cs">
+      <DependentUpon>InsertEmptyPages.cs</DependentUpon>
+    </Compile>
     <Compile Include="InsertPagesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExtractPagesForm.resx">
       <DependentUpon>ExtractPagesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertEmptyPages.resx">
+      <DependentUpon>InsertEmptyPages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsertPagesForm.resx">
       <DependentUpon>InsertPagesForm.cs</DependentUpon>

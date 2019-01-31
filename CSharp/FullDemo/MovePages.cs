@@ -80,14 +80,26 @@ namespace FullDemo
 			opts["InsertBefore"].v = nNumberPage;
 		}
 
-		private void rbPage_CheckedChanged_1(object sender, EventArgs e)
-		{
-			tNumPage.Focus();
-		}
-
 		private void rbPages_CheckedChanged(object sender, EventArgs e)
 		{
 			tPages.Focus();
+		}
+
+		private void rbFirst_Click(object sender, EventArgs e)
+		{
+			tNumPage.Value = 1;
+			rbFirst.Checked = true;
+		}
+
+		private void rbLast_Click(object sender, EventArgs e)
+		{
+			tNumPage.Value = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
+			rbLast.Checked = true;
+		}
+
+		private void rbPage_CheckedChanged(object sender, EventArgs e)
+		{
+			tNumPage.Focus();
 		}
 	}
 }

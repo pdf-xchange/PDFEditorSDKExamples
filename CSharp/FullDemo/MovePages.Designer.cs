@@ -105,9 +105,19 @@
             0,
             0,
             0});
+			this.tNumPage.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			this.tNumPage.Name = "tNumPage";
 			this.tNumPage.Size = new System.Drawing.Size(82, 20);
 			this.tNumPage.TabIndex = 5;
+			this.tNumPage.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
 			// 
 			// rbPage
 			// 
@@ -118,29 +128,31 @@
 			this.rbPage.TabIndex = 4;
 			this.rbPage.Text = "Page:";
 			this.rbPage.UseVisualStyleBackColor = true;
-			this.rbPage.CheckedChanged += new System.EventHandler(this.rbPage_CheckedChanged_1);
+			this.rbPage.CheckedChanged += new System.EventHandler(this.rbPage_CheckedChanged);
 			// 
 			// rbLast
 			// 
 			this.rbLast.AutoSize = true;
-			this.rbLast.Checked = true;
 			this.rbLast.Location = new System.Drawing.Point(24, 60);
 			this.rbLast.Name = "rbLast";
 			this.rbLast.Size = new System.Drawing.Size(45, 17);
 			this.rbLast.TabIndex = 3;
-			this.rbLast.TabStop = true;
 			this.rbLast.Text = "Last";
 			this.rbLast.UseVisualStyleBackColor = true;
+			this.rbLast.Click += new System.EventHandler(this.rbLast_Click);
 			// 
 			// rbFirst
 			// 
 			this.rbFirst.AutoSize = true;
+			this.rbFirst.Checked = true;
 			this.rbFirst.Location = new System.Drawing.Point(24, 37);
 			this.rbFirst.Name = "rbFirst";
 			this.rbFirst.Size = new System.Drawing.Size(44, 17);
 			this.rbFirst.TabIndex = 2;
+			this.rbFirst.TabStop = true;
 			this.rbFirst.Text = "First";
 			this.rbFirst.UseVisualStyleBackColor = true;
+			this.rbFirst.Click += new System.EventHandler(this.rbFirst_Click);
 			// 
 			// label1
 			// 
