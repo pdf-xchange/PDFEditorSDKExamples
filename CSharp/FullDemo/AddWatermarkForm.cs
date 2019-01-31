@@ -152,16 +152,8 @@ namespace FullDemo
 
 		private void cbType_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (cbType.SelectedIndex == 0)
-			{
-				groupBox5.Visible = false;
-				groupBox4.Visible = true;
-			}
-			else
-			{
-				groupBox4.Visible = false;
-				groupBox5.Visible = true;
-			}
+			groupBox4.Visible = (cbType.SelectedIndex == 0);
+			groupBox5.Visible = !groupBox4.Visible;
 		}
 
 		private void button1_Click(object sender, EventArgs e)
