@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PDFXEdit;
 
 namespace FullDemo
 {
 	public partial class InsertEmptyPages : Form, IFormHelper
 	{
 		private MainFrm mainFrm = null;
-		public PDFXEdit.IPXC_Inst m_pxcInst = null;
+		public IPXC_Inst m_pxcInst = null;
 		List<DocumentSize> m_DocSizes = new List<DocumentSize>();
 
 		struct DocumentSize
@@ -29,11 +30,11 @@ namespace FullDemo
 	
 			InitializeComponent();
 			//Papers` name to combocox
-			PDFXEdit.StdPaperGroupID groupID;
-			PDFXEdit.StdPaperID paperID;
+			StdPaperGroupID groupID;
+			StdPaperID paperID;
 			string sNamePaper;
 			DocumentSize document = new DocumentSize();
-			for (PDFXEdit.StdPaperID i = 0; i < PDFXEdit.StdPaperID.StdPaper_30x42; i++)
+			for (StdPaperID i = 0; i < StdPaperID.StdPaper_30x42; i++)
 			{
 				paperID = i;
 				sNamePaper = paperID.ToString();
@@ -83,7 +84,7 @@ namespace FullDemo
 			int nPaperType = 0;
 			if (rbStandard.Checked)
 				nPaperType = 1;
-			if (rbCustom.Checked)
+			else if (rbCustom.Checked)
 				nPaperType = 2;
 			opts["PaperType"].v = nPaperType;
 			opts["Landscape"].v = cbOrientation.SelectedIndex != 0;
@@ -97,9 +98,9 @@ namespace FullDemo
 			int nNumberPage = 0;
 			if (rbFirst.Checked)
 				nNumberPage = 1;
-			if (rbLast.Checked)
+			else if (rbLast.Checked)
 				nNumberPage = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
-			if (rbPage.Checked)
+			else if (rbPage.Checked)
 				nNumberPage = (int)tNumPage.Value;
 			opts["Position"].v = nNumberPage-1;
 
