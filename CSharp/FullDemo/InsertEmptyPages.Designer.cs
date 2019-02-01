@@ -29,15 +29,8 @@
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.lbNumPage = new System.Windows.Forms.Label();
-			this.tNumPage = new System.Windows.Forms.NumericUpDown();
-			this.rbPage = new System.Windows.Forms.RadioButton();
-			this.rbLast = new System.Windows.Forms.RadioButton();
-			this.rbFirst = new System.Windows.Forms.RadioButton();
-			this.label1 = new System.Windows.Forms.Label();
-			this.cbLocation = new System.Windows.Forms.ComboBox();
 			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.lbDocumentSize = new System.Windows.Forms.Label();
 			this.tCountPages = new System.Windows.Forms.NumericUpDown();
 			this.label4 = new System.Windows.Forms.Label();
 			this.cbOrientation = new System.Windows.Forms.ComboBox();
@@ -49,14 +42,21 @@
 			this.rbCustom = new System.Windows.Forms.RadioButton();
 			this.rbStandard = new System.Windows.Forms.RadioButton();
 			this.rbDocument = new System.Windows.Forms.RadioButton();
-			this.lbDocumentSize = new System.Windows.Forms.Label();
+			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.lbNumPage = new System.Windows.Forms.Label();
+			this.tNumPage = new System.Windows.Forms.NumericUpDown();
+			this.rbPage = new System.Windows.Forms.RadioButton();
+			this.rbLast = new System.Windows.Forms.RadioButton();
+			this.rbFirst = new System.Windows.Forms.RadioButton();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cbLocation = new System.Windows.Forms.ComboBox();
 			this.groupBox1.SuspendLayout();
-			this.groupBox3.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tNumPage)).BeginInit();
 			this.groupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tCountPages)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tWidth)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tHeight)).BeginInit();
+			this.groupBox3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tNumPage)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -69,109 +69,6 @@
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Insert Empty Pages";
-			// 
-			// groupBox3
-			// 
-			this.groupBox3.Controls.Add(this.lbNumPage);
-			this.groupBox3.Controls.Add(this.tNumPage);
-			this.groupBox3.Controls.Add(this.rbPage);
-			this.groupBox3.Controls.Add(this.rbLast);
-			this.groupBox3.Controls.Add(this.rbFirst);
-			this.groupBox3.Controls.Add(this.label1);
-			this.groupBox3.Controls.Add(this.cbLocation);
-			this.groupBox3.Location = new System.Drawing.Point(9, 179);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new System.Drawing.Size(455, 115);
-			this.groupBox3.TabIndex = 10;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Destination";
-			// 
-			// lbNumPage
-			// 
-			this.lbNumPage.AutoSize = true;
-			this.lbNumPage.Location = new System.Drawing.Point(165, 85);
-			this.lbNumPage.Name = "lbNumPage";
-			this.lbNumPage.Size = new System.Drawing.Size(0, 13);
-			this.lbNumPage.TabIndex = 6;
-			// 
-			// tNumPage
-			// 
-			this.tNumPage.Location = new System.Drawing.Point(77, 83);
-			this.tNumPage.Maximum = new decimal(new int[] {
-            10000000,
-            0,
-            0,
-            0});
-			this.tNumPage.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.tNumPage.Name = "tNumPage";
-			this.tNumPage.Size = new System.Drawing.Size(82, 20);
-			this.tNumPage.TabIndex = 5;
-			this.tNumPage.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.tNumPage.ValueChanged += new System.EventHandler(this.tNumPage_ValueChanged);
-			this.tNumPage.Click += new System.EventHandler(this.tNumPage_Click);
-			// 
-			// rbPage
-			// 
-			this.rbPage.AutoSize = true;
-			this.rbPage.Location = new System.Drawing.Point(24, 83);
-			this.rbPage.Name = "rbPage";
-			this.rbPage.Size = new System.Drawing.Size(53, 17);
-			this.rbPage.TabIndex = 4;
-			this.rbPage.Text = "Page:";
-			this.rbPage.UseVisualStyleBackColor = true;
-			// 
-			// rbLast
-			// 
-			this.rbLast.AutoSize = true;
-			this.rbLast.Location = new System.Drawing.Point(24, 60);
-			this.rbLast.Name = "rbLast";
-			this.rbLast.Size = new System.Drawing.Size(45, 17);
-			this.rbLast.TabIndex = 3;
-			this.rbLast.Text = "Last";
-			this.rbLast.UseVisualStyleBackColor = true;
-			this.rbLast.Click += new System.EventHandler(this.rbLast_Click);
-			// 
-			// rbFirst
-			// 
-			this.rbFirst.AutoSize = true;
-			this.rbFirst.Checked = true;
-			this.rbFirst.Location = new System.Drawing.Point(24, 37);
-			this.rbFirst.Name = "rbFirst";
-			this.rbFirst.Size = new System.Drawing.Size(44, 17);
-			this.rbFirst.TabIndex = 2;
-			this.rbFirst.TabStop = true;
-			this.rbFirst.Text = "First";
-			this.rbFirst.UseVisualStyleBackColor = true;
-			this.rbFirst.Click += new System.EventHandler(this.rbFirst_Click);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(21, 17);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(51, 13);
-			this.label1.TabIndex = 1;
-			this.label1.Text = "Location:";
-			// 
-			// cbLocation
-			// 
-			this.cbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbLocation.FormattingEnabled = true;
-			this.cbLocation.Items.AddRange(new object[] {
-            "Before",
-            "After"});
-			this.cbLocation.Location = new System.Drawing.Point(77, 14);
-			this.cbLocation.Name = "cbLocation";
-			this.cbLocation.Size = new System.Drawing.Size(154, 21);
-			this.cbLocation.TabIndex = 0;
 			// 
 			// groupBox4
 			// 
@@ -193,6 +90,16 @@
 			this.groupBox4.TabIndex = 12;
 			this.groupBox4.TabStop = false;
 			this.groupBox4.Text = "Pages";
+			// 
+			// lbDocumentSize
+			// 
+			this.lbDocumentSize.AutoSize = true;
+			this.lbDocumentSize.Enabled = false;
+			this.lbDocumentSize.Location = new System.Drawing.Point(107, 21);
+			this.lbDocumentSize.Name = "lbDocumentSize";
+			this.lbDocumentSize.Size = new System.Drawing.Size(60, 13);
+			this.lbDocumentSize.TabIndex = 11;
+			this.lbDocumentSize.Text = "(612 x 792)";
 			// 
 			// tCountPages
 			// 
@@ -334,15 +241,108 @@
 			this.rbDocument.UseVisualStyleBackColor = true;
 			this.rbDocument.Click += new System.EventHandler(this.rbDocument_Click);
 			// 
-			// lbDocumentSize
+			// groupBox3
 			// 
-			this.lbDocumentSize.AutoSize = true;
-			this.lbDocumentSize.Enabled = false;
-			this.lbDocumentSize.Location = new System.Drawing.Point(107, 21);
-			this.lbDocumentSize.Name = "lbDocumentSize";
-			this.lbDocumentSize.Size = new System.Drawing.Size(60, 13);
-			this.lbDocumentSize.TabIndex = 11;
-			this.lbDocumentSize.Text = "(612 x 792)";
+			this.groupBox3.Controls.Add(this.lbNumPage);
+			this.groupBox3.Controls.Add(this.tNumPage);
+			this.groupBox3.Controls.Add(this.rbPage);
+			this.groupBox3.Controls.Add(this.rbLast);
+			this.groupBox3.Controls.Add(this.rbFirst);
+			this.groupBox3.Controls.Add(this.label1);
+			this.groupBox3.Controls.Add(this.cbLocation);
+			this.groupBox3.Location = new System.Drawing.Point(9, 179);
+			this.groupBox3.Name = "groupBox3";
+			this.groupBox3.Size = new System.Drawing.Size(455, 115);
+			this.groupBox3.TabIndex = 10;
+			this.groupBox3.TabStop = false;
+			this.groupBox3.Text = "Destination";
+			// 
+			// lbNumPage
+			// 
+			this.lbNumPage.AutoSize = true;
+			this.lbNumPage.Location = new System.Drawing.Point(165, 85);
+			this.lbNumPage.Name = "lbNumPage";
+			this.lbNumPage.Size = new System.Drawing.Size(0, 13);
+			this.lbNumPage.TabIndex = 6;
+			// 
+			// tNumPage
+			// 
+			this.tNumPage.Location = new System.Drawing.Point(77, 83);
+			this.tNumPage.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+			this.tNumPage.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.tNumPage.Name = "tNumPage";
+			this.tNumPage.Size = new System.Drawing.Size(82, 20);
+			this.tNumPage.TabIndex = 5;
+			this.tNumPage.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.tNumPage.ValueChanged += new System.EventHandler(this.tNumPage_ValueChanged);
+			this.tNumPage.Click += new System.EventHandler(this.tNumPage_Click);
+			// 
+			// rbPage
+			// 
+			this.rbPage.AutoSize = true;
+			this.rbPage.Location = new System.Drawing.Point(24, 83);
+			this.rbPage.Name = "rbPage";
+			this.rbPage.Size = new System.Drawing.Size(53, 17);
+			this.rbPage.TabIndex = 4;
+			this.rbPage.Text = "Page:";
+			this.rbPage.UseVisualStyleBackColor = true;
+			// 
+			// rbLast
+			// 
+			this.rbLast.AutoSize = true;
+			this.rbLast.Location = new System.Drawing.Point(24, 60);
+			this.rbLast.Name = "rbLast";
+			this.rbLast.Size = new System.Drawing.Size(45, 17);
+			this.rbLast.TabIndex = 3;
+			this.rbLast.Text = "Last";
+			this.rbLast.UseVisualStyleBackColor = true;
+			this.rbLast.Click += new System.EventHandler(this.rbLast_Click);
+			// 
+			// rbFirst
+			// 
+			this.rbFirst.AutoSize = true;
+			this.rbFirst.Checked = true;
+			this.rbFirst.Location = new System.Drawing.Point(24, 37);
+			this.rbFirst.Name = "rbFirst";
+			this.rbFirst.Size = new System.Drawing.Size(44, 17);
+			this.rbFirst.TabIndex = 2;
+			this.rbFirst.TabStop = true;
+			this.rbFirst.Text = "First";
+			this.rbFirst.UseVisualStyleBackColor = true;
+			this.rbFirst.Click += new System.EventHandler(this.rbFirst_Click);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(21, 17);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(51, 13);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "Location:";
+			// 
+			// cbLocation
+			// 
+			this.cbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbLocation.FormattingEnabled = true;
+			this.cbLocation.Items.AddRange(new object[] {
+            "Before",
+            "After"});
+			this.cbLocation.Location = new System.Drawing.Point(77, 14);
+			this.cbLocation.Name = "cbLocation";
+			this.cbLocation.Size = new System.Drawing.Size(154, 21);
+			this.cbLocation.TabIndex = 0;
 			// 
 			// InsertEmptyPages
 			// 
@@ -356,14 +356,14 @@
 			this.Name = "InsertEmptyPages";
 			this.Text = "InsertEmptyPages";
 			this.groupBox1.ResumeLayout(false);
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tNumPage)).EndInit();
 			this.groupBox4.ResumeLayout(false);
 			this.groupBox4.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tCountPages)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tWidth)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tHeight)).EndInit();
+			this.groupBox3.ResumeLayout(false);
+			this.groupBox3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tNumPage)).EndInit();
 			this.ResumeLayout(false);
 
 		}

@@ -115,7 +115,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(16, 22);
+			this.label8.Location = new System.Drawing.Point(16, 17);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(31, 13);
 			this.label8.TabIndex = 2;
@@ -150,7 +150,7 @@
 			// rbPages
 			// 
 			this.rbPages.AutoSize = true;
-			this.rbPages.Location = new System.Drawing.Point(17, 65);
+			this.rbPages.Location = new System.Drawing.Point(17, 64);
 			this.rbPages.Name = "rbPages";
 			this.rbPages.Size = new System.Drawing.Size(58, 17);
 			this.rbPages.TabIndex = 2;
@@ -161,7 +161,7 @@
 			// rbCurPage
 			// 
 			this.rbCurPage.AutoSize = true;
-			this.rbCurPage.Location = new System.Drawing.Point(17, 43);
+			this.rbCurPage.Location = new System.Drawing.Point(17, 42);
 			this.rbCurPage.Name = "rbCurPage";
 			this.rbCurPage.Size = new System.Drawing.Size(86, 17);
 			this.rbCurPage.TabIndex = 1;
@@ -172,7 +172,7 @@
 			// 
 			this.rbAllPages.AutoSize = true;
 			this.rbAllPages.Checked = true;
-			this.rbAllPages.Location = new System.Drawing.Point(17, 20);
+			this.rbAllPages.Location = new System.Drawing.Point(17, 19);
 			this.rbAllPages.Name = "rbAllPages";
 			this.rbAllPages.Size = new System.Drawing.Size(68, 17);
 			this.rbAllPages.TabIndex = 0;
@@ -190,9 +190,9 @@
 			this.groupBox1.Controls.Add(this.rbPages);
 			this.groupBox1.Controls.Add(this.rbCurPage);
 			this.groupBox1.Controls.Add(this.rbAllPages);
-			this.groupBox1.Location = new System.Drawing.Point(6, 371);
+			this.groupBox1.Location = new System.Drawing.Point(6, 375);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(464, 158);
+			this.groupBox1.Size = new System.Drawing.Size(459, 150);
 			this.groupBox1.TabIndex = 7;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Pages Range";
@@ -228,7 +228,7 @@
 			this.gboxOpts.Controls.Add(this.groupBox1);
 			this.gboxOpts.Location = new System.Drawing.Point(2, 2);
 			this.gboxOpts.Name = "gboxOpts";
-			this.gboxOpts.Size = new System.Drawing.Size(476, 538);
+			this.gboxOpts.Size = new System.Drawing.Size(476, 533);
 			this.gboxOpts.TabIndex = 0;
 			this.gboxOpts.TabStop = false;
 			this.gboxOpts.Text = "Watermark Adding Options";
@@ -246,7 +246,7 @@
 			this.groupBox6.Controls.Add(this.label19);
 			this.groupBox6.Location = new System.Drawing.Point(6, 274);
 			this.groupBox6.Name = "groupBox6";
-			this.groupBox6.Size = new System.Drawing.Size(459, 91);
+			this.groupBox6.Size = new System.Drawing.Size(459, 95);
 			this.groupBox6.TabIndex = 13;
 			this.groupBox6.TabStop = false;
 			this.groupBox6.Text = "Placement Options";
@@ -305,7 +305,7 @@
             0,
             0,
             65536});
-			this.tVOffset.Location = new System.Drawing.Point(132, 45);
+			this.tVOffset.Location = new System.Drawing.Point(124, 45);
 			this.tVOffset.Name = "tVOffset";
 			this.tVOffset.Size = new System.Drawing.Size(64, 20);
 			this.tVOffset.TabIndex = 3;
@@ -318,7 +318,7 @@
             0,
             0,
             65536});
-			this.tHOffset.Location = new System.Drawing.Point(132, 19);
+			this.tHOffset.Location = new System.Drawing.Point(124, 19);
 			this.tHOffset.Name = "tHOffset";
 			this.tHOffset.Size = new System.Drawing.Size(64, 20);
 			this.tHOffset.TabIndex = 2;
@@ -370,16 +370,16 @@
 			this.groupBox4.Controls.Add(this.tText);
 			this.groupBox4.Location = new System.Drawing.Point(6, 40);
 			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(439, 121);
+			this.groupBox4.Size = new System.Drawing.Size(447, 121);
 			this.groupBox4.TabIndex = 12;
 			this.groupBox4.TabStop = false;
 			// 
 			// btnFontName
 			// 
 			this.btnFontName.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnFontName.Location = new System.Drawing.Point(53, 58);
+			this.btnFontName.Location = new System.Drawing.Point(53, 59);
 			this.btnFontName.Name = "btnFontName";
-			this.btnFontName.Size = new System.Drawing.Size(137, 25);
+			this.btnFontName.Size = new System.Drawing.Size(137, 21);
 			this.btnFontName.TabIndex = 15;
 			this.btnFontName.Text = "Arial";
 			this.btnFontName.UseVisualStyleBackColor = true;
@@ -388,7 +388,7 @@
 			// label16
 			// 
 			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(251, 63);
+			this.label16.Location = new System.Drawing.Point(271, 62);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(33, 13);
 			this.label16.TabIndex = 16;
@@ -406,7 +406,7 @@
 			// label15
 			// 
 			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(16, 63);
+			this.label15.Location = new System.Drawing.Point(16, 62);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(31, 13);
 			this.label15.TabIndex = 14;
@@ -428,7 +428,7 @@
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(212, 91);
+			this.label14.Location = new System.Drawing.Point(232, 88);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(72, 13);
 			this.label14.TabIndex = 12;
@@ -608,7 +608,7 @@
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(43, 52);
+			this.label6.Location = new System.Drawing.Point(38, 52);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(37, 13);
 			this.label6.TabIndex = 17;
@@ -617,7 +617,7 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(247, 16);
+			this.label2.Location = new System.Drawing.Point(264, 16);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(46, 13);
 			this.label2.TabIndex = 10;
@@ -635,7 +635,7 @@
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(389, 16);
+			this.label3.Location = new System.Drawing.Point(386, 16);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(15, 13);
 			this.label3.TabIndex = 12;
@@ -644,7 +644,7 @@
 			// label4
 			// 
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(30, 21);
+			this.label4.Location = new System.Drawing.Point(25, 16);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(50, 13);
 			this.label4.TabIndex = 15;
@@ -681,7 +681,7 @@
 			// 
 			// tOpacity
 			// 
-			this.tOpacity.Location = new System.Drawing.Point(319, 14);
+			this.tOpacity.Location = new System.Drawing.Point(316, 14);
 			this.tOpacity.Name = "tOpacity";
 			this.tOpacity.Size = new System.Drawing.Size(64, 20);
 			this.tOpacity.TabIndex = 13;
@@ -705,7 +705,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.SystemColors.Window;
-			this.ClientSize = new System.Drawing.Size(479, 547);
+			this.ClientSize = new System.Drawing.Size(479, 537);
 			this.Controls.Add(this.gboxOpts);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "AddWatermarkForm";
