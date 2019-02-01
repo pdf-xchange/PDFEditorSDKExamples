@@ -63,6 +63,9 @@ namespace FullDemo
 		op_document_insertEmptyPages,
 		op_document_deletePages,
 		op_document_extractPages,
+
+		op_document_movePages,
+
 		op_document_replacePages,
 		op_document_cropPages,
 		op_document_resizePages,
@@ -903,6 +906,14 @@ namespace FullDemo
 			{
 				case IDS.op_document_addWatermarks:
 					return new AddWatermarkForm(this);
+				case IDS.op_document_deletePages:
+					return new DeletePages(this);
+				case IDS.op_document_movePages:
+					return new MovePages(this);
+				case IDS.op_document_cropPages:
+					return new CropPages(this);
+				case IDS.op_document_insertEmptyPages:
+					return new InsertEmptyPages(this);
 				case IDS.op_document_printPages:
 					return new PrintForm(this);
 				case IDS.op_document_insertPages:
@@ -921,6 +932,16 @@ namespace FullDemo
 			if (fNeedLoadAllOpers)
 			{
 				fNeedLoadAllOpers = false;
+
+				{
+					IDS id = IDS.op_document_cropPages;
+					cbOpers.Items.Add(new OperationDemo(OpId2DispName(id), nIDS[(int)id], OpId2Form(id), (uint)DemoFlags.Input_Doc));
+				}
+
+				{
+					IDS id = IDS.op_document_movePages;
+					cbOpers.Items.Add(new OperationDemo(OpId2DispName(id), nIDS[(int)id], OpId2Form(id), (uint)DemoFlags.Input_Doc));
+				}
 
 				{
 					IDS id = IDS.op_document_printPages;
@@ -1008,7 +1029,7 @@ namespace FullDemo
 				{
 					if (it.ID == nIDS[(int)IDS.op_document_printPages])
 					{
-						sel = it;
+						//sel = it; це обирає завжди прінт
 						break;
 					}
 				}

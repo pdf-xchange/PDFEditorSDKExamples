@@ -153,11 +153,11 @@ namespace FullDemo
 			opts["ScaleType"].v = cbPagesScale.SelectedIndex;
 
 			opts["ColorOverride"].v = cbClrOver.Text;
-//			opts["ColorOverride"].v = cbClrOver.SelectedIndex;
+			//			opts["ColorOverride"].v = cbClrOver.SelectedIndex;
 
 
-			if (rbSheets.Checked)
-				opts["SheetsRange.Text"].v = tSheets.Text;
+			opts["SheetsRange.Text"].v = (rbSheets.Checked) ? tSheets.Text : "1-" + mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
+			opts["SheetsRange.Reversed"].v = ckSheetsRevOrder.Checked;
 		}
 	}
 }

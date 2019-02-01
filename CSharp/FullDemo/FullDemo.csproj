@@ -122,11 +122,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdBarTree.cs" />
+    <Compile Include="CropPages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CropPages.Designer.cs">
+      <DependentUpon>CropPages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeletePages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeletePages.Designer.cs">
+      <DependentUpon>DeletePages.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExtractPagesForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExtractPagesForm.Designer.cs">
       <DependentUpon>ExtractPagesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsertEmptyPages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertEmptyPages.Designer.cs">
+      <DependentUpon>InsertEmptyPages.cs</DependentUpon>
     </Compile>
     <Compile Include="InsertPagesForm.cs">
       <SubType>Form</SubType>
@@ -142,6 +160,12 @@
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="IFormHelper.cs" />
+    <Compile Include="MovePages.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MovePages.Designer.cs">
+      <DependentUpon>MovePages.cs</DependentUpon>
+    </Compile>
     <Compile Include="OperationDemo.cs" />
     <Compile Include="IStreamWrapper.cs" />
     <Compile Include="AddWatermarkForm.cs">
@@ -158,8 +182,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CropPages.resx">
+      <DependentUpon>CropPages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeletePages.resx">
+      <DependentUpon>DeletePages.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExtractPagesForm.resx">
       <DependentUpon>ExtractPagesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertEmptyPages.resx">
+      <DependentUpon>InsertEmptyPages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsertPagesForm.resx">
       <DependentUpon>InsertPagesForm.cs</DependentUpon>
@@ -169,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddWatermarkForm.resx">
       <DependentUpon>AddWatermarkForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovePages.resx">
+      <DependentUpon>MovePages.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintForm.resx">
       <DependentUpon>PrintForm.cs</DependentUpon>
@@ -186,7 +222,6 @@
     <None Include="app.manifest">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
