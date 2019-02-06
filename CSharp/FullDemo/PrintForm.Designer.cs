@@ -35,8 +35,6 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.rbAllSheets = new System.Windows.Forms.RadioButton();
 			this.label3 = new System.Windows.Forms.Label();
-			this.cbClrOver = new System.Windows.Forms.ComboBox();
-			this.label4 = new System.Windows.Forms.Label();
 			this.cbPrintDocFilter = new System.Windows.Forms.ComboBox();
 			this.label5 = new System.Windows.Forms.Label();
 			this.ckAsImage = new System.Windows.Forms.CheckBox();
@@ -60,37 +58,12 @@
 			this.label12 = new System.Windows.Forms.Label();
 			this.cbPrinter = new System.Windows.Forms.ComboBox();
 			this.gboxOpts = new System.Windows.Forms.GroupBox();
-			this.groupBox2 = new System.Windows.Forms.GroupBox();
-			this.button1 = new System.Windows.Forms.Button();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.gbSimple = new System.Windows.Forms.GroupBox();
-			this.label10 = new System.Windows.Forms.Label();
-			this.tPageZoomSimple = new System.Windows.Forms.NumericUpDown();
-			this.ckAutoRotateSimple = new System.Windows.Forms.CheckBox();
-			this.ckPaperByPageSimple = new System.Windows.Forms.CheckBox();
-			this.ckAutoCenterSimple = new System.Windows.Forms.CheckBox();
-			this.ckIgnoreMarginsSimple = new System.Windows.Forms.CheckBox();
-			this.label13 = new System.Windows.Forms.Label();
-			this.gbTile = new System.Windows.Forms.GroupBox();
-			this.label14 = new System.Windows.Forms.Label();
-			this.ckShowLabelsTile = new System.Windows.Forms.CheckBox();
-			this.ckAutoCenterTile = new System.Windows.Forms.CheckBox();
-			this.ckShowCutMarksTile = new System.Windows.Forms.CheckBox();
-			this.ckAutoRotateTile = new System.Windows.Forms.CheckBox();
-			this.tPageZoomTile = new System.Windows.Forms.NumericUpDown();
-			this.label15 = new System.Windows.Forms.Label();
-			this.ckIgnoreMarginsTile = new System.Windows.Forms.CheckBox();
-			this.gbMult = new System.Windows.Forms.GroupBox();
-			this.cbSheetsHxV = new System.Windows.Forms.ComboBox();
-			this.label16 = new System.Windows.Forms.Label();
-			this.label17 = new System.Windows.Forms.Label();
-			this.label18 = new System.Windows.Forms.Label();
-			this.cbOrderMult = new System.Windows.Forms.ComboBox();
-			this.ckAutoRotateMult = new System.Windows.Forms.CheckBox();
-			this.ckAutoCenterMult = new System.Windows.Forms.CheckBox();
-			this.ckShowBorderMult = new System.Windows.Forms.CheckBox();
-			this.ckIgnoreMarginsMult = new System.Windows.Forms.CheckBox();
 			this.gbBook = new System.Windows.Forms.GroupBox();
+			this.tGutter = new System.Windows.Forms.NumericUpDown();
+			this.tSignature = new System.Windows.Forms.NumericUpDown();
+			this.label22 = new System.Windows.Forms.Label();
+			this.label20 = new System.Windows.Forms.Label();
 			this.ckIgnoreMarginsBook = new System.Windows.Forms.CheckBox();
 			this.ckBindingBook = new System.Windows.Forms.CheckBox();
 			this.ckAutoCenterBook = new System.Windows.Forms.CheckBox();
@@ -99,29 +72,54 @@
 			this.label19 = new System.Windows.Forms.Label();
 			this.label21 = new System.Windows.Forms.Label();
 			this.cbTypeBook = new System.Windows.Forms.ComboBox();
-			this.label20 = new System.Windows.Forms.Label();
-			this.label22 = new System.Windows.Forms.Label();
-			this.tSignature = new System.Windows.Forms.NumericUpDown();
-			this.tGutter = new System.Windows.Forms.NumericUpDown();
-			this.label23 = new System.Windows.Forms.Label();
-			this.tOverlap = new System.Windows.Forms.NumericUpDown();
-			this.tCountHMult = new System.Windows.Forms.NumericUpDown();
+			this.gbMult = new System.Windows.Forms.GroupBox();
 			this.tCountVMult = new System.Windows.Forms.NumericUpDown();
+			this.tCountHMult = new System.Windows.Forms.NumericUpDown();
+			this.ckIgnoreMarginsMult = new System.Windows.Forms.CheckBox();
+			this.ckShowBorderMult = new System.Windows.Forms.CheckBox();
+			this.ckAutoCenterMult = new System.Windows.Forms.CheckBox();
+			this.ckAutoRotateMult = new System.Windows.Forms.CheckBox();
+			this.cbOrderMult = new System.Windows.Forms.ComboBox();
+			this.label18 = new System.Windows.Forms.Label();
+			this.label17 = new System.Windows.Forms.Label();
+			this.label16 = new System.Windows.Forms.Label();
+			this.cbSheetsHxV = new System.Windows.Forms.ComboBox();
+			this.gbTile = new System.Windows.Forms.GroupBox();
+			this.tOverlap = new System.Windows.Forms.NumericUpDown();
+			this.label23 = new System.Windows.Forms.Label();
+			this.ckIgnoreMarginsTile = new System.Windows.Forms.CheckBox();
+			this.label14 = new System.Windows.Forms.Label();
+			this.ckShowLabelsTile = new System.Windows.Forms.CheckBox();
+			this.ckAutoCenterTile = new System.Windows.Forms.CheckBox();
+			this.ckShowCutMarksTile = new System.Windows.Forms.CheckBox();
+			this.ckAutoRotateTile = new System.Windows.Forms.CheckBox();
+			this.tPageZoomTile = new System.Windows.Forms.NumericUpDown();
+			this.label15 = new System.Windows.Forms.Label();
+			this.gbSimple = new System.Windows.Forms.GroupBox();
+			this.label13 = new System.Windows.Forms.Label();
+			this.ckIgnoreMarginsSimple = new System.Windows.Forms.CheckBox();
+			this.ckAutoCenterSimple = new System.Windows.Forms.CheckBox();
+			this.ckPaperByPageSimple = new System.Windows.Forms.CheckBox();
+			this.ckAutoRotateSimple = new System.Windows.Forms.CheckBox();
+			this.tPageZoomSimple = new System.Windows.Forms.NumericUpDown();
+			this.label10 = new System.Windows.Forms.Label();
+			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.btnMore = new System.Windows.Forms.Button();
 			this.groupBox1.SuspendLayout();
 			this.gboxOpts.SuspendLayout();
-			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			this.gbBook.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tGutter)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tSignature)).BeginInit();
+			this.gbMult.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tCountVMult)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tCountHMult)).BeginInit();
+			this.gbTile.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tOverlap)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.tPageZoomTile)).BeginInit();
 			this.gbSimple.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tPageZoomSimple)).BeginInit();
-			this.gbTile.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tPageZoomTile)).BeginInit();
-			this.gbMult.SuspendLayout();
-			this.gbBook.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tSignature)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.tGutter)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.tOverlap)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.tCountHMult)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.tCountVMult)).BeginInit();
+			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -190,30 +188,9 @@
 			this.label3.Size = new System.Drawing.Size(365, 2);
 			this.label3.TabIndex = 16;
 			// 
-			// cbClrOver
-			// 
-			this.cbClrOver.FormattingEnabled = true;
-			this.cbClrOver.Items.AddRange(new object[] {
-            "Auto",
-            "Grayscale",
-            "Monochrome"});
-			this.cbClrOver.Location = new System.Drawing.Point(369, 48);
-			this.cbClrOver.Name = "cbClrOver";
-			this.cbClrOver.Size = new System.Drawing.Size(164, 21);
-			this.cbClrOver.TabIndex = 13;
-			// 
-			// label4
-			// 
-			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(371, 32);
-			this.label4.Name = "label4";
-			this.label4.Size = new System.Drawing.Size(82, 13);
-			this.label4.TabIndex = 12;
-			this.label4.Text = "Colors Override:";
-			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
 			// cbPrintDocFilter
 			// 
+			this.cbPrintDocFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cbPrintDocFilter.FormattingEnabled = true;
 			this.cbPrintDocFilter.Location = new System.Drawing.Point(98, 19);
 			this.cbPrintDocFilter.Name = "cbPrintDocFilter";
@@ -464,30 +441,6 @@
 			this.gboxOpts.TabStop = false;
 			this.gboxOpts.Text = "Print Options";
 			// 
-			// groupBox2
-			// 
-			this.groupBox2.Controls.Add(this.button1);
-			this.groupBox2.Controls.Add(this.cbClrOver);
-			this.groupBox2.Controls.Add(this.ckAsImage);
-			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Controls.Add(this.label4);
-			this.groupBox2.Controls.Add(this.cbPrintDocFilter);
-			this.groupBox2.Location = new System.Drawing.Point(6, 369);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(464, 77);
-			this.groupBox2.TabIndex = 22;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Advanced Print Options";
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(242, 46);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 15;
-			this.button1.Text = "More";
-			this.button1.UseVisualStyleBackColor = true;
-			// 
 			// groupBox3
 			// 
 			this.groupBox3.Controls.Add(this.gbBook);
@@ -502,317 +455,6 @@
 			this.groupBox3.TabIndex = 23;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Pages Placement and Scaling";
-			// 
-			// gbSimple
-			// 
-			this.gbSimple.Controls.Add(this.label13);
-			this.gbSimple.Controls.Add(this.ckIgnoreMarginsSimple);
-			this.gbSimple.Controls.Add(this.ckAutoCenterSimple);
-			this.gbSimple.Controls.Add(this.ckPaperByPageSimple);
-			this.gbSimple.Controls.Add(this.ckAutoRotateSimple);
-			this.gbSimple.Controls.Add(this.tPageZoomSimple);
-			this.gbSimple.Controls.Add(this.label10);
-			this.gbSimple.Location = new System.Drawing.Point(6, 40);
-			this.gbSimple.Name = "gbSimple";
-			this.gbSimple.Size = new System.Drawing.Size(452, 115);
-			this.gbSimple.TabIndex = 10;
-			this.gbSimple.TabStop = false;
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Location = new System.Drawing.Point(32, 14);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(65, 13);
-			this.label10.TabIndex = 0;
-			this.label10.Text = "Page Zoom:";
-			// 
-			// tPageZoomSimple
-			// 
-			this.tPageZoomSimple.Location = new System.Drawing.Point(103, 12);
-			this.tPageZoomSimple.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-			this.tPageZoomSimple.Name = "tPageZoomSimple";
-			this.tPageZoomSimple.Size = new System.Drawing.Size(120, 20);
-			this.tPageZoomSimple.TabIndex = 1;
-			this.tPageZoomSimple.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-			// 
-			// ckAutoRotateSimple
-			// 
-			this.ckAutoRotateSimple.AutoSize = true;
-			this.ckAutoRotateSimple.Location = new System.Drawing.Point(63, 38);
-			this.ckAutoRotateSimple.Name = "ckAutoRotateSimple";
-			this.ckAutoRotateSimple.Size = new System.Drawing.Size(157, 17);
-			this.ckAutoRotateSimple.TabIndex = 2;
-			this.ckAutoRotateSimple.Text = "Auto-Rotate Page on Paper";
-			this.ckAutoRotateSimple.UseVisualStyleBackColor = true;
-			// 
-			// ckPaperByPageSimple
-			// 
-			this.ckPaperByPageSimple.AutoSize = true;
-			this.ckPaperByPageSimple.Location = new System.Drawing.Point(226, 38);
-			this.ckPaperByPageSimple.Name = "ckPaperByPageSimple";
-			this.ckPaperByPageSimple.Size = new System.Drawing.Size(207, 17);
-			this.ckPaperByPageSimple.TabIndex = 3;
-			this.ckPaperByPageSimple.Text = "Select Paper Size by Documents` Size";
-			this.ckPaperByPageSimple.UseVisualStyleBackColor = true;
-			// 
-			// ckAutoCenterSimple
-			// 
-			this.ckAutoCenterSimple.AutoSize = true;
-			this.ckAutoCenterSimple.Location = new System.Drawing.Point(63, 61);
-			this.ckAutoCenterSimple.Name = "ckAutoCenterSimple";
-			this.ckAutoCenterSimple.Size = new System.Drawing.Size(156, 17);
-			this.ckAutoCenterSimple.TabIndex = 4;
-			this.ckAutoCenterSimple.Text = "Auto-Center Page on Paper";
-			this.ckAutoCenterSimple.UseVisualStyleBackColor = true;
-			// 
-			// ckIgnoreMarginsSimple
-			// 
-			this.ckIgnoreMarginsSimple.AutoSize = true;
-			this.ckIgnoreMarginsSimple.Location = new System.Drawing.Point(226, 61);
-			this.ckIgnoreMarginsSimple.Name = "ckIgnoreMarginsSimple";
-			this.ckIgnoreMarginsSimple.Size = new System.Drawing.Size(129, 17);
-			this.ckIgnoreMarginsSimple.TabIndex = 5;
-			this.ckIgnoreMarginsSimple.Text = "Ignore Printer Margins";
-			this.ckIgnoreMarginsSimple.UseVisualStyleBackColor = true;
-			// 
-			// label13
-			// 
-			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(229, 16);
-			this.label13.Name = "label13";
-			this.label13.Size = new System.Drawing.Size(15, 13);
-			this.label13.TabIndex = 6;
-			this.label13.Text = "%";
-			// 
-			// gbTile
-			// 
-			this.gbTile.Controls.Add(this.tOverlap);
-			this.gbTile.Controls.Add(this.label23);
-			this.gbTile.Controls.Add(this.ckIgnoreMarginsTile);
-			this.gbTile.Controls.Add(this.label14);
-			this.gbTile.Controls.Add(this.ckShowLabelsTile);
-			this.gbTile.Controls.Add(this.ckAutoCenterTile);
-			this.gbTile.Controls.Add(this.ckShowCutMarksTile);
-			this.gbTile.Controls.Add(this.ckAutoRotateTile);
-			this.gbTile.Controls.Add(this.tPageZoomTile);
-			this.gbTile.Controls.Add(this.label15);
-			this.gbTile.Location = new System.Drawing.Point(6, 40);
-			this.gbTile.Name = "gbTile";
-			this.gbTile.Size = new System.Drawing.Size(452, 115);
-			this.gbTile.TabIndex = 11;
-			this.gbTile.TabStop = false;
-			// 
-			// label14
-			// 
-			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(236, 16);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(15, 13);
-			this.label14.TabIndex = 6;
-			this.label14.Text = "%";
-			// 
-			// ckShowLabelsTile
-			// 
-			this.ckShowLabelsTile.AutoSize = true;
-			this.ckShowLabelsTile.Location = new System.Drawing.Point(274, 61);
-			this.ckShowLabelsTile.Name = "ckShowLabelsTile";
-			this.ckShowLabelsTile.Size = new System.Drawing.Size(133, 17);
-			this.ckShowLabelsTile.TabIndex = 5;
-			this.ckShowLabelsTile.Text = "Show Labels on Sheet";
-			this.ckShowLabelsTile.UseVisualStyleBackColor = true;
-			// 
-			// ckAutoCenterTile
-			// 
-			this.ckAutoCenterTile.AutoSize = true;
-			this.ckAutoCenterTile.Location = new System.Drawing.Point(63, 61);
-			this.ckAutoCenterTile.Name = "ckAutoCenterTile";
-			this.ckAutoCenterTile.Size = new System.Drawing.Size(181, 17);
-			this.ckAutoCenterTile.TabIndex = 4;
-			this.ckAutoCenterTile.Text = "Auto-Center Page in Composition";
-			this.ckAutoCenterTile.UseVisualStyleBackColor = true;
-			// 
-			// ckShowCutMarksTile
-			// 
-			this.ckShowCutMarksTile.AutoSize = true;
-			this.ckShowCutMarksTile.Location = new System.Drawing.Point(274, 38);
-			this.ckShowCutMarksTile.Name = "ckShowCutMarksTile";
-			this.ckShowCutMarksTile.Size = new System.Drawing.Size(150, 17);
-			this.ckShowCutMarksTile.TabIndex = 3;
-			this.ckShowCutMarksTile.Text = "Show Cut-Marks on Sheet";
-			this.ckShowCutMarksTile.UseVisualStyleBackColor = true;
-			// 
-			// ckAutoRotateTile
-			// 
-			this.ckAutoRotateTile.AutoSize = true;
-			this.ckAutoRotateTile.Location = new System.Drawing.Point(63, 38);
-			this.ckAutoRotateTile.Name = "ckAutoRotateTile";
-			this.ckAutoRotateTile.Size = new System.Drawing.Size(182, 17);
-			this.ckAutoRotateTile.TabIndex = 2;
-			this.ckAutoRotateTile.Text = "Auto-Rotate Page in Composition";
-			this.ckAutoRotateTile.UseVisualStyleBackColor = true;
-			// 
-			// tPageZoomTile
-			// 
-			this.tPageZoomTile.Location = new System.Drawing.Point(103, 12);
-			this.tPageZoomTile.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-			this.tPageZoomTile.Name = "tPageZoomTile";
-			this.tPageZoomTile.Size = new System.Drawing.Size(120, 20);
-			this.tPageZoomTile.TabIndex = 1;
-			this.tPageZoomTile.Value = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-			// 
-			// label15
-			// 
-			this.label15.AutoSize = true;
-			this.label15.Location = new System.Drawing.Point(32, 14);
-			this.label15.Name = "label15";
-			this.label15.Size = new System.Drawing.Size(65, 13);
-			this.label15.TabIndex = 0;
-			this.label15.Text = "Page Zoom:";
-			// 
-			// ckIgnoreMarginsTile
-			// 
-			this.ckIgnoreMarginsTile.AutoSize = true;
-			this.ckIgnoreMarginsTile.Enabled = false;
-			this.ckIgnoreMarginsTile.Location = new System.Drawing.Point(63, 84);
-			this.ckIgnoreMarginsTile.Name = "ckIgnoreMarginsTile";
-			this.ckIgnoreMarginsTile.Size = new System.Drawing.Size(129, 17);
-			this.ckIgnoreMarginsTile.TabIndex = 7;
-			this.ckIgnoreMarginsTile.Text = "Ignore Printer Margins";
-			this.ckIgnoreMarginsTile.UseVisualStyleBackColor = true;
-			// 
-			// gbMult
-			// 
-			this.gbMult.Controls.Add(this.tCountVMult);
-			this.gbMult.Controls.Add(this.tCountHMult);
-			this.gbMult.Controls.Add(this.ckIgnoreMarginsMult);
-			this.gbMult.Controls.Add(this.ckShowBorderMult);
-			this.gbMult.Controls.Add(this.ckAutoCenterMult);
-			this.gbMult.Controls.Add(this.ckAutoRotateMult);
-			this.gbMult.Controls.Add(this.cbOrderMult);
-			this.gbMult.Controls.Add(this.label18);
-			this.gbMult.Controls.Add(this.label17);
-			this.gbMult.Controls.Add(this.label16);
-			this.gbMult.Controls.Add(this.cbSheetsHxV);
-			this.gbMult.Location = new System.Drawing.Point(6, 40);
-			this.gbMult.Name = "gbMult";
-			this.gbMult.Size = new System.Drawing.Size(452, 115);
-			this.gbMult.TabIndex = 12;
-			this.gbMult.TabStop = false;
-			// 
-			// cbSheetsHxV
-			// 
-			this.cbSheetsHxV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbSheetsHxV.FormattingEnabled = true;
-			this.cbSheetsHxV.Items.AddRange(new object[] {
-            "4 (2/2)",
-            "6 (2/3)",
-            "6 (3/2)",
-            "9 (3/3)",
-            "16 (4/4)",
-            "Custom"});
-			this.cbSheetsHxV.Location = new System.Drawing.Point(103, 13);
-			this.cbSheetsHxV.Name = "cbSheetsHxV";
-			this.cbSheetsHxV.Size = new System.Drawing.Size(100, 21);
-			this.cbSheetsHxV.TabIndex = 0;
-			this.cbSheetsHxV.SelectedIndexChanged += new System.EventHandler(this.cbSheetsHxV_SelectedIndexChanged);
-			// 
-			// label16
-			// 
-			this.label16.AutoSize = true;
-			this.label16.Location = new System.Drawing.Point(10, 16);
-			this.label16.Name = "label16";
-			this.label16.Size = new System.Drawing.Size(87, 13);
-			this.label16.TabIndex = 1;
-			this.label16.Text = "Paper per Sheet:";
-			// 
-			// label17
-			// 
-			this.label17.AutoSize = true;
-			this.label17.Location = new System.Drawing.Point(273, 17);
-			this.label17.Name = "label17";
-			this.label17.Size = new System.Drawing.Size(18, 13);
-			this.label17.TabIndex = 3;
-			this.label17.Text = "by";
-			// 
-			// label18
-			// 
-			this.label18.AutoSize = true;
-			this.label18.Location = new System.Drawing.Point(33, 41);
-			this.label18.Name = "label18";
-			this.label18.Size = new System.Drawing.Size(64, 13);
-			this.label18.TabIndex = 5;
-			this.label18.Text = "Page Order:";
-			// 
-			// cbOrderMult
-			// 
-			this.cbOrderMult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbOrderMult.FormattingEnabled = true;
-			this.cbOrderMult.Items.AddRange(new object[] {
-            "Horizontal",
-            "Horizontal Reversed",
-            "Vertical",
-            "Vertical Reversed"});
-			this.cbOrderMult.Location = new System.Drawing.Point(103, 40);
-			this.cbOrderMult.Name = "cbOrderMult";
-			this.cbOrderMult.Size = new System.Drawing.Size(244, 21);
-			this.cbOrderMult.TabIndex = 6;
-			// 
-			// ckAutoRotateMult
-			// 
-			this.ckAutoRotateMult.AutoSize = true;
-			this.ckAutoRotateMult.Location = new System.Drawing.Point(63, 67);
-			this.ckAutoRotateMult.Name = "ckAutoRotateMult";
-			this.ckAutoRotateMult.Size = new System.Drawing.Size(142, 17);
-			this.ckAutoRotateMult.TabIndex = 7;
-			this.ckAutoRotateMult.Text = "Auto-Rotate Page in Cell";
-			this.ckAutoRotateMult.UseVisualStyleBackColor = true;
-			// 
-			// ckAutoCenterMult
-			// 
-			this.ckAutoCenterMult.AutoSize = true;
-			this.ckAutoCenterMult.Location = new System.Drawing.Point(63, 90);
-			this.ckAutoCenterMult.Name = "ckAutoCenterMult";
-			this.ckAutoCenterMult.Size = new System.Drawing.Size(141, 17);
-			this.ckAutoCenterMult.TabIndex = 8;
-			this.ckAutoCenterMult.Text = "Auto-Center Page in Cell";
-			this.ckAutoCenterMult.UseVisualStyleBackColor = true;
-			// 
-			// ckShowBorderMult
-			// 
-			this.ckShowBorderMult.AutoSize = true;
-			this.ckShowBorderMult.Location = new System.Drawing.Point(226, 67);
-			this.ckShowBorderMult.Name = "ckShowBorderMult";
-			this.ckShowBorderMult.Size = new System.Drawing.Size(115, 17);
-			this.ckShowBorderMult.TabIndex = 9;
-			this.ckShowBorderMult.Text = "Show Page Border";
-			this.ckShowBorderMult.UseVisualStyleBackColor = true;
-			// 
-			// ckIgnoreMarginsMult
-			// 
-			this.ckIgnoreMarginsMult.AutoSize = true;
-			this.ckIgnoreMarginsMult.Location = new System.Drawing.Point(226, 90);
-			this.ckIgnoreMarginsMult.Name = "ckIgnoreMarginsMult";
-			this.ckIgnoreMarginsMult.Size = new System.Drawing.Size(129, 17);
-			this.ckIgnoreMarginsMult.TabIndex = 10;
-			this.ckIgnoreMarginsMult.Text = "Ignore Printer Margins";
-			this.ckIgnoreMarginsMult.UseVisualStyleBackColor = true;
 			// 
 			// gbBook
 			// 
@@ -833,6 +475,38 @@
 			this.gbBook.Size = new System.Drawing.Size(452, 115);
 			this.gbBook.TabIndex = 13;
 			this.gbBook.TabStop = false;
+			// 
+			// tGutter
+			// 
+			this.tGutter.Location = new System.Drawing.Point(353, 41);
+			this.tGutter.Name = "tGutter";
+			this.tGutter.Size = new System.Drawing.Size(60, 20);
+			this.tGutter.TabIndex = 14;
+			// 
+			// tSignature
+			// 
+			this.tSignature.Location = new System.Drawing.Point(353, 14);
+			this.tSignature.Name = "tSignature";
+			this.tSignature.Size = new System.Drawing.Size(60, 20);
+			this.tSignature.TabIndex = 13;
+			// 
+			// label22
+			// 
+			this.label22.AutoSize = true;
+			this.label22.Location = new System.Drawing.Point(285, 43);
+			this.label22.Name = "label22";
+			this.label22.Size = new System.Drawing.Size(62, 13);
+			this.label22.TabIndex = 12;
+			this.label22.Text = "Gutter Size:";
+			// 
+			// label20
+			// 
+			this.label20.AutoSize = true;
+			this.label20.Location = new System.Drawing.Point(245, 16);
+			this.label20.Name = "label20";
+			this.label20.Size = new System.Drawing.Size(102, 13);
+			this.label20.TabIndex = 11;
+			this.label20.Text = "Sheets in Signature:";
 			// 
 			// ckIgnoreMarginsBook
 			// 
@@ -918,82 +592,24 @@
 			this.cbTypeBook.TabIndex = 0;
 			this.cbTypeBook.SelectedIndexChanged += new System.EventHandler(this.cbTypeBook_SelectedIndexChanged);
 			// 
-			// label20
+			// gbMult
 			// 
-			this.label20.AutoSize = true;
-			this.label20.Location = new System.Drawing.Point(245, 16);
-			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(102, 13);
-			this.label20.TabIndex = 11;
-			this.label20.Text = "Sheets in Signature:";
-			// 
-			// label22
-			// 
-			this.label22.AutoSize = true;
-			this.label22.Location = new System.Drawing.Point(285, 43);
-			this.label22.Name = "label22";
-			this.label22.Size = new System.Drawing.Size(62, 13);
-			this.label22.TabIndex = 12;
-			this.label22.Text = "Gutter Size:";
-			// 
-			// tSignature
-			// 
-			this.tSignature.Location = new System.Drawing.Point(353, 14);
-			this.tSignature.Name = "tSignature";
-			this.tSignature.Size = new System.Drawing.Size(60, 20);
-			this.tSignature.TabIndex = 13;
-			// 
-			// tGutter
-			// 
-			this.tGutter.Location = new System.Drawing.Point(353, 41);
-			this.tGutter.Name = "tGutter";
-			this.tGutter.Size = new System.Drawing.Size(60, 20);
-			this.tGutter.TabIndex = 14;
-			// 
-			// label23
-			// 
-			this.label23.AutoSize = true;
-			this.label23.Location = new System.Drawing.Point(271, 17);
-			this.label23.Name = "label23";
-			this.label23.Size = new System.Drawing.Size(47, 13);
-			this.label23.TabIndex = 8;
-			this.label23.Text = "Overlap:";
-			// 
-			// tOverlap
-			// 
-			this.tOverlap.DecimalPlaces = 1;
-			this.tOverlap.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-			this.tOverlap.Location = new System.Drawing.Point(324, 15);
-			this.tOverlap.Name = "tOverlap";
-			this.tOverlap.Size = new System.Drawing.Size(92, 20);
-			this.tOverlap.TabIndex = 9;
-			this.tOverlap.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-			// 
-			// tCountHMult
-			// 
-			this.tCountHMult.Location = new System.Drawing.Point(215, 15);
-			this.tCountHMult.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.tCountHMult.Name = "tCountHMult";
-			this.tCountHMult.Size = new System.Drawing.Size(50, 20);
-			this.tCountHMult.TabIndex = 11;
-			this.tCountHMult.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-			this.tCountHMult.Click += new System.EventHandler(this.tCountHMult_Click);
+			this.gbMult.Controls.Add(this.tCountVMult);
+			this.gbMult.Controls.Add(this.tCountHMult);
+			this.gbMult.Controls.Add(this.ckIgnoreMarginsMult);
+			this.gbMult.Controls.Add(this.ckShowBorderMult);
+			this.gbMult.Controls.Add(this.ckAutoCenterMult);
+			this.gbMult.Controls.Add(this.ckAutoRotateMult);
+			this.gbMult.Controls.Add(this.cbOrderMult);
+			this.gbMult.Controls.Add(this.label18);
+			this.gbMult.Controls.Add(this.label17);
+			this.gbMult.Controls.Add(this.label16);
+			this.gbMult.Controls.Add(this.cbSheetsHxV);
+			this.gbMult.Location = new System.Drawing.Point(6, 40);
+			this.gbMult.Name = "gbMult";
+			this.gbMult.Size = new System.Drawing.Size(452, 115);
+			this.gbMult.TabIndex = 12;
+			this.gbMult.TabStop = false;
 			// 
 			// tCountVMult
 			// 
@@ -1013,6 +629,366 @@
             0});
 			this.tCountVMult.Click += new System.EventHandler(this.tCountVMult_Click);
 			// 
+			// tCountHMult
+			// 
+			this.tCountHMult.Location = new System.Drawing.Point(215, 15);
+			this.tCountHMult.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.tCountHMult.Name = "tCountHMult";
+			this.tCountHMult.Size = new System.Drawing.Size(50, 20);
+			this.tCountHMult.TabIndex = 11;
+			this.tCountHMult.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+			this.tCountHMult.Click += new System.EventHandler(this.tCountHMult_Click);
+			// 
+			// ckIgnoreMarginsMult
+			// 
+			this.ckIgnoreMarginsMult.AutoSize = true;
+			this.ckIgnoreMarginsMult.Location = new System.Drawing.Point(226, 90);
+			this.ckIgnoreMarginsMult.Name = "ckIgnoreMarginsMult";
+			this.ckIgnoreMarginsMult.Size = new System.Drawing.Size(129, 17);
+			this.ckIgnoreMarginsMult.TabIndex = 10;
+			this.ckIgnoreMarginsMult.Text = "Ignore Printer Margins";
+			this.ckIgnoreMarginsMult.UseVisualStyleBackColor = true;
+			// 
+			// ckShowBorderMult
+			// 
+			this.ckShowBorderMult.AutoSize = true;
+			this.ckShowBorderMult.Location = new System.Drawing.Point(226, 67);
+			this.ckShowBorderMult.Name = "ckShowBorderMult";
+			this.ckShowBorderMult.Size = new System.Drawing.Size(115, 17);
+			this.ckShowBorderMult.TabIndex = 9;
+			this.ckShowBorderMult.Text = "Show Page Border";
+			this.ckShowBorderMult.UseVisualStyleBackColor = true;
+			// 
+			// ckAutoCenterMult
+			// 
+			this.ckAutoCenterMult.AutoSize = true;
+			this.ckAutoCenterMult.Location = new System.Drawing.Point(63, 90);
+			this.ckAutoCenterMult.Name = "ckAutoCenterMult";
+			this.ckAutoCenterMult.Size = new System.Drawing.Size(141, 17);
+			this.ckAutoCenterMult.TabIndex = 8;
+			this.ckAutoCenterMult.Text = "Auto-Center Page in Cell";
+			this.ckAutoCenterMult.UseVisualStyleBackColor = true;
+			// 
+			// ckAutoRotateMult
+			// 
+			this.ckAutoRotateMult.AutoSize = true;
+			this.ckAutoRotateMult.Location = new System.Drawing.Point(63, 67);
+			this.ckAutoRotateMult.Name = "ckAutoRotateMult";
+			this.ckAutoRotateMult.Size = new System.Drawing.Size(142, 17);
+			this.ckAutoRotateMult.TabIndex = 7;
+			this.ckAutoRotateMult.Text = "Auto-Rotate Page in Cell";
+			this.ckAutoRotateMult.UseVisualStyleBackColor = true;
+			// 
+			// cbOrderMult
+			// 
+			this.cbOrderMult.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbOrderMult.FormattingEnabled = true;
+			this.cbOrderMult.Items.AddRange(new object[] {
+            "Horizontal",
+            "Horizontal Reversed",
+            "Vertical",
+            "Vertical Reversed"});
+			this.cbOrderMult.Location = new System.Drawing.Point(103, 40);
+			this.cbOrderMult.Name = "cbOrderMult";
+			this.cbOrderMult.Size = new System.Drawing.Size(244, 21);
+			this.cbOrderMult.TabIndex = 6;
+			// 
+			// label18
+			// 
+			this.label18.AutoSize = true;
+			this.label18.Location = new System.Drawing.Point(33, 41);
+			this.label18.Name = "label18";
+			this.label18.Size = new System.Drawing.Size(64, 13);
+			this.label18.TabIndex = 5;
+			this.label18.Text = "Page Order:";
+			// 
+			// label17
+			// 
+			this.label17.AutoSize = true;
+			this.label17.Location = new System.Drawing.Point(273, 17);
+			this.label17.Name = "label17";
+			this.label17.Size = new System.Drawing.Size(18, 13);
+			this.label17.TabIndex = 3;
+			this.label17.Text = "by";
+			// 
+			// label16
+			// 
+			this.label16.AutoSize = true;
+			this.label16.Location = new System.Drawing.Point(10, 16);
+			this.label16.Name = "label16";
+			this.label16.Size = new System.Drawing.Size(87, 13);
+			this.label16.TabIndex = 1;
+			this.label16.Text = "Paper per Sheet:";
+			// 
+			// cbSheetsHxV
+			// 
+			this.cbSheetsHxV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbSheetsHxV.FormattingEnabled = true;
+			this.cbSheetsHxV.Items.AddRange(new object[] {
+            "4 (2/2)",
+            "6 (2/3)",
+            "6 (3/2)",
+            "9 (3/3)",
+            "16 (4/4)",
+            "Custom"});
+			this.cbSheetsHxV.Location = new System.Drawing.Point(103, 13);
+			this.cbSheetsHxV.Name = "cbSheetsHxV";
+			this.cbSheetsHxV.Size = new System.Drawing.Size(100, 21);
+			this.cbSheetsHxV.TabIndex = 0;
+			this.cbSheetsHxV.SelectedIndexChanged += new System.EventHandler(this.cbSheetsHxV_SelectedIndexChanged);
+			// 
+			// gbTile
+			// 
+			this.gbTile.Controls.Add(this.tOverlap);
+			this.gbTile.Controls.Add(this.label23);
+			this.gbTile.Controls.Add(this.ckIgnoreMarginsTile);
+			this.gbTile.Controls.Add(this.label14);
+			this.gbTile.Controls.Add(this.ckShowLabelsTile);
+			this.gbTile.Controls.Add(this.ckAutoCenterTile);
+			this.gbTile.Controls.Add(this.ckShowCutMarksTile);
+			this.gbTile.Controls.Add(this.ckAutoRotateTile);
+			this.gbTile.Controls.Add(this.tPageZoomTile);
+			this.gbTile.Controls.Add(this.label15);
+			this.gbTile.Location = new System.Drawing.Point(6, 40);
+			this.gbTile.Name = "gbTile";
+			this.gbTile.Size = new System.Drawing.Size(452, 115);
+			this.gbTile.TabIndex = 11;
+			this.gbTile.TabStop = false;
+			// 
+			// tOverlap
+			// 
+			this.tOverlap.DecimalPlaces = 1;
+			this.tOverlap.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+			this.tOverlap.Location = new System.Drawing.Point(324, 15);
+			this.tOverlap.Name = "tOverlap";
+			this.tOverlap.Size = new System.Drawing.Size(92, 20);
+			this.tOverlap.TabIndex = 9;
+			this.tOverlap.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+			// 
+			// label23
+			// 
+			this.label23.AutoSize = true;
+			this.label23.Location = new System.Drawing.Point(271, 17);
+			this.label23.Name = "label23";
+			this.label23.Size = new System.Drawing.Size(47, 13);
+			this.label23.TabIndex = 8;
+			this.label23.Text = "Overlap:";
+			// 
+			// ckIgnoreMarginsTile
+			// 
+			this.ckIgnoreMarginsTile.AutoSize = true;
+			this.ckIgnoreMarginsTile.Enabled = false;
+			this.ckIgnoreMarginsTile.Location = new System.Drawing.Point(63, 84);
+			this.ckIgnoreMarginsTile.Name = "ckIgnoreMarginsTile";
+			this.ckIgnoreMarginsTile.Size = new System.Drawing.Size(129, 17);
+			this.ckIgnoreMarginsTile.TabIndex = 7;
+			this.ckIgnoreMarginsTile.Text = "Ignore Printer Margins";
+			this.ckIgnoreMarginsTile.UseVisualStyleBackColor = true;
+			// 
+			// label14
+			// 
+			this.label14.AutoSize = true;
+			this.label14.Location = new System.Drawing.Point(236, 16);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(15, 13);
+			this.label14.TabIndex = 6;
+			this.label14.Text = "%";
+			// 
+			// ckShowLabelsTile
+			// 
+			this.ckShowLabelsTile.AutoSize = true;
+			this.ckShowLabelsTile.Location = new System.Drawing.Point(274, 61);
+			this.ckShowLabelsTile.Name = "ckShowLabelsTile";
+			this.ckShowLabelsTile.Size = new System.Drawing.Size(133, 17);
+			this.ckShowLabelsTile.TabIndex = 5;
+			this.ckShowLabelsTile.Text = "Show Labels on Sheet";
+			this.ckShowLabelsTile.UseVisualStyleBackColor = true;
+			// 
+			// ckAutoCenterTile
+			// 
+			this.ckAutoCenterTile.AutoSize = true;
+			this.ckAutoCenterTile.Location = new System.Drawing.Point(63, 61);
+			this.ckAutoCenterTile.Name = "ckAutoCenterTile";
+			this.ckAutoCenterTile.Size = new System.Drawing.Size(181, 17);
+			this.ckAutoCenterTile.TabIndex = 4;
+			this.ckAutoCenterTile.Text = "Auto-Center Page in Composition";
+			this.ckAutoCenterTile.UseVisualStyleBackColor = true;
+			// 
+			// ckShowCutMarksTile
+			// 
+			this.ckShowCutMarksTile.AutoSize = true;
+			this.ckShowCutMarksTile.Location = new System.Drawing.Point(274, 38);
+			this.ckShowCutMarksTile.Name = "ckShowCutMarksTile";
+			this.ckShowCutMarksTile.Size = new System.Drawing.Size(150, 17);
+			this.ckShowCutMarksTile.TabIndex = 3;
+			this.ckShowCutMarksTile.Text = "Show Cut-Marks on Sheet";
+			this.ckShowCutMarksTile.UseVisualStyleBackColor = true;
+			// 
+			// ckAutoRotateTile
+			// 
+			this.ckAutoRotateTile.AutoSize = true;
+			this.ckAutoRotateTile.Location = new System.Drawing.Point(63, 38);
+			this.ckAutoRotateTile.Name = "ckAutoRotateTile";
+			this.ckAutoRotateTile.Size = new System.Drawing.Size(182, 17);
+			this.ckAutoRotateTile.TabIndex = 2;
+			this.ckAutoRotateTile.Text = "Auto-Rotate Page in Composition";
+			this.ckAutoRotateTile.UseVisualStyleBackColor = true;
+			// 
+			// tPageZoomTile
+			// 
+			this.tPageZoomTile.Location = new System.Drawing.Point(103, 12);
+			this.tPageZoomTile.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+			this.tPageZoomTile.Name = "tPageZoomTile";
+			this.tPageZoomTile.Size = new System.Drawing.Size(120, 20);
+			this.tPageZoomTile.TabIndex = 1;
+			this.tPageZoomTile.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+			// 
+			// label15
+			// 
+			this.label15.AutoSize = true;
+			this.label15.Location = new System.Drawing.Point(32, 14);
+			this.label15.Name = "label15";
+			this.label15.Size = new System.Drawing.Size(65, 13);
+			this.label15.TabIndex = 0;
+			this.label15.Text = "Page Zoom:";
+			// 
+			// gbSimple
+			// 
+			this.gbSimple.Controls.Add(this.label13);
+			this.gbSimple.Controls.Add(this.ckIgnoreMarginsSimple);
+			this.gbSimple.Controls.Add(this.ckAutoCenterSimple);
+			this.gbSimple.Controls.Add(this.ckPaperByPageSimple);
+			this.gbSimple.Controls.Add(this.ckAutoRotateSimple);
+			this.gbSimple.Controls.Add(this.tPageZoomSimple);
+			this.gbSimple.Controls.Add(this.label10);
+			this.gbSimple.Location = new System.Drawing.Point(6, 40);
+			this.gbSimple.Name = "gbSimple";
+			this.gbSimple.Size = new System.Drawing.Size(452, 115);
+			this.gbSimple.TabIndex = 10;
+			this.gbSimple.TabStop = false;
+			// 
+			// label13
+			// 
+			this.label13.AutoSize = true;
+			this.label13.Location = new System.Drawing.Point(229, 16);
+			this.label13.Name = "label13";
+			this.label13.Size = new System.Drawing.Size(15, 13);
+			this.label13.TabIndex = 6;
+			this.label13.Text = "%";
+			// 
+			// ckIgnoreMarginsSimple
+			// 
+			this.ckIgnoreMarginsSimple.AutoSize = true;
+			this.ckIgnoreMarginsSimple.Location = new System.Drawing.Point(226, 61);
+			this.ckIgnoreMarginsSimple.Name = "ckIgnoreMarginsSimple";
+			this.ckIgnoreMarginsSimple.Size = new System.Drawing.Size(129, 17);
+			this.ckIgnoreMarginsSimple.TabIndex = 5;
+			this.ckIgnoreMarginsSimple.Text = "Ignore Printer Margins";
+			this.ckIgnoreMarginsSimple.UseVisualStyleBackColor = true;
+			// 
+			// ckAutoCenterSimple
+			// 
+			this.ckAutoCenterSimple.AutoSize = true;
+			this.ckAutoCenterSimple.Location = new System.Drawing.Point(63, 61);
+			this.ckAutoCenterSimple.Name = "ckAutoCenterSimple";
+			this.ckAutoCenterSimple.Size = new System.Drawing.Size(156, 17);
+			this.ckAutoCenterSimple.TabIndex = 4;
+			this.ckAutoCenterSimple.Text = "Auto-Center Page on Paper";
+			this.ckAutoCenterSimple.UseVisualStyleBackColor = true;
+			// 
+			// ckPaperByPageSimple
+			// 
+			this.ckPaperByPageSimple.AutoSize = true;
+			this.ckPaperByPageSimple.Location = new System.Drawing.Point(226, 38);
+			this.ckPaperByPageSimple.Name = "ckPaperByPageSimple";
+			this.ckPaperByPageSimple.Size = new System.Drawing.Size(207, 17);
+			this.ckPaperByPageSimple.TabIndex = 3;
+			this.ckPaperByPageSimple.Text = "Select Paper Size by Documents` Size";
+			this.ckPaperByPageSimple.UseVisualStyleBackColor = true;
+			// 
+			// ckAutoRotateSimple
+			// 
+			this.ckAutoRotateSimple.AutoSize = true;
+			this.ckAutoRotateSimple.Location = new System.Drawing.Point(63, 38);
+			this.ckAutoRotateSimple.Name = "ckAutoRotateSimple";
+			this.ckAutoRotateSimple.Size = new System.Drawing.Size(157, 17);
+			this.ckAutoRotateSimple.TabIndex = 2;
+			this.ckAutoRotateSimple.Text = "Auto-Rotate Page on Paper";
+			this.ckAutoRotateSimple.UseVisualStyleBackColor = true;
+			// 
+			// tPageZoomSimple
+			// 
+			this.tPageZoomSimple.Location = new System.Drawing.Point(103, 12);
+			this.tPageZoomSimple.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+			this.tPageZoomSimple.Name = "tPageZoomSimple";
+			this.tPageZoomSimple.Size = new System.Drawing.Size(120, 20);
+			this.tPageZoomSimple.TabIndex = 1;
+			this.tPageZoomSimple.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+			// 
+			// label10
+			// 
+			this.label10.AutoSize = true;
+			this.label10.Location = new System.Drawing.Point(32, 14);
+			this.label10.Name = "label10";
+			this.label10.Size = new System.Drawing.Size(65, 13);
+			this.label10.TabIndex = 0;
+			this.label10.Text = "Page Zoom:";
+			// 
+			// groupBox2
+			// 
+			this.groupBox2.Controls.Add(this.btnMore);
+			this.groupBox2.Controls.Add(this.ckAsImage);
+			this.groupBox2.Controls.Add(this.label5);
+			this.groupBox2.Controls.Add(this.cbPrintDocFilter);
+			this.groupBox2.Location = new System.Drawing.Point(6, 369);
+			this.groupBox2.Name = "groupBox2";
+			this.groupBox2.Size = new System.Drawing.Size(464, 77);
+			this.groupBox2.TabIndex = 22;
+			this.groupBox2.TabStop = false;
+			this.groupBox2.Text = "Advanced Print Options";
+			// 
+			// btnMore
+			// 
+			this.btnMore.Location = new System.Drawing.Point(242, 46);
+			this.btnMore.Name = "btnMore";
+			this.btnMore.Size = new System.Drawing.Size(75, 23);
+			this.btnMore.TabIndex = 15;
+			this.btnMore.Text = "More";
+			this.btnMore.UseVisualStyleBackColor = true;
+			this.btnMore.Click += new System.EventHandler(this.btnMore_Click);
+			// 
 			// PrintForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1027,25 +1003,25 @@
 			this.groupBox1.PerformLayout();
 			this.gboxOpts.ResumeLayout(false);
 			this.gboxOpts.PerformLayout();
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			this.gbBook.ResumeLayout(false);
+			this.gbBook.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tGutter)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tSignature)).EndInit();
+			this.gbMult.ResumeLayout(false);
+			this.gbMult.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tCountVMult)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tCountHMult)).EndInit();
+			this.gbTile.ResumeLayout(false);
+			this.gbTile.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.tOverlap)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.tPageZoomTile)).EndInit();
 			this.gbSimple.ResumeLayout(false);
 			this.gbSimple.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tPageZoomSimple)).EndInit();
-			this.gbTile.ResumeLayout(false);
-			this.gbTile.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tPageZoomTile)).EndInit();
-			this.gbMult.ResumeLayout(false);
-			this.gbMult.PerformLayout();
-			this.gbBook.ResumeLayout(false);
-			this.gbBook.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.tSignature)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.tGutter)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.tOverlap)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.tCountHMult)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.tCountVMult)).EndInit();
+			this.groupBox2.ResumeLayout(false);
+			this.groupBox2.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -1059,8 +1035,6 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.RadioButton rbAllSheets;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.ComboBox cbClrOver;
-		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.ComboBox cbPrintDocFilter;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.CheckBox ckAsImage;
@@ -1094,7 +1068,7 @@
 		private System.Windows.Forms.NumericUpDown tPageZoomSimple;
 		private System.Windows.Forms.Label label10;
 		private System.Windows.Forms.GroupBox groupBox2;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnMore;
 		private System.Windows.Forms.GroupBox gbTile;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.CheckBox ckShowLabelsTile;

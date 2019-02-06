@@ -144,6 +144,12 @@
     <Compile Include="MovePages.Designer.cs">
       <DependentUpon>MovePages.cs</DependentUpon>
     </Compile>
+    <Compile Include="OCRPagesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCRPagesForm.Designer.cs">
+      <DependentUpon>OCRPagesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="OperationDemo.cs" />
     <Compile Include="IStreamWrapper.cs" />
     <Compile Include="AddWatermarkForm.cs">
@@ -151,6 +157,12 @@
     </Compile>
     <Compile Include="AddWatermarkForm.Designer.cs">
       <DependentUpon>AddWatermarkForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintAdvancedOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintAdvancedOptions.Designer.cs">
+      <DependentUpon>PrintAdvancedOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="PrintForm.cs">
       <SubType>Form</SubType>
@@ -183,6 +195,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MovePages.resx">
       <DependentUpon>MovePages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCRPagesForm.resx">
+      <DependentUpon>OCRPagesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintAdvancedOptions.resx">
+      <DependentUpon>PrintAdvancedOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintForm.resx">
       <DependentUpon>PrintForm.cs</DependentUpon>

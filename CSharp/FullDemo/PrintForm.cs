@@ -14,16 +14,29 @@ namespace FullDemo
 	public partial class PrintForm : Form, IFormHelper
 	{
 		private MainFrm mainFrm = null;
+		public static int m_nPrinterFlags = 0;
 
-		enum PrintFilters
+		public enum PrintFilters
 		{	
-			PrintContent_Doc				= PXC_PrintContentFlags.PrintContent_Page | PXC_PrintContentFlags.PrintContent_Media | PXC_PrintContentFlags.PrintContent_Widgets | PXC_PrintContentFlags.PrintContent_PrintMarks,
-			PrintContent_DocAndMarkups		= PXC_PrintContentFlags.PrintContent_Page | PXC_PrintContentFlags.PrintContent_Media | PXC_PrintContentFlags.PrintContent_Markups | PXC_PrintContentFlags.PrintContent_Stamps | PXC_PrintContentFlags.PrintContent_Widgets | PXC_PrintContentFlags.PrintContent_PrintMarks,
-			PrintContent_DocAndStamps		= PXC_PrintContentFlags.PrintContent_Page | PXC_PrintContentFlags.PrintContent_Media | PXC_PrintContentFlags.PrintContent_Stamps | PXC_PrintContentFlags.PrintContent_Widgets | PXC_PrintContentFlags.PrintContent_PrintMarks,
-			PrintContent_WidgetsDataOnly	= PXC_PrintContentFlags.PrintContent_Widgets | PXC_PrintContentFlags.PrintContent_FieldsDataOnly,
-			PrintContent_MarkupsOnly		= PXC_PrintContentFlags.PrintContent_Markups,
-	
-			PrintContent_Whole				= 	PXC_PrintContentFlags.PrintContent_Page		|
+			PrintContent_Doc				=	PXC_PrintContentFlags.PrintContent_Page			|
+												PXC_PrintContentFlags.PrintContent_Media		| 
+												PXC_PrintContentFlags.PrintContent_Widgets		| 
+												PXC_PrintContentFlags.PrintContent_PrintMarks,
+			PrintContent_DocAndMarkups		=	PXC_PrintContentFlags.PrintContent_Page			| 
+												PXC_PrintContentFlags.PrintContent_Media		| 
+												PXC_PrintContentFlags.PrintContent_Markups		| 
+												PXC_PrintContentFlags.PrintContent_Stamps		| 
+												PXC_PrintContentFlags.PrintContent_Widgets		| 
+												PXC_PrintContentFlags.PrintContent_PrintMarks,
+			PrintContent_DocAndStamps		=	PXC_PrintContentFlags.PrintContent_Page			| 
+												PXC_PrintContentFlags.PrintContent_Media		| 
+												PXC_PrintContentFlags.PrintContent_Stamps		| 
+												PXC_PrintContentFlags.PrintContent_Widgets		| 
+												PXC_PrintContentFlags.PrintContent_PrintMarks,
+			PrintContent_WidgetsDataOnly	=	PXC_PrintContentFlags.PrintContent_Widgets		| 
+												PXC_PrintContentFlags.PrintContent_FieldsDataOnly,
+			PrintContent_MarkupsOnly		=	PXC_PrintContentFlags.PrintContent_Markups,	
+			PrintContent_Whole				= 	PXC_PrintContentFlags.PrintContent_Page			|
 												PXC_PrintContentFlags.PrintContent_Markups		|
 												PXC_PrintContentFlags.PrintContent_Stamps		|
 												PXC_PrintContentFlags.PrintContent_Widgets		|
@@ -34,7 +47,7 @@ namespace FullDemo
 
 		};
 
-		enum Parer_per_Sheets
+		enum Paper_per_Sheets
 		{
 			_4		= 0,
 			_6_V	= 1,
@@ -45,14 +58,14 @@ namespace FullDemo
 		};
 		enum ScaleTypes
 		{ 
-		None			= 0,
-		FitToMargins	= 1,	
-		ReduceToMargins = 2,	
-		CustomZoom		= 3,		
-		TileLarge		= 4,		
-		TileAll			= 5,
-		Multiple		= 6,		
-		Booklet			= 7,
+			None			= 0,
+			FitToMargins	= 1,	
+			ReduceToMargins = 2,	
+			CustomZoom		= 3,		
+			TileLarge		= 4,		
+			TileAll			= 5,
+			Multiple		= 6,		
+			Booklet			= 7,
 		};
 		public PrintForm(MainFrm mainFrm)
 		{
@@ -101,7 +114,7 @@ namespace FullDemo
 			cbOrderMult.SelectedIndex = 0;
 
 			cbPrintDocFilter.SelectedIndex = 0; // document
-			cbClrOver.SelectedIndex = 0;
+			
 		}
 
 		private void tPages_TextChanged(object sender, EventArgs e)
@@ -172,6 +185,8 @@ namespace FullDemo
 			if (it != null)
 				opts["Content"].v = it.Value;
 
+			
+
 			// page scaling and placement
 			opts["ScaleType"].String = ((MainFrm.ComboboxItem2)cbPagesScale.SelectedItem).Value;
 			opts["ScaleType"].v = cbPagesScale.SelectedIndex;
@@ -220,7 +235,7 @@ namespace FullDemo
 				ScaleBook["IgnoreMargins"].v = ckIgnoreMarginsBook.Checked;
 				//ScaleBook["FixBackSideRotation"].v =
 			}
-			opts["ColorOverride"].v = cbClrOver.Text;
+			//opts["ColorOverride"].v = cbClrOver.Text;
 			//			opts["ColorOverride"].v = cbClrOver.SelectedIndex;
 
 
@@ -250,29 +265,29 @@ namespace FullDemo
 
 		private void cbSheetsHxV_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			switch ((Parer_per_Sheets)cbSheetsHxV.SelectedIndex)
-			{
-				case Parer_per_Sheets._4:
+			switch ((Paper_per_Sheets)cbSheetsHxV.SelectedIndex)
+			{ 
+				case Paper_per_Sheets._4:
 					tCountHMult.Value = 2;
 					tCountVMult.Value = 2;
 					break;
-				case Parer_per_Sheets._6_V:	
+				case Paper_per_Sheets._6_V:	
 					tCountHMult.Value = 2;
 					tCountVMult.Value = 3;
 					break;
-				case Parer_per_Sheets._6_H:
+				case Paper_per_Sheets._6_H:
 					tCountHMult.Value = 3;
 					tCountVMult.Value = 2;
 					break;
-				case Parer_per_Sheets._9:
+				case Paper_per_Sheets._9:
 					tCountHMult.Value = 3;
 					tCountVMult.Value = 3;
 					break;
-				case Parer_per_Sheets._16:
+				case Paper_per_Sheets._16:
 					tCountHMult.Value = 4;
 					tCountVMult.Value = 4;
 					break;
-				case Parer_per_Sheets.Custom:
+				case Paper_per_Sheets.Custom:
 					tCountHMult.Focus();
 					break;
 			}
@@ -280,17 +295,59 @@ namespace FullDemo
 
 		private void tCountHMult_Click(object sender, EventArgs e)
 		{
-			cbSheetsHxV.SelectedIndex = (int)Parer_per_Sheets.Custom;
+			cbSheetsHxV.SelectedIndex = (int)Paper_per_Sheets.Custom;
 		}
 
 		private void tCountVMult_Click(object sender, EventArgs e)
 		{
-			cbSheetsHxV.SelectedIndex = (int)Parer_per_Sheets.Custom;
+			cbSheetsHxV.SelectedIndex = (int)Paper_per_Sheets.Custom;
 		}
 
 		private void cbTypeBook_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			tSignature.Enabled = (cbTypeBook.SelectedIndex == 1);
+		}
+
+		private void btnMore_Click(object sender, EventArgs e)
+		{
+			int nPrintFilters = 0;
+			MainFrm.ComboboxItem it = (MainFrm.ComboboxItem)cbPrintDocFilter.SelectedItem;
+			if (it != null)
+				nPrintFilters = it.Value;
+			PrintAdvancedOptions tempDialog = new PrintAdvancedOptions(this, nPrintFilters);
+			tempDialog.ShowDialog();
+			if (nPrintFilters != m_nPrinterFlags)
+			{
+				bool bNeedCustomFilter = true;
+				for (int i = 0; i < cbPrintDocFilter.Items.Count; i++)
+				{
+					MainFrm.ComboboxItem item = (MainFrm.ComboboxItem)cbPrintDocFilter.Items[i];
+					if (item != null)
+						if (item.Value == m_nPrinterFlags)
+						{
+							cbPrintDocFilter.SelectedIndex = i;
+							bNeedCustomFilter = false;
+							break;
+						}
+				}
+				if (bNeedCustomFilter)
+				{
+					string sCustom = "Custom Content";
+					if (!cbPrintDocFilter.Items.Contains(sCustom))
+					{
+						cbPrintDocFilter.Items.Add(new MainFrm.ComboboxItem(sCustom, m_nPrinterFlags));
+						cbPrintDocFilter.SelectedIndex = 0;
+						//because cbPrintDocFilter have properties Sorted
+						//and this value is 0									
+					}
+					else
+					{
+						int index = cbPrintDocFilter.FindString(sCustom);
+						MainFrm.ComboboxItem item = (MainFrm.ComboboxItem)cbPrintDocFilter.Items[index];
+						item.Value = m_nPrinterFlags;
+					}
+				}
+			}
 		}
 	}
 }
