@@ -14,10 +14,20 @@ namespace FullDemo
 	public partial class PrintAdvancedOptions : Form
 	{
 		private PrintForm m_parent;
+
+		string[] ResolutionDPI = new string[] {"50", "72", "100", "150", "300", "400", "600"};
+
 		public PrintAdvancedOptions(PrintForm frm1, int PrintFilter)
 		{
 			InitializeComponent();
 			m_parent = frm1;
+
+			cbTextMode.SelectedIndex = 0;
+
+			cbBitmapDPI.Items.AddRange(ResolutionDPI);
+			cbBitmapDPI.SelectedIndex = 4;
+			cbGradientDPI.Items.AddRange(ResolutionDPI);
+			cbGradientDPI.SelectedIndex = 3;
 
 			PXC_PrintContentFlags flags = (PXC_PrintContentFlags)PrintFilter;
 			ckPageContent.Checked = flags.HasFlag(PXC_PrintContentFlags.PrintContent_Page);
@@ -68,6 +78,13 @@ namespace FullDemo
 			if (ckNotePop_Up.Checked)
 				flags += (int)PXC_PrintContentFlags.PrintContent_NotePopups;
 			PrintForm.m_nPrinterFlags = flags;
+			PrintForm.m_bIgnoreDocClrOverrides = ckIgnoreDocClrOverrides.Checked;
+			PrintForm.m_bIgnoreCropClip = ckIgnoreCropClip.Checked;
+			PrintForm.m_nTextMode = cbTextMode.SelectedIndex;//don`t correct
+			PrintForm.m_nBitmapDPI = Convert.ToInt32(ResolutionDPI[cbBitmapDPI.SelectedIndex]);
+			PrintForm.m_nGradientDPI = Convert.ToInt32(ResolutionDPI[cbGradientDPI.SelectedIndex]);
+			
+			//value Line Mode don`t use
 			Close();
 		}
 

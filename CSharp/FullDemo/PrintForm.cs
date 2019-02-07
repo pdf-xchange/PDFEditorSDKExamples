@@ -13,8 +13,15 @@ namespace FullDemo
 {
 	public partial class PrintForm : Form, IFormHelper
 	{
-		private MainFrm mainFrm = null;
-		public static int m_nPrinterFlags = 0;
+		private MainFrm mainFrm						= null;
+
+		public static int m_nPrinterFlags			= 0;
+		public static bool m_bIgnoreDocClrOverrides = false;
+		public static bool m_bIgnoreCropClip		= false;
+		public static int m_nTextMode				= 0;
+		public static int m_nColorOverride			= 0;
+		public static int m_nBitmapDPI				= 300;
+		public static int m_nGradientDPI			= 150;
 
 		public enum PrintFilters
 		{	
@@ -233,10 +240,16 @@ namespace FullDemo
 				ScaleBook["AutoRotate"].v = ckAutoRotateBook.Checked;
 				ScaleBook["AutoCentre"].v = ckAutoCenterBook.Checked;
 				ScaleBook["IgnoreMargins"].v = ckIgnoreMarginsBook.Checked;
+				//I don`t know what is it..
 				//ScaleBook["FixBackSideRotation"].v =
 			}
-			//opts["ColorOverride"].v = cbClrOver.Text;
-			//			opts["ColorOverride"].v = cbClrOver.SelectedIndex;
+			opts["ColorOverride"].v = m_nColorOverride;
+			opts["TextMode"].v = m_nTextMode;
+			opts["IgnoreDocClrOverrides"].v = m_bIgnoreDocClrOverrides;
+			opts["IgnoreCropClip"].v = m_bIgnoreCropClip;
+
+			opts["BitmapDPI"].v = m_nBitmapDPI;
+			opts["GradientDPI"].v = m_nGradientDPI;
 
 
 			opts["SheetsRange.Text"].v = (rbSheets.Checked) ? tSheets.Text : "1-" + mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
@@ -311,42 +324,54 @@ namespace FullDemo
 		private void btnMore_Click(object sender, EventArgs e)
 		{
 			int nPrintFilters = 0;
+			//Set to child_form selected flags value
 			MainFrm.ComboboxItem it = (MainFrm.ComboboxItem)cbPrintDocFilter.SelectedItem;
 			if (it != null)
 				nPrintFilters = it.Value;
 			PrintAdvancedOptions tempDialog = new PrintAdvancedOptions(this, nPrintFilters);
 			tempDialog.ShowDialog();
-			if (nPrintFilters != m_nPrinterFlags)
+			//Selected item in combobox if user change properties from one		
+			if (nPrintFilters == m_nPrinterFlags)
+				return;
+			bool bNeedCustomFilter = true;
+			for (int i = 0; i < cbPrintDocFilter.Items.Count; i++)
 			{
-				bool bNeedCustomFilter = true;
-				for (int i = 0; i < cbPrintDocFilter.Items.Count; i++)
+				MainFrm.ComboboxItem item = (MainFrm.ComboboxItem)cbPrintDocFilter.Items[i];
+				if (item == null)
+					continue;
+				if (item.Value == m_nPrinterFlags)
 				{
-					MainFrm.ComboboxItem item = (MainFrm.ComboboxItem)cbPrintDocFilter.Items[i];
-					if (item != null)
-						if (item.Value == m_nPrinterFlags)
-						{
-							cbPrintDocFilter.SelectedIndex = i;
-							bNeedCustomFilter = false;
-							break;
-						}
+					cbPrintDocFilter.SelectedIndex = i;
+					bNeedCustomFilter = false;
+					break;
 				}
-				if (bNeedCustomFilter)
+			}
+			//If properties isn`t in default item combobox
+			if (!bNeedCustomFilter)
+				return;
+			bNeedCustomFilter = true;
+			string sCustom = "Custom Content";
+			int nValue = m_nPrinterFlags;
+			//if in combobox is "custom" properties
+			MainFrm.ComboboxItem comboboxitem = new MainFrm.ComboboxItem(sCustom, m_nPrinterFlags);
+			for (int i = 0; i < cbPrintDocFilter.Items.Count; i++)
+			{
+				MainFrm.ComboboxItem item = (MainFrm.ComboboxItem)cbPrintDocFilter.Items[i];
+				if (item == null)
+					continue;
+				if (item.Text == comboboxitem.Text)
 				{
-					string sCustom = "Custom Content";
-					if (!cbPrintDocFilter.Items.Contains(sCustom))
-					{
-						cbPrintDocFilter.Items.Add(new MainFrm.ComboboxItem(sCustom, m_nPrinterFlags));
-						cbPrintDocFilter.SelectedIndex = 0;
-						//because cbPrintDocFilter have properties Sorted
-						//and this value is 0									
-					}
-					else
-					{
-						int index = cbPrintDocFilter.FindString(sCustom);
-						MainFrm.ComboboxItem item = (MainFrm.ComboboxItem)cbPrintDocFilter.Items[index];
-						item.Value = m_nPrinterFlags;
-					}
+					if (item.Value != comboboxitem.Value)
+						item.Value = comboboxitem.Value;
+					bNeedCustomFilter = false;
+					break;
 				}
+			}
+			//add "custom" properties to combobox
+			if (bNeedCustomFilter)
+			{
+				cbPrintDocFilter.Items.Add(comboboxitem);
+				cbPrintDocFilter.SelectedItem = comboboxitem;
 			}
 		}
 	}
