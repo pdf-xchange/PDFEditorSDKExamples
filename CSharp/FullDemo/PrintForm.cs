@@ -362,7 +362,10 @@ namespace FullDemo
 				if (item.Text == comboboxitem.Text)
 				{
 					if (item.Value != comboboxitem.Value)
+					{
 						item.Value = comboboxitem.Value;
+						cbPrintDocFilter.SelectedItem = item;
+					}
 					bNeedCustomFilter = false;
 					break;
 				}

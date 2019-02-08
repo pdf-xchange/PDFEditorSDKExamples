@@ -66,6 +66,7 @@ namespace FullDemo
 
 		op_document_OCRPages,
 		op_document_movePages,
+		op_document_rotatePages,
 
 		op_document_replacePages,
 		op_document_cropPages,
@@ -905,6 +906,10 @@ namespace FullDemo
 		{
 			switch (id)
 			{
+				case IDS.op_document_resizePages:
+					return new ResizePagesForm(this);
+				case IDS.op_document_rotatePages:
+					return new RotatePagesForm(this);
 				case IDS.op_document_OCRPages:
 					return new OCRPagesForm(this);
 				case IDS.op_document_addWatermarks:
@@ -936,6 +941,11 @@ namespace FullDemo
 			{
 				fNeedLoadAllOpers = false;
 
+				{
+					IDS id = IDS.op_document_rotatePages;
+					cbOpers.Items.Add(new OperationDemo(OpId2DispName(id), nIDS[(int)id], OpId2Form(id), (uint)DemoFlags.Input_Doc));
+				}
+		
 				{
 					IDS id = IDS.op_document_OCRPages;
 					cbOpers.Items.Add(new OperationDemo(OpId2DispName(id), nIDS[(int)id], OpId2Form(id), (uint)DemoFlags.Input_Doc));

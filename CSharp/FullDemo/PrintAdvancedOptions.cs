@@ -15,18 +15,39 @@ namespace FullDemo
 	{
 		private PrintForm m_parent;
 
-		string[] ResolutionDPI = new string[] {"50", "72", "100", "150", "300", "400", "600"};
+
+		int[] ResolutionDPI = new int[] {50, 72, 100, 150, 300, 400, 600};
 
 		public PrintAdvancedOptions(PrintForm frm1, int PrintFilter)
 		{
 			InitializeComponent();
 			m_parent = frm1;
 
-			cbTextMode.SelectedIndex = 0;
+			Array arr = Enum.GetValues(typeof(PXC_PrintColorOverrideMode));
+			for (int i = arr.GetLowerBound(0); i < arr.GetUpperBound(0); i++)
+			{ 
+				string s = Enum.GetName(typeof(PXC_PrintColorOverrideMode), arr.GetValue(i));
+				cbClrOver.Items.Add(new MainFrm.ComboboxItem(MainFrm.SID2DispName(s), (int)arr.GetValue(i)));
+			}
 
-			cbBitmapDPI.Items.AddRange(ResolutionDPI);
+			for (int i = ResolutionDPI.GetLowerBound(0); i <= ResolutionDPI.GetUpperBound(0); i++)
+			{
+				cbBitmapDPI.Items.Add(new MainFrm.ComboboxItem(ResolutionDPI[i]+" dpi", ResolutionDPI[i]));
+			}
+			for (int i = ResolutionDPI.GetLowerBound(0); i <= ResolutionDPI.GetUpperBound(0); i++)
+			{
+				cbGradientDPI.Items.Add(new MainFrm.ComboboxItem(ResolutionDPI[i] + " dpi", ResolutionDPI[i]));
+			}
+
+			arr = Enum.GetValues(typeof(PXC_PrintTextModes));
+			for (int i = arr.GetLowerBound(0); i < arr.GetUpperBound(0); i++)
+			{
+				string s = Enum.GetName(typeof(PXC_PrintTextModes), arr.GetValue(i));
+				cbTextMode.Items.Add(new MainFrm.ComboboxItem(MainFrm.SID2DispName(s), (int)arr.GetValue(i)));
+			}
+			cbTextMode.SelectedIndex = 0;
+			cbLineMode.SelectedIndex = 0;
 			cbBitmapDPI.SelectedIndex = 4;
-			cbGradientDPI.Items.AddRange(ResolutionDPI);
 			cbGradientDPI.SelectedIndex = 3;
 
 			PXC_PrintContentFlags flags = (PXC_PrintContentFlags)PrintFilter;
@@ -80,10 +101,10 @@ namespace FullDemo
 			PrintForm.m_nPrinterFlags = flags;
 			PrintForm.m_bIgnoreDocClrOverrides = ckIgnoreDocClrOverrides.Checked;
 			PrintForm.m_bIgnoreCropClip = ckIgnoreCropClip.Checked;
-			PrintForm.m_nTextMode = cbTextMode.SelectedIndex;//don`t correct
-			PrintForm.m_nBitmapDPI = Convert.ToInt32(ResolutionDPI[cbBitmapDPI.SelectedIndex]);
-			PrintForm.m_nGradientDPI = Convert.ToInt32(ResolutionDPI[cbGradientDPI.SelectedIndex]);
-			
+			PrintForm.m_nTextMode = ((MainFrm.ComboboxItem)cbTextMode.SelectedItem).Value;
+			PrintForm.m_nBitmapDPI = ((MainFrm.ComboboxItem)cbBitmapDPI.SelectedItem).Value;
+			PrintForm.m_nGradientDPI = ((MainFrm.ComboboxItem)cbGradientDPI.SelectedItem).Value;
+			PrintForm.m_nColorOverride = ((MainFrm.ComboboxItem)cbClrOver.SelectedItem).Value;				
 			//value Line Mode don`t use
 			Close();
 		}

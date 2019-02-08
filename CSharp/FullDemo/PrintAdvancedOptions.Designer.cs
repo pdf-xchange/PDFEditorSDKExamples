@@ -82,6 +82,7 @@
 			// 
 			// tOpacity
 			// 
+			this.tOpacity.Enabled = false;
 			this.tOpacity.Location = new System.Drawing.Point(95, 226);
 			this.tOpacity.Name = "tOpacity";
 			this.tOpacity.Size = new System.Drawing.Size(67, 20);
@@ -104,6 +105,7 @@
 			// ckNotePop_Up
 			// 
 			this.ckNotePop_Up.AutoSize = true;
+			this.ckNotePop_Up.Enabled = false;
 			this.ckNotePop_Up.Location = new System.Drawing.Point(46, 203);
 			this.ckNotePop_Up.Name = "ckNotePop_Up";
 			this.ckNotePop_Up.Size = new System.Drawing.Size(126, 17);
@@ -146,6 +148,7 @@
 			// ckDataOnly
 			// 
 			this.ckDataOnly.AutoSize = true;
+			this.ckDataOnly.Enabled = false;
 			this.ckDataOnly.Location = new System.Drawing.Point(46, 111);
 			this.ckDataOnly.Name = "ckDataOnly";
 			this.ckDataOnly.Size = new System.Drawing.Size(267, 17);
@@ -293,12 +296,6 @@
 			// cbTextMode
 			// 
 			this.cbTextMode.FormattingEnabled = true;
-			this.cbTextMode.Items.AddRange(new object[] {
-            "Auto",
-            "Outline for Embedded Fonts",
-            "Outline Always",
-            "Bitmap for Embadded Fonts",
-            "Bitmap Always"});
 			this.cbTextMode.Location = new System.Drawing.Point(41, 72);
 			this.cbTextMode.Name = "cbTextMode";
 			this.cbTextMode.Size = new System.Drawing.Size(164, 21);
@@ -316,11 +313,6 @@
 			// cbClrOver
 			// 
 			this.cbClrOver.FormattingEnabled = true;
-			this.cbClrOver.Items.AddRange(new object[] {
-            "Auto",
-            "Grayscale",
-            "Monochrome",
-            "Color"});
 			this.cbClrOver.Location = new System.Drawing.Point(41, 32);
 			this.cbClrOver.Name = "cbClrOver";
 			this.cbClrOver.Size = new System.Drawing.Size(164, 21);
