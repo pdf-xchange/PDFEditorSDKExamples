@@ -19,7 +19,6 @@ namespace FullDemo
 
 			InitializeComponent();
 
-			
 			cbPagesSubset.SelectedIndex = 0;
 			cbLocation.SelectedIndex = 0;
 		}
@@ -66,17 +65,23 @@ namespace FullDemo
 				rangeType = PDFXEdit.RangeType.RangeType_Even;
 			pagesRange["Filter"].v = rangeType;
 			int nNumberPage = 1;
-			bool blancase = cbLocation.SelectedIndex == 0;
-
+			bool bIsLandscape = cbLocation.SelectedIndex == 0;
 			if (rbFirst.Checked)
-				nNumberPage = blancase ? 0 : 2;
+			{
+				nNumberPage = bIsLandscape ? 0 : 2;
+			}
 			if (rbLast.Checked)
-				nNumberPage = blancase ?
-				(int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count - 1 :
-				(int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
+			{
+				nNumberPage = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
+				if (bIsLandscape)
+					nNumberPage--;
+			}
 			if (rbPage.Checked)
-				nNumberPage = blancase ? (int)tNumPage.Value : nNumberPage = (int)tNumPage.Value + 1;
-					
+			{
+				nNumberPage = (int)tNumPage.Value + 1;
+				if (bIsLandscape)
+					nNumberPage--;
+			}
 			opts["InsertBefore"].v = nNumberPage;
 		}
 

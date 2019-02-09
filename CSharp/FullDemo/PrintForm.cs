@@ -164,11 +164,11 @@ namespace FullDemo
 			opts["PrinterName"].v = cbPrinter.Text;
 			bool ok;
 			opts["Copies"].v = (int)MainFrm.Str2Num(tCopies.Text, out ok, 1);
-			opts["Collate"].v = ckCollate.Checked ? 1 : 0;
+			opts["Collate"].v = ckCollate.Checked;
 			opts["Duplex"].v = cbDuplex.SelectedIndex;
 			opts["AsImages"].v = ckAsImage.Checked;
 
-			opts["Paper.Name"].v = "A5";
+			opts["Paper.Name"].v = "A4";
 
 			// pages range
 			ICabNode pagesRange = opts["PagesRange"];
@@ -324,7 +324,7 @@ namespace FullDemo
 		private void btnMore_Click(object sender, EventArgs e)
 		{
 			int nPrintFilters = 0;
-			//Set to child_form selected flags value
+			//Set to advanced options' selected flags value
 			MainFrm.ComboboxItem it = (MainFrm.ComboboxItem)cbPrintDocFilter.SelectedItem;
 			if (it != null)
 				nPrintFilters = it.Value;
@@ -339,38 +339,36 @@ namespace FullDemo
 				MainFrm.ComboboxItem item = (MainFrm.ComboboxItem)cbPrintDocFilter.Items[i];
 				if (item == null)
 					continue;
-				if (item.Value == m_nPrinterFlags)
-				{
-					cbPrintDocFilter.SelectedIndex = i;
-					bNeedCustomFilter = false;
-					break;
-				}
+				if (item.Value != m_nPrinterFlags)
+					continue;
+				cbPrintDocFilter.SelectedIndex = i;
+				bNeedCustomFilter = false;
+				break;
 			}
-			//If properties isn`t in default item combobox
+			//If properties are not in default item combobox
 			if (!bNeedCustomFilter)
 				return;
 			bNeedCustomFilter = true;
 			string sCustom = "Custom Content";
 			int nValue = m_nPrinterFlags;
-			//if in combobox is "custom" properties
+			//If combobox has "custom" properties
 			MainFrm.ComboboxItem comboboxitem = new MainFrm.ComboboxItem(sCustom, m_nPrinterFlags);
 			for (int i = 0; i < cbPrintDocFilter.Items.Count; i++)
 			{
 				MainFrm.ComboboxItem item = (MainFrm.ComboboxItem)cbPrintDocFilter.Items[i];
 				if (item == null)
 					continue;
-				if (item.Text == comboboxitem.Text)
+				if (item.Text != comboboxitem.Text)
+					continue;
+				if (item.Value != comboboxitem.Value)
 				{
-					if (item.Value != comboboxitem.Value)
-					{
-						item.Value = comboboxitem.Value;
-						cbPrintDocFilter.SelectedItem = item;
-					}
-					bNeedCustomFilter = false;
-					break;
+					item.Value = comboboxitem.Value;
+					cbPrintDocFilter.SelectedItem = item;
 				}
+				bNeedCustomFilter = false;
+				break;
 			}
-			//add "custom" properties to combobox
+			//Add "custom" properties to combobox
 			if (bNeedCustomFilter)
 			{
 				cbPrintDocFilter.Items.Add(comboboxitem);

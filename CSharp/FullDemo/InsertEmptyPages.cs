@@ -35,7 +35,7 @@ namespace FullDemo
 			StdPaperID paperID;
 			string sNamePaper;
 			DocumentSize document = new DocumentSize();
-			for (StdPaperID i = 0; i < StdPaperID.StdPaper_30x42; i++)
+			for (StdPaperID i = 0; i < StdPaperID._StdPaper_Max_; i++)
 			{
 				paperID = i;
 				sNamePaper = paperID.ToString();
@@ -49,12 +49,11 @@ namespace FullDemo
 			}
 			if (mainFrm.pdfCtl.Doc == null)
 				return;
-			//Maximum value = maximum count pages
 			tNumPage.Maximum = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
 			cbOrientation.SelectedIndex = 0;
 			cbLocation.SelectedIndex = 0;
 			cbPaperName.SelectedIndex = 4;
-			//Size document to control
+			//Size of the first document's page
 			var RectPage = mainFrm.pdfCtl.Doc.CoreDoc.Pages[0].get_Box(PXC_BoxType.PBox_PageBox);
 			tWidth.Value = (decimal)RectPage.right;
 			tHeight.Value = (decimal)RectPage.top;
@@ -96,13 +95,11 @@ namespace FullDemo
 			//Destination
 			int nLocation = cbLocation.SelectedIndex == 0 ? 0 : 1;
 			opts["Location"].v = nLocation;
-			int nNumberPage = 0;
+			int nNumberPage = (int)tNumPage.Value;
 			if (rbFirst.Checked)
 				nNumberPage = 1;
 			else if (rbLast.Checked)
 				nNumberPage = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
-			else
-				nNumberPage = (int)tNumPage.Value;
 			opts["Position"].v = nNumberPage - 1;
 
 		}

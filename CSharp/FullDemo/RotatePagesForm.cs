@@ -69,8 +69,8 @@ namespace FullDemo
 				rangeType = RangeType.RangeType_Even;
 			pagesRange["Filter"].v = rangeType;
 
-			opts["Direction"].v = cbDirection.SelectedIndex + 1; // 0 = 0 degrees 
-			opts["PagesOrientation"].v = cbOrientation.SelectedIndex; // selectedindex = value
+			opts["Direction"].v = cbDirection.SelectedIndex + 1; // 0 == 0 degrees thus +1
+			opts["PagesOrientation"].v = cbOrientation.SelectedIndex; // SelectedIndex == value
 		}
 
 		private void rbPages_CheckedChanged(object sender, EventArgs e)

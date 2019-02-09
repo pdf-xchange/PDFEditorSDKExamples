@@ -31,12 +31,12 @@ namespace FullDemo
 
 			InitializeComponent();
 
-			//Papers` name to combocox
+			//Papers' name to combobox
 			StdPaperGroupID groupID;
 			StdPaperID paperID;
 			string sNamePaper;
 			DocumentSize document = new DocumentSize();
-			for (StdPaperID i = 0; i < StdPaperID.StdPaper_30x42; i++)
+			for (StdPaperID i = 0; i < StdPaperID._StdPaper_Max_; i++)
 			{
 				paperID = i;
 				sNamePaper = paperID.ToString();

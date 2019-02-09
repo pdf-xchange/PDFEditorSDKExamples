@@ -181,14 +181,14 @@ namespace FullDemo
 					break;
 			}
 		}
-		public void UpdateValueBox(out PDFXEdit.PXC_Rect rect)
+		public void UpdateValueBox(out PXC_Rect rect)
 		{			
 			rect.left = (double)tLeft.Value;
 			rect.top = (double)tTop.Value;
 			rect.right = (double)tRight.Value;
 			rect.bottom = (double)tBottom.Value;
 		}
-		public void UpdateValueControl(PDFXEdit.PXC_Rect rect)
+		public void UpdateValueControl(PXC_Rect rect)
 		{
 			tLeft.Value = (decimal)rect.left;
 			tTop.Value = (decimal)rect.top;

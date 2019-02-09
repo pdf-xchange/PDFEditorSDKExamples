@@ -36,7 +36,7 @@ namespace FullDemo
 			Enabled = IsValid();
 			if (Enabled)
 			{
-				lbNumPages.Text = String.Format("total {0} pages", mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count);				
+				lbNumPages.Text = String.Format("total {0} pages", mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count);
 			}
 			else
 			{

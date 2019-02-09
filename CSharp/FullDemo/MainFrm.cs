@@ -910,8 +910,8 @@ namespace FullDemo
 					return new ResizePagesForm(this);
 				case IDS.op_document_rotatePages:
 					return new RotatePagesForm(this);
-				case IDS.op_document_OCRPages:
-					return new OCRPagesForm(this);
+				//case IDS.op_document_OCRPages:
+				//	return new OCRPagesForm(this);
 				case IDS.op_document_addWatermarks:
 					return new AddWatermarkForm(this);
 				case IDS.op_document_deletePages:
@@ -947,8 +947,8 @@ namespace FullDemo
 				}
 		
 				{
-					IDS id = IDS.op_document_OCRPages;
-					cbOpers.Items.Add(new OperationDemo(OpId2DispName(id), nIDS[(int)id], OpId2Form(id), (uint)DemoFlags.Input_Doc));
+					//IDS id = IDS.op_document_OCRPages;
+					//cbOpers.Items.Add(new OperationDemo(OpId2DispName(id), nIDS[(int)id], OpId2Form(id), (uint)DemoFlags.Input_Doc));
 				}
 
 				{
