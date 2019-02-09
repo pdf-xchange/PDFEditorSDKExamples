@@ -20,7 +20,7 @@ namespace FullDemo
 			None				= 0,
 			Media				= 0x001,
 			Crop				= 0x002,
-			Trip				= 0x004,
+			Trim				= 0x004,
 			Art					= 0x008,
 			Bleed				= 0x010,
 
@@ -28,7 +28,7 @@ namespace FullDemo
 			RemoveHorzWhiteSp	= 0x400,
 			RemoveVertWhiteSp	= 0x800,
 		}
-		PDFXEdit.PXC_Rect m_rcCropBox, m_rcBleedBox, m_rcTrimBox, m_rcArtBox, m_rcMediaBox;
+		PXC_Rect m_rcCropBox, m_rcBleedBox, m_rcTrimBox, m_rcArtBox, m_rcMediaBox;
 
 		public CropPages(MainFrm mainFrm)
 		{
@@ -37,11 +37,11 @@ namespace FullDemo
 			InitializeComponent();
 
 
-			m_rcMediaBox = default(PDFXEdit.PXC_Rect);
-			m_rcArtBox = default(PDFXEdit.PXC_Rect);
-			m_rcCropBox = default(PDFXEdit.PXC_Rect);
-			m_rcBleedBox = default(PDFXEdit.PXC_Rect);
-			m_rcTrimBox = default(PDFXEdit.PXC_Rect);
+			m_rcMediaBox = default(PXC_Rect);
+			m_rcArtBox = default(PXC_Rect);
+			m_rcCropBox = default(PXC_Rect);
+			m_rcBleedBox = default(PXC_Rect);
+			m_rcTrimBox = default(PXC_Rect);
 
 			cbPagesSubset.SelectedIndex = 0;
 			cbCropMethod.SelectedIndex = 0;
@@ -67,14 +67,14 @@ namespace FullDemo
 			}
 		}
 
-		public void OnSerialize(PDFXEdit.IOperation op)
+		public void OnSerialize(IOperation op)
 		{
 			if (op == null)
 				return;			
-			PDFXEdit.ICabNode opts = op.Params.Root["Options"];
+			ICabNode opts = op.Params.Root["Options"];
 			int flags = (int)eOperaionFlags.None;
-			List<string> nameBoxs = new List<string>();
-			List<PDFXEdit.PXC_Rect> rectBoxs = new List<PDFXEdit.PXC_Rect>();
+			List<string> nameBoxes = new List<string>();
+			List<PXC_Rect> rectBoxes = new List<PXC_Rect>();
 
 			if (cbCropMethod.SelectedIndex == 1)
 				flags = (int)eOperaionFlags.WithRedaction;
@@ -86,49 +86,49 @@ namespace FullDemo
 			{
 				if (ckCrop.Checked)
 				{
-					nameBoxs.Add("CropBox");
-					rectBoxs.Add(m_rcCropBox);
+					nameBoxes.Add("CropBox");
+					rectBoxes.Add(m_rcCropBox);
 					flags += (int)eOperaionFlags.Crop;
 
 					if (ckAdjustMedia.Checked)
 					{
-						nameBoxs.Add("MediaBox");
-						rectBoxs.Add(m_rcCropBox);
+						nameBoxes.Add("MediaBox");
+						rectBoxes.Add(m_rcCropBox);
 						flags += (int)eOperaionFlags.Media;
 					}
 				}				
-				if (ckArt.Checked)
+				else if (ckArt.Checked)
 				{
-					nameBoxs.Add("ArtBox");
-					rectBoxs.Add(m_rcArtBox);
+					nameBoxes.Add("ArtBox");
+					rectBoxes.Add(m_rcArtBox);
 					flags += (int)eOperaionFlags.Art;					
 				}								
-				if (CkTrim.Checked)
+				else if (CkTrim.Checked)
 				{
-					nameBoxs.Add("TrimBox");
-					rectBoxs.Add(m_rcTrimBox);
-					flags += (int)eOperaionFlags.Trip;					
+					nameBoxes.Add("TrimBox");
+					rectBoxes.Add(m_rcTrimBox);
+					flags += (int)eOperaionFlags.Trim;					
 				}
-				if (ckBleed.Checked)
+				else
 				{
-					nameBoxs.Add("BleedBox");
-					rectBoxs.Add(m_rcBleedBox);
+					nameBoxes.Add("BleedBox");
+					rectBoxes.Add(m_rcBleedBox);
 					flags += (int)eOperaionFlags.Bleed;					
 				}
 			}
-			SetValueOptions(opts, nameBoxs, rectBoxs);
+			SetValueOptions(opts, nameBoxes, rectBoxes);
 			opts["Flags"].v = flags;
 		}
-		public void SetValueOptions(PDFXEdit.ICabNode opts, List<string> nNameBoxs, List<PDFXEdit.PXC_Rect> nRectBoxs)
+		public void SetValueOptions(ICabNode opts, List<string> nNameBoxes, List<PXC_Rect> nRectBoxes)
 		{
-			var RectPage = mainFrm.pdfCtl.Doc.CoreDoc.Pages[0].get_Box(PDFXEdit.PXC_BoxType.PBox_PageBox);
-			for (int i = 0; i < nNameBoxs.Count; i++)
+			var RectPage = mainFrm.pdfCtl.Doc.CoreDoc.Pages[0].get_Box(PXC_BoxType.PBox_PageBox);
+			for (int i = 0; i < nNameBoxes.Count; i++)
 			{
-				PDFXEdit.ICabNode Box = opts[nNameBoxs[i]];
-				Box["left"].v = RectPage.left + nRectBoxs[i].left;
-				Box["top"].v = RectPage.top - nRectBoxs[i].top;
-				Box["right"].v = RectPage.right - nRectBoxs[i].right;
-				Box["bottom"].v = RectPage.bottom + nRectBoxs[i].bottom;
+				ICabNode Box = opts[nNameBoxes[i]];
+				Box["left"].v = RectPage.left + nRectBoxes[i].left;
+				Box["top"].v = RectPage.top - nRectBoxes[i].top;
+				Box["right"].v = RectPage.right - nRectBoxes[i].right;
+				Box["bottom"].v = RectPage.bottom + nRectBoxes[i].bottom;
 			}
 		}
 		private void cbCropMethod_SelectedIndexChanged(object sender, EventArgs e)
@@ -181,14 +181,14 @@ namespace FullDemo
 					break;
 			}
 		}
-		public void UpdateValueBox(out PDFXEdit.PXC_Rect rect)
+		public void UpdateValueBox(out PXC_Rect rect)
 		{			
 			rect.left = (double)tLeft.Value;
 			rect.top = (double)tTop.Value;
 			rect.right = (double)tRight.Value;
 			rect.bottom = (double)tBottom.Value;
 		}
-		public void UpdateValueControl(PDFXEdit.PXC_Rect rect)
+		public void UpdateValueControl(PXC_Rect rect)
 		{
 			tLeft.Value = (decimal)rect.left;
 			tTop.Value = (decimal)rect.top;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PDFXEdit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,7 +35,7 @@ namespace FullDemo
 			StdPaperID paperID;
 			string sNamePaper;
 			DocumentSize document = new DocumentSize();
-			for (StdPaperID i = 0; i < StdPaperID.StdPaper_30x42; i++)
+			for (StdPaperID i = 0; i < StdPaperID._StdPaper_Max_; i++)
 			{
 				paperID = i;
 				sNamePaper = paperID.ToString();
@@ -48,13 +49,12 @@ namespace FullDemo
 			}
 			if (mainFrm.pdfCtl.Doc == null)
 				return;
-			//Maximum value = maximum count pages
 			tNumPage.Maximum = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
 			cbOrientation.SelectedIndex = 0;
 			cbLocation.SelectedIndex = 0;
 			cbPaperName.SelectedIndex = 4;
-			//Size document to control
-			var RectPage = mainFrm.pdfCtl.Doc.CoreDoc.Pages[0].get_Box(PDFXEdit.PXC_BoxType.PBox_PageBox);
+			//Size of the first document's page
+			var RectPage = mainFrm.pdfCtl.Doc.CoreDoc.Pages[0].get_Box(PXC_BoxType.PBox_PageBox);
 			tWidth.Value = (decimal)RectPage.right;
 			tHeight.Value = (decimal)RectPage.top;
 			lbDocumentSize.Text = String.Format("( {0} x {1} )", RectPage.right, RectPage.top);
@@ -74,12 +74,12 @@ namespace FullDemo
 			else						
 				lbNumPage.Text = "";			
 		}
-		public void OnSerialize(PDFXEdit.IOperation op)
+		public void OnSerialize(IOperation op)
 		{
 			if (op == null)
 				return;
 
-			PDFXEdit.ICabNode opts = op.Params.Root["Options"];
+			ICabNode opts = op.Params.Root["Options"];
 			//Pages
 			int nPaperType = 0;
 			if (rbStandard.Checked)
@@ -95,14 +95,12 @@ namespace FullDemo
 			//Destination
 			int nLocation = cbLocation.SelectedIndex == 0 ? 0 : 1;
 			opts["Location"].v = nLocation;
-			int nNumberPage = 0;
+			int nNumberPage = (int)tNumPage.Value;
 			if (rbFirst.Checked)
 				nNumberPage = 1;
 			else if (rbLast.Checked)
 				nNumberPage = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
-			else if (rbPage.Checked)
-				nNumberPage = (int)tNumPage.Value;
-			opts["Position"].v = nNumberPage-1;
+			opts["Position"].v = nNumberPage - 1;
 
 		}
 
@@ -139,7 +137,7 @@ namespace FullDemo
 
 		private void rbDocument_Click(object sender, EventArgs e)
 		{
-			var RectPage = mainFrm.pdfCtl.Doc.CoreDoc.Pages[0].get_Box(PDFXEdit.PXC_BoxType.PBox_PageBox);
+			var RectPage = mainFrm.pdfCtl.Doc.CoreDoc.Pages[0].get_Box(PXC_BoxType.PBox_PageBox);
 			tWidth.Value = (decimal)RectPage.right;
 			tHeight.Value = (decimal)RectPage.top;
 			rbDocument.Checked = true;

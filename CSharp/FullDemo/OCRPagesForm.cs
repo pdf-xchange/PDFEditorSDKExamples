@@ -10,19 +10,22 @@ using System.Windows.Forms;
 
 namespace FullDemo
 {
-	public partial class MovePages : Form, IFormHelper
+	public partial class OCRPagesForm : Form, IFormHelper
 	{
+		
+
 		private MainFrm mainFrm = null;
-		public MovePages(MainFrm mainFrm)
+		public OCRPagesForm(MainFrm mainFrm)
 		{
 			this.mainFrm = mainFrm;
 
 			InitializeComponent();
 
 			cbPagesSubset.SelectedIndex = 0;
-			cbLocation.SelectedIndex = 0;
+			cbOutputType.SelectedIndex = 1;
+			cbQuality.SelectedIndex = 3;
 		}
-
+		
 		public bool IsValid()
 		{
 			return mainFrm.pdfCtl.HasDoc;
@@ -34,12 +37,10 @@ namespace FullDemo
 			if (Enabled)
 			{
 				lbNumPages.Text = String.Format("total {0} pages", mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count);
-				lbNumPage.Text = String.Format("total {0} pages", mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count);
 			}
 			else
 			{
 				lbNumPages.Text = "";
-				lbNumPage.Text = "";
 			}
 		}
 
@@ -64,47 +65,17 @@ namespace FullDemo
 			else if (cbPagesSubset.SelectedIndex != 0)
 				rangeType = PDFXEdit.RangeType.RangeType_Even;
 			pagesRange["Filter"].v = rangeType;
-			int nNumberPage = 1;
-			bool bIsLandscape = cbLocation.SelectedIndex == 0;
-			if (rbFirst.Checked)
-			{
-				nNumberPage = bIsLandscape ? 0 : 2;
-			}
-			if (rbLast.Checked)
-			{
-				nNumberPage = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
-				if (bIsLandscape)
-					nNumberPage--;
-			}
-			if (rbPage.Checked)
-			{
-				nNumberPage = (int)tNumPage.Value + 1;
-				if (bIsLandscape)
-					nNumberPage--;
-			}
-			opts["InsertBefore"].v = nNumberPage;
+
+			//Output 
+			opts["OutputType"].v = cbOutputType.SelectedIndex;
+			opts["OutputDPI"].v = (cbQuality.SelectedIndex != 0) ? Convert.ToInt32(cbQuality.Text) : 0 ;
+			//opts["AutoDeskew"].v = ckAutoDeskew.Checked;
 		}
 
-		private void rbPages_CheckedChanged(object sender, EventArgs e)
+		private void cbOutputType_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			tPages.Focus();
-		}
-
-		private void rbFirst_Click(object sender, EventArgs e)
-		{
-			tNumPage.Value = 1;
-			rbFirst.Checked = true;
-		}
-
-		private void rbLast_Click(object sender, EventArgs e)
-		{
-			tNumPage.Value = (int)mainFrm.pdfCtl.Doc.CoreDoc.Pages.Count;
-			rbLast.Checked = true;
-		}
-
-		private void rbPage_CheckedChanged(object sender, EventArgs e)
-		{
-			tNumPage.Focus();
+			cbQuality.Enabled = cbOutputType.SelectedIndex == 0;
+			ckAutoDeskew.Enabled = cbOutputType.SelectedIndex == 0;
 		}
 	}
 }

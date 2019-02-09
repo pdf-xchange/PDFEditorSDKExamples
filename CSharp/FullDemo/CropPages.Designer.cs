@@ -37,8 +37,15 @@
 			this.rbPages = new System.Windows.Forms.RadioButton();
 			this.rbCurPage = new System.Windows.Forms.RadioButton();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
+			this.groupBox4 = new System.Windows.Forms.GroupBox();
+			this.ckAdjustMedia = new System.Windows.Forms.CheckBox();
+			this.ckBleed = new System.Windows.Forms.CheckBox();
+			this.ckArt = new System.Windows.Forms.CheckBox();
+			this.CkTrim = new System.Windows.Forms.CheckBox();
+			this.label7 = new System.Windows.Forms.Label();
+			this.ckCrop = new System.Windows.Forms.CheckBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
@@ -46,26 +53,19 @@
 			this.tTop = new System.Windows.Forms.NumericUpDown();
 			this.tRight = new System.Windows.Forms.NumericUpDown();
 			this.tBottom = new System.Windows.Forms.NumericUpDown();
-			this.cbCropMethod = new System.Windows.Forms.ComboBox();
 			this.cbBox = new System.Windows.Forms.ComboBox();
-			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.btnToZero = new System.Windows.Forms.Button();
-			this.groupBox4 = new System.Windows.Forms.GroupBox();
-			this.ckCrop = new System.Windows.Forms.CheckBox();
-			this.label7 = new System.Windows.Forms.Label();
-			this.CkTrim = new System.Windows.Forms.CheckBox();
-			this.ckArt = new System.Windows.Forms.CheckBox();
-			this.ckBleed = new System.Windows.Forms.CheckBox();
-			this.ckAdjustMedia = new System.Windows.Forms.CheckBox();
+			this.label5 = new System.Windows.Forms.Label();
+			this.cbCropMethod = new System.Windows.Forms.ComboBox();
 			this.groupBox2.SuspendLayout();
 			this.groupBox1.SuspendLayout();
 			this.groupBox3.SuspendLayout();
+			this.groupBox4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tLeft)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tTop)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tRight)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tBottom)).BeginInit();
-			this.groupBox4.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// groupBox2
@@ -163,15 +163,6 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Crop Pages";
 			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(51, 48);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(28, 13);
-			this.label1.TabIndex = 10;
-			this.label1.Text = "Left:";
-			// 
 			// groupBox3
 			// 
 			this.groupBox3.Controls.Add(this.groupBox4);
@@ -183,6 +174,99 @@
 			this.groupBox3.TabIndex = 11;
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "Crop Margins";
+			// 
+			// groupBox4
+			// 
+			this.groupBox4.Controls.Add(this.ckAdjustMedia);
+			this.groupBox4.Controls.Add(this.ckBleed);
+			this.groupBox4.Controls.Add(this.ckArt);
+			this.groupBox4.Controls.Add(this.CkTrim);
+			this.groupBox4.Controls.Add(this.label7);
+			this.groupBox4.Controls.Add(this.ckCrop);
+			this.groupBox4.Controls.Add(this.label1);
+			this.groupBox4.Controls.Add(this.label2);
+			this.groupBox4.Controls.Add(this.label3);
+			this.groupBox4.Controls.Add(this.label4);
+			this.groupBox4.Controls.Add(this.tLeft);
+			this.groupBox4.Controls.Add(this.tTop);
+			this.groupBox4.Controls.Add(this.tRight);
+			this.groupBox4.Controls.Add(this.tBottom);
+			this.groupBox4.Controls.Add(this.cbBox);
+			this.groupBox4.Controls.Add(this.label6);
+			this.groupBox4.Controls.Add(this.btnToZero);
+			this.groupBox4.Location = new System.Drawing.Point(6, 46);
+			this.groupBox4.Name = "groupBox4";
+			this.groupBox4.Size = new System.Drawing.Size(445, 199);
+			this.groupBox4.TabIndex = 23;
+			this.groupBox4.TabStop = false;
+			// 
+			// ckAdjustMedia
+			// 
+			this.ckAdjustMedia.AutoSize = true;
+			this.ckAdjustMedia.Location = new System.Drawing.Point(86, 127);
+			this.ckAdjustMedia.Name = "ckAdjustMedia";
+			this.ckAdjustMedia.Size = new System.Drawing.Size(303, 17);
+			this.ckAdjustMedia.TabIndex = 29;
+			this.ckAdjustMedia.Text = "Adjust size of the pages` Media Box to the size of Crop Box";
+			this.ckAdjustMedia.UseVisualStyleBackColor = true;
+			// 
+			// ckBleed
+			// 
+			this.ckBleed.AutoSize = true;
+			this.ckBleed.Location = new System.Drawing.Point(86, 173);
+			this.ckBleed.Name = "ckBleed";
+			this.ckBleed.Size = new System.Drawing.Size(53, 17);
+			this.ckBleed.TabIndex = 28;
+			this.ckBleed.Text = "Bleed";
+			this.ckBleed.UseVisualStyleBackColor = true;
+			// 
+			// ckArt
+			// 
+			this.ckArt.AutoSize = true;
+			this.ckArt.Location = new System.Drawing.Point(206, 173);
+			this.ckArt.Name = "ckArt";
+			this.ckArt.Size = new System.Drawing.Size(39, 17);
+			this.ckArt.TabIndex = 27;
+			this.ckArt.Text = "Art";
+			this.ckArt.UseVisualStyleBackColor = true;
+			// 
+			// CkTrim
+			// 
+			this.CkTrim.AutoSize = true;
+			this.CkTrim.Location = new System.Drawing.Point(206, 150);
+			this.CkTrim.Name = "CkTrim";
+			this.CkTrim.Size = new System.Drawing.Size(46, 17);
+			this.CkTrim.TabIndex = 26;
+			this.CkTrim.Text = "Trim";
+			this.CkTrim.UseVisualStyleBackColor = true;
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(10, 151);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(68, 13);
+			this.label7.TabIndex = 25;
+			this.label7.Text = "Change Box:";
+			// 
+			// ckCrop
+			// 
+			this.ckCrop.AutoSize = true;
+			this.ckCrop.Location = new System.Drawing.Point(86, 150);
+			this.ckCrop.Name = "ckCrop";
+			this.ckCrop.Size = new System.Drawing.Size(48, 17);
+			this.ckCrop.TabIndex = 24;
+			this.ckCrop.Text = "Crop";
+			this.ckCrop.UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(51, 48);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(28, 13);
+			this.label1.TabIndex = 10;
+			this.label1.Text = "Left:";
 			// 
 			// label2
 			// 
@@ -263,21 +347,6 @@
 			this.tBottom.Size = new System.Drawing.Size(120, 20);
 			this.tBottom.TabIndex = 17;
 			// 
-			// cbCropMethod
-			// 
-			this.cbCropMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbCropMethod.FormattingEnabled = true;
-			this.cbCropMethod.Items.AddRange(new object[] {
-            "Manual Mergin Control",
-            "Remove All White Space",
-            "Remove Verticale White Space",
-            "Remove Horizontale White Space"});
-			this.cbCropMethod.Location = new System.Drawing.Point(92, 19);
-			this.cbCropMethod.Name = "cbCropMethod";
-			this.cbCropMethod.Size = new System.Drawing.Size(339, 21);
-			this.cbCropMethod.TabIndex = 18;
-			this.cbCropMethod.SelectedIndexChanged += new System.EventHandler(this.cbCropMethod_SelectedIndexChanged);
-			// 
 			// cbBox
 			// 
 			this.cbBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -293,15 +362,6 @@
 			this.cbBox.TabIndex = 19;
 			this.cbBox.DropDown += new System.EventHandler(this.cbBox_DropDown);
 			this.cbBox.DropDownClosed += new System.EventHandler(this.cbBox_DropDownClosed);
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(14, 22);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(71, 13);
-			this.label5.TabIndex = 20;
-			this.label5.Text = "Crop Method:";
 			// 
 			// label6
 			// 
@@ -322,90 +382,29 @@
 			this.btnToZero.UseVisualStyleBackColor = true;
 			this.btnToZero.Click += new System.EventHandler(this.btnToZero_Click);
 			// 
-			// groupBox4
+			// label5
 			// 
-			this.groupBox4.Controls.Add(this.ckAdjustMedia);
-			this.groupBox4.Controls.Add(this.ckBleed);
-			this.groupBox4.Controls.Add(this.ckArt);
-			this.groupBox4.Controls.Add(this.CkTrim);
-			this.groupBox4.Controls.Add(this.label7);
-			this.groupBox4.Controls.Add(this.ckCrop);
-			this.groupBox4.Controls.Add(this.label1);
-			this.groupBox4.Controls.Add(this.label2);
-			this.groupBox4.Controls.Add(this.label3);
-			this.groupBox4.Controls.Add(this.label4);
-			this.groupBox4.Controls.Add(this.tLeft);
-			this.groupBox4.Controls.Add(this.tTop);
-			this.groupBox4.Controls.Add(this.tRight);
-			this.groupBox4.Controls.Add(this.tBottom);
-			this.groupBox4.Controls.Add(this.cbBox);
-			this.groupBox4.Controls.Add(this.label6);
-			this.groupBox4.Controls.Add(this.btnToZero);
-			this.groupBox4.Location = new System.Drawing.Point(6, 46);
-			this.groupBox4.Name = "groupBox4";
-			this.groupBox4.Size = new System.Drawing.Size(445, 199);
-			this.groupBox4.TabIndex = 23;
-			this.groupBox4.TabStop = false;
-			this.groupBox4.Text = "Box";
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(14, 22);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(71, 13);
+			this.label5.TabIndex = 20;
+			this.label5.Text = "Crop Method:";
 			// 
-			// ckCrop
+			// cbCropMethod
 			// 
-			this.ckCrop.AutoSize = true;
-			this.ckCrop.Location = new System.Drawing.Point(86, 150);
-			this.ckCrop.Name = "ckCrop";
-			this.ckCrop.Size = new System.Drawing.Size(48, 17);
-			this.ckCrop.TabIndex = 24;
-			this.ckCrop.Text = "Crop";
-			this.ckCrop.UseVisualStyleBackColor = true;
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(10, 151);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(68, 13);
-			this.label7.TabIndex = 25;
-			this.label7.Text = "Change Box:";
-			// 
-			// CkTrim
-			// 
-			this.CkTrim.AutoSize = true;
-			this.CkTrim.Location = new System.Drawing.Point(206, 150);
-			this.CkTrim.Name = "CkTrim";
-			this.CkTrim.Size = new System.Drawing.Size(46, 17);
-			this.CkTrim.TabIndex = 26;
-			this.CkTrim.Text = "Trim";
-			this.CkTrim.UseVisualStyleBackColor = true;
-			// 
-			// ckArt
-			// 
-			this.ckArt.AutoSize = true;
-			this.ckArt.Location = new System.Drawing.Point(206, 173);
-			this.ckArt.Name = "ckArt";
-			this.ckArt.Size = new System.Drawing.Size(39, 17);
-			this.ckArt.TabIndex = 27;
-			this.ckArt.Text = "Art";
-			this.ckArt.UseVisualStyleBackColor = true;
-			// 
-			// ckBleed
-			// 
-			this.ckBleed.AutoSize = true;
-			this.ckBleed.Location = new System.Drawing.Point(86, 173);
-			this.ckBleed.Name = "ckBleed";
-			this.ckBleed.Size = new System.Drawing.Size(53, 17);
-			this.ckBleed.TabIndex = 28;
-			this.ckBleed.Text = "Bleed";
-			this.ckBleed.UseVisualStyleBackColor = true;
-			// 
-			// ckAdjustMedia
-			// 
-			this.ckAdjustMedia.AutoSize = true;
-			this.ckAdjustMedia.Location = new System.Drawing.Point(86, 127);
-			this.ckAdjustMedia.Name = "ckAdjustMedia";
-			this.ckAdjustMedia.Size = new System.Drawing.Size(303, 17);
-			this.ckAdjustMedia.TabIndex = 29;
-			this.ckAdjustMedia.Text = "Adjust size of the pages` Media Box to the size of Crop Box";
-			this.ckAdjustMedia.UseVisualStyleBackColor = true;
+			this.cbCropMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbCropMethod.FormattingEnabled = true;
+			this.cbCropMethod.Items.AddRange(new object[] {
+            "Manual Mergin Control",
+            "Remove All White Space",
+            "Remove Verticale White Space",
+            "Remove Horizontale White Space"});
+			this.cbCropMethod.Location = new System.Drawing.Point(92, 19);
+			this.cbCropMethod.Name = "cbCropMethod";
+			this.cbCropMethod.Size = new System.Drawing.Size(339, 21);
+			this.cbCropMethod.TabIndex = 18;
+			this.cbCropMethod.SelectedIndexChanged += new System.EventHandler(this.cbCropMethod_SelectedIndexChanged);
 			// 
 			// CropPages
 			// 
@@ -423,12 +422,12 @@
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox3.ResumeLayout(false);
 			this.groupBox3.PerformLayout();
+			this.groupBox4.ResumeLayout(false);
+			this.groupBox4.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tLeft)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tTop)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tRight)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.tBottom)).EndInit();
-			this.groupBox4.ResumeLayout(false);
-			this.groupBox4.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
