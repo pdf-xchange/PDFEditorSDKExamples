@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Delphi Examples for PDF-XChangeEditCore SDK '
-  ClientHeight = 675
-  ClientWidth = 899
+  ClientHeight = 790
+  ClientWidth = 1113
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,14 +20,27 @@ object Form1: TForm1
   object PXV_Control1: TPXV_Control
     Left = 0
     Top = 0
-    Width = 899
-    Height = 675
+    Width = 1113
+    Height = 701
     Align = alClient
     TabOrder = 0
     OnEvent = PXV_Control1Event
-    ExplicitLeft = -56
-    ExplicitTop = -32
-    ControlData = {000C0000EA5C0000C3450000}
+    ExplicitTop = -6
+    ExplicitWidth = 899
+    ExplicitHeight = 586
+    ControlData = {000C00000873000073480000}
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 701
+    Width = 1113
+    Height = 89
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
+    ExplicitTop = 586
+    ExplicitWidth = 899
   end
   object MainMenu1: TMainMenu
     Left = 40
@@ -44,6 +57,12 @@ object Form1: TForm1
         Action = FileExit1
       end
     end
+    object View1: TMenuItem
+      Caption = 'View'
+      object Zoom2001: TMenuItem
+        Action = actSetZoom
+      end
+    end
     object Doc: TMenuItem
       Caption = 'Document'
       object insertPage1: TMenuItem
@@ -51,6 +70,9 @@ object Form1: TForm1
       end
       object deletePage1: TMenuItem
         Action = deletePage
+      end
+      object InsertPages1: TMenuItem
+        Action = actInsertPages
       end
     end
     object Tool1: TMenuItem
@@ -66,6 +88,16 @@ object Form1: TForm1
       end
       object actGotoPage1: TMenuItem
         Action = actGotoPage
+      end
+      object actGoto1: TMenuItem
+        Action = actGoto
+      end
+      object ImagesToDoc1: TMenuItem
+        Caption = 'Images To Doc'
+        OnClick = ImagesToDoc1Click
+      end
+      object actDrawImage1: TMenuItem
+        Action = actDrawImage
       end
     end
     object Help1: TMenuItem
@@ -128,6 +160,26 @@ object Form1: TForm1
       Category = 'Tool'
       Caption = 'Goto Page'
       OnExecute = actGotoPageExecute
+    end
+    object actGoto: TAction
+      Category = 'Tool'
+      Caption = 'actGoto'
+      OnExecute = actGotoExecute
+    end
+    object actDrawImage: TAction
+      Category = 'Tool'
+      Caption = 'Draw Image'
+      OnExecute = actDrawImageExecute
+    end
+    object actSetZoom: TAction
+      Category = 'View'
+      Caption = 'Zoom 200'
+      OnExecute = actSetZoomExecute
+    end
+    object actInsertPages: TAction
+      Category = 'File'
+      Caption = 'Insert Pages'
+      OnExecute = actInsertPagesExecute
     end
   end
   object FileOpenDialog1: TFileOpenDialog

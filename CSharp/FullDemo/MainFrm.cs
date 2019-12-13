@@ -2140,8 +2140,8 @@ namespace FullDemo
 
 			PDFXEdit.ICabNode pr = pdfCtl.Inst.Settings["CustomUI"];
 
-			// setup colors
-			{
+            // setup colors
+            {
 				PDFXEdit.ICabNode clrArr = pr["Colors"];
 				SetCustColor(clrArr, "base",		clr2str(btnFaceClr.BackColor));
 				SetCustColor(clrArr, "window",		clr2str(btnWndClr.BackColor));
@@ -2337,6 +2337,47 @@ namespace FullDemo
 			if (fUpdateControls != 0) return;
 
 			ShowCmdBar(IDS.cmdbar_rotateView, (ckShowRotateViewBar.Checked));
+		}
+
+		private void testToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			PDFXEdit.IPXV_Document doc = pdfCtl.Doc;
+			PDFXEdit.IUIX_LayoutItem itm = doc.ActiveView.Panes.Layout.GetItem(doc.ActiveView.PageThumbsView.Obj);
+			if (itm != null)
+			{
+				itm.Show();
+
+				// lookup for first tabbed-container (by default the 'Thumbnails' pane is inside the special tabbed container that contains 'Bookmarks', 'Comments', 'Contents' and others too)
+				PDFXEdit.IUIX_LayoutItem p = itm.Parent;
+				itm = null;
+				while (p != null)
+				{
+					if ((p.Style & (int)PDFXEdit.UIX_LayoutItemStyleFlags.UIX_LayoutItemStyle_Splitted) == 0)
+					{
+						itm = p;
+						break;
+					}
+					p = p.Parent;
+				}
+
+				if (itm != null)
+				{
+					doc.ActiveView.Panes.Layout.LockUpdates();
+					int addFlag = (int)PDFXEdit.UIX_LayoutItemStyleFlags.UIX_LayoutItemStyle_FixedSize;
+					itm.SetStyle(addFlag, addFlag);
+
+					PDFXEdit.tagSIZE sz = itm.get_FixedSize();
+					//sz.cx = sz.cy = 500; // set custom size here of pane (width will be changed in our case)
+					if (sz.cx < 200)
+						sz.cx = 200;
+					sz.cx += 10;
+					sz.cy = sz.cx;
+					itm.set_FixedSize(sz);
+					sz = itm.get_FixedSize();
+					doc.ActiveView.Panes.Layout.UnLockUpdates();
+					sz = itm.get_FixedSize();
+				}
+			}
 		}
 	}
 }
