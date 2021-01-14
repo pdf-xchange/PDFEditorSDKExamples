@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<BorlandProject>
-  <Transactions>
-    <Transaction>2019/09/24 14:47:58.933,=C:\Users\root\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2019/09/24 14:50:24.881,Z:\Project\Repos\PDFEditorSDKExamples\Delphi\SampleCreatePXVInst\SampleMain.dfm=C:\Users\root\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2019/09/24 14:50:24.881,Z:\Project\Repos\PDFEditorSDKExamples\Delphi\SampleCreatePXVInst\SampleMain.pas=C:\Users\root\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2019/09/24 14:50:28.186,Z:\Project\Repos\PDFEditorSDKExamples\Delphi\SampleCreatePXVInst\SampleCreatePXVInst.dproj=C:\Users\root\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-  </Transactions>
-</BorlandProject>

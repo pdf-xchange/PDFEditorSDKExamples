@@ -17,20 +17,37 @@ object Form1: TForm1
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object Splitter1: TSplitter
+    Left = 0
+    Top = 698
+    Width = 1113
+    Height = 3
+    Cursor = crVSplit
+    Align = alBottom
+    ExplicitTop = 0
+    ExplicitWidth = 701
+  end
   object PXV_Control1: TPXV_Control
     Left = 0
     Top = 0
     Width = 1113
-    Height = 701
+    Height = 698
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 288
-    ExplicitTop = 192
-    ExplicitWidth = 192
-    ExplicitHeight = 192
+    ExplicitTop = -3
     ControlData = {
-      000E0000EA5C0000C34500000800000000001300000000000B00FFFF0B00FFFF
+      000E000008730000244800000800000000001300000000000B00FFFF0B00FFFF
       0B0000000B000000130003000000}
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 701
+    Width = 1113
+    Height = 89
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
   end
   object MainMenu1: TMainMenu
     Left = 40

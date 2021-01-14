@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Actions, Vcl.ActnList, Vcl.Menus,
-  PDFXEdit_TLB, Vcl.OleServer, Vcl.OleCtrls, Vcl.StdActns, Vcl.StdCtrls;
+  PDFXEdit_TLB, Vcl.OleServer, Vcl.OleCtrls, Vcl.StdActns, Vcl.StdCtrls,
+  Vcl.ExtCtrls;
 
 type
   TForm1 = class(TForm)
@@ -37,6 +38,8 @@ type
     actGotoPage: TAction;
     actGotoPage1: TMenuItem;
     PXV_Control1: TPXV_Control;
+    Memo1: TMemo;
+    Splitter1: TSplitter;
     procedure FileOpen1Accept(Sender: TObject);
     procedure actVerifyPageLinksExecute(Sender: TObject);
     procedure insertPageExecute(Sender: TObject);
@@ -74,7 +77,7 @@ implementation
 {$R *.dfm}
 
 uses
-  About, PDFInst, System.Math, SXC_40;
+  About, PDFInst, System.Math;
 
 const
   licKeyDEMO: string  =
@@ -123,7 +126,7 @@ var
 begin
   bmp := TBitmap.Create;
   try
-    bmp.LoadFromFile('z:\\Project\\Delphi\\cat_banjo.bmp');
+    bmp.LoadFromFile('cat_banjo.bmp');
     BmpToImage(bmp, ImgPage);
   finally
     FreeAndNil(bmp);
@@ -135,10 +138,10 @@ begin
     Scan.INST_IXC := PXV_Control1.Inst.GetExtension('IXC') as PDFXEdit_TLB.IIXC_Inst;
     Scan.CreateTwainObject;
     ImageToBmp(Scan.FImg, bmp);
-    bmp.SaveToFile('z:\\Project\\Delphi\\test1.bmp');
+    bmp.SaveToFile('test1.bmp');
 
     ImageToBmp(ImgPage, bmp);
-    bmp.SaveToFile('z:\\Project\\Delphi\\test2.bmp');
+    bmp.SaveToFile('test2.bmp');
   finally
     FreeAndNil(bmp);
   end;
@@ -153,6 +156,7 @@ Begin
   bmp.SetSize(nWidth, nHeight);
   img.DrawToDC(bmp.Canvas.Handle, 0, 0, nWidth, nHeight, 0, 0, 0);
 End;
+
 procedure TForm1.BmpToImage(const bmp: TBitmap; var Img: PDFXEdit_TLB.IIXC_Page);
 var
   iInst: PDFXEdit_TLB.IIXC_Inst;
@@ -161,7 +165,6 @@ Begin
   iInst := PXV_Control1.Inst.GetExtension('IXC') as PDFXEdit_TLB.IIXC_Inst;
   iInst.Page_CreateFromHBITMAP(bmp.Handle,0, Img);
 End;
-
 
 procedure GetData(userData: LongWord; pData: pointer; DataSize: LongWord); stdcall;
 begin
@@ -183,7 +186,6 @@ begin
     FImg := DibToPage(HDib);
   end;
 end;
-
 
 function TTrackerScanLib.DibToPage(HDib: Cardinal): IIXC_Page;
 var
@@ -276,9 +278,7 @@ begin
     Height := Abs(pHeader.biHeight);
     DataSize := pHeader.biSizeImage + SizeOf(BITMAPINFOHEADER) + PalSize;
 
-
     INST_IXC.Page_CreateFromMemory(Width, Height, MemType, NumColors, pPalette^, pDataForCodex^, Offset, DataSize - (SizeOf(BITMAPINFOHEADER) + PalSize), 0, Result);
-
 
     if Assigned(Result) and (pHeader.biXPelsPerMeter <> 0) and (pHeader.biYPelsPerMeter <> 0) then
     begin
@@ -308,25 +308,6 @@ begin
     Result := True;
     exit;
   end;
-
-  FTwain := SXC_CreateTwainObject(FRegKey, FDevCode);
-  if not Assigned(FTwain) then
-  begin
-    FErrorStr := 'Could not create Twain Object';
-    exit;
-  end;
-
-  hr := SXC_InitTwain(FTwain);
-  if not IsError(hr) then
-  begin
-    SXC_SetProc(FTwain, GetData, Integer(Self));
-    Result := True;
-
-    SXC_SelectSourceGUI(FTwain);
-
-    SXC_EnableSource(FTwain,GetActiveWindow(), true);
-  end;
-
 end;
 
 procedure TForm1.actGetContentExecute(Sender: TObject);
@@ -405,15 +386,11 @@ end;
 
 procedure TForm1.actInsertPagesExecute(Sender: TObject);
 begin
-//  PXV_Control1.Frame.View.DocViewsArea.DocViews.Item[0];
   gInst.PDF_InsertPages( PXV_Control1.Frame.View.DocViewsArea.DocViews.Item[1].Doc,
                           PXV_Control1.Frame.View.DocViewsArea.DocViews.Item[0].Doc, '', '', -1, false);
 
   gInst.PDF_InsertPages( PXV_Control1.Frame.View.DocViewsArea.DocViews.Item[0].Doc,
                           PXV_Control1.Frame.View.DocViewsArea.DocViews.Item[1].Doc, '', '', -1, false);
-  //gInst.PDF_InsertPages( PXV_Control1.Doc, nil, 'z:\Project\Numbers.pdf', '', 0, false);
-  //gInst.PDF_InsertPages( PXV_Control1.Doc, nil, 'z:\Project\fileInfo.pdf', '', 0, false);
-//  gInst.PDF_InsertPages( PXV_Control1.Doc, nil, 'z:\Project\356h.pdf', '', 0, false);
 end;
 
 procedure TForm1.actSetZoomExecute(Sender: TObject);
@@ -422,23 +399,6 @@ var
   evt: PDFXEdit_TLB.IEvent;
 begin
   gInst.EnableSmallIcon(False);
-
-{
-  evtID := PXV_Control1.Inst.Str2ID('e.document.propsChanged', false);
-  evt := PXV_Control1.Inst.EventServer.CreateNewEvent(evtID, PARAM_T(PXV_Control1.Doc), PDFXEdit_TLB.DocViewFlag_DisplayDocTitle);
-  PXV_Control1.Inst.EventServer.FireEvent(evt, PXV_Control1.Doc);
-
-  evtID := PXV_Control1.Inst.Str2ID('e.cmdCustomization', false);
-  objID := PXV_Control1.Inst.Str2ID('mainView', false);
-  evt := PXV_Control1.Inst.EventServer.CreateNewEvent(evtID, objID, $FFFF);
-  PXV_Control1.Inst.EventServer.FireEvent(evt, PXV_Control1.Inst);
-}
-
-  //PXV_Control1.SetZoom(0, 200, true);
-  //PXV_Control1.ZoomLevel := 200;
-  //ShowMessage(Format('Zoom %f', [PXV_Control1.ZoomLevel]));
-  //PXV_Control1.Inst.Settings['CustomUI.Colors'].Add(dt_Undefined).v := RGB(255, 255, 255);
-  //PXV_Control1.
 end;
 
 procedure TForm1.actVerifyPageLinksExecute(Sender: TObject);
@@ -572,22 +532,13 @@ begin
   RegisterEvents(True);
   PXV_Control1.VisibleCmdPanes := 3;
 
-//  evtID := PXV_Control1.Inst.Str2ID('e.cmdCustomization', false);
-//  evt := PXV_Control1.Inst.EventServer.CreateNewEvent(evtID, PARAM_T(PXV_Control1.Doc), PDFXEdit_TLB.DocViewFlag_DisplayDocTitle);
-//  PXV_Control1.Inst.EventServer.FireEvent(evt, PXV_Control1.Doc);
-
-//    evtID := PXV_Control1.Inst.Str2ID('e.cmdCustomization', false);
-//    objID := PXV_Control1.Inst.Str2ID('mainView', false);
-//    evt := PXV_Control1.Inst.EventServer.CreateNewEvent(evtID, objID, UIX_CmdCustomized_Commands);
-//    PXV_Control1.Inst.EventServer.FireEvent(evt, PXV_Control1.Inst);
-
   for objID := 0 to _PXV_AppPrefsChange_Max_ - 1 do
     PXV_Control1.Inst.FireAppPrefsChanged(objID, nil);
 end;
 
 procedure TForm1.ImagesToDoc1Click(Sender: TObject);
 begin
-  ImageToDocEx('z:\Project\Image\PDFCompare\lorry.png','z:\Project\rez.pdf');
+  ImageToDocEx('lorry.png','rez.pdf');
 end;
 
 procedure TForm1.ImageToDocEx(AInputFile, AOutputFile: String);

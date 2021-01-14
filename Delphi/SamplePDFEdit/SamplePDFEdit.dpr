@@ -4,8 +4,7 @@ uses
   Vcl.Forms,
   untMain in 'untMain.pas' {Form1},
   PDFInst in 'PDFInst.pas',
-  about in 'about.pas' {AboutBox},
-  SXC_40 in 'SXC_40.pas';
+  about in 'about.pas' {AboutBox};
 
 {$R *.res}
 
