@@ -17,7 +17,14 @@ public:
 		m_pInst = pInst;
 	}
 
+
 public:
+	HRESULT __stdcall GetParamsDesc(struct ICabNode* pConvParams, BSTR* pDesc) override
+	{
+		*pDesc = ::SysAllocString(L"conv.myDesc");
+		return S_OK;
+	}
+
 	virtual HRESULT __stdcall CheckFormat(struct IPXV_Inst * pInst, IUnknown * pSrc, ULONG_T nFlags, enum PXV_FmtCheckResult * pCheckResVal) override
 	{
 		return CheckFormat2(pInst, pSrc, nFlags, nullptr, nullptr, pCheckResVal);

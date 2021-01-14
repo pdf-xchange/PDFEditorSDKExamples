@@ -49,7 +49,7 @@ HRESULT ConverterCSV2PDF(IPXC_Inst* pxcInst, IStream* pFile, IProgressMon * pPro
 	if (pProgress)
 	{
 		pProgress->put_Style(ProgressStyle_Normal | ProgressStyle_AllowCancel);
-		pProgress->put_Duration(ss.cbSize.QuadPart);
+		pProgress->put_Duration((double)ss.cbSize.QuadPart);
 		pProgress->put_Pos(fPos);
 	}
 
@@ -165,5 +165,6 @@ HRESULT ConverterCSV2PDF(IPXC_Inst* pxcInst, IStream* pFile, IProgressMon * pPro
 	std::return_temporary_buffer(pRead.first);
 	return hr;
 };
+
 
 }
