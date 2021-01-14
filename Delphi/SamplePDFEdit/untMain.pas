@@ -10,7 +10,6 @@ uses
 
 type
   TForm1 = class(TForm)
-    PXV_Control1: TPXV_Control;
     MainMenu1: TMainMenu;
     ActionList1: TActionList;
     FileOpenDialog1: TFileOpenDialog;
@@ -37,17 +36,7 @@ type
     GetContent1: TMenuItem;
     actGotoPage: TAction;
     actGotoPage1: TMenuItem;
-    actGoto: TAction;
-    actGoto1: TMenuItem;
-    Memo1: TMemo;
-    ImagesToDoc1: TMenuItem;
-    actDrawImage: TAction;
-    actDrawImage1: TMenuItem;
-    View1: TMenuItem;
-    Zoom2001: TMenuItem;
-    actSetZoom: TAction;
-    actInsertPages: TAction;
-    InsertPages1: TMenuItem;
+    PXV_Control1: TPXV_Control;
     procedure FileOpen1Accept(Sender: TObject);
     procedure actVerifyPageLinksExecute(Sender: TObject);
     procedure insertPageExecute(Sender: TObject);
