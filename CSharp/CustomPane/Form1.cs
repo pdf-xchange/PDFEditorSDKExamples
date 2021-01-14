@@ -253,6 +253,19 @@ namespace CustomPane
 				throw new NotImplementedException();
 			}
 
+			public bool IsDuplicate(IPXV_View pOther)
+			{
+				throw new NotImplementedException();
+			}
+			public void OnBeforeSaveSession(int nFlags = 0)
+			{
+					throw new NotImplementedException();
+			}
+			public void Close(int nFlags = 0)
+			{
+				throw new NotImplementedException();
+			}
+
 			public PDFXEdit.IPXV_ViewPanesCollection Panes
 			{
 				get { return m_Panes; }
@@ -296,6 +309,13 @@ namespace CustomPane
 			}
 
 			public bool IsRibbonMode
+			{
+				get
+				{
+					throw new NotImplementedException();
+				}
+			}
+			public int StateFlags
 			{
 				get
 				{
