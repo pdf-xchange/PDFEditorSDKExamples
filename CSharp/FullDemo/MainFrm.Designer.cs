@@ -2245,15 +2245,7 @@ namespace FullDemo
 			this.splitContainer1.Location = new System.Drawing.Point(758, 6);
 			this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
 			this.splitContainer1.Name = "splitContainer1";
-			// 
-			// splitContainer1.Panel1
-			// 
-			this.splitContainer1.Panel1.Controls.Add(this.pdfCtl);
-			this.splitContainer1.Panel2Collapsed = true;
-			this.splitContainer1.Size = new System.Drawing.Size(993, 1157);
-			this.splitContainer1.SplitterDistance = 414;
-			this.splitContainer1.SplitterWidth = 6;
-			this.splitContainer1.TabIndex = 3;
+
 			// 
 			// pdfCtl
 			// 
@@ -2267,8 +2259,17 @@ namespace FullDemo
 			this.pdfCtl.TabIndex = 0;
 			this.pdfCtl.OnEvent += new AxPDFXEdit._IPXV_ControlEvents_OnEventEventHandler(this.pdfCtl_OnEvent);
 			// 
-			// label45
+			// splitContainer1.Panel1
 			// 
+			this.splitContainer1.Panel1.Controls.Add(this.pdfCtl);
+			this.splitContainer1.Panel2Collapsed = true;
+			this.splitContainer1.Size = new System.Drawing.Size(993, 1157);
+			this.splitContainer1.SplitterDistance = 414;
+			this.splitContainer1.SplitterWidth = 6;
+			this.splitContainer1.TabIndex = 3;          
+			// 
+														// label45
+														// 
 			this.label45.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this.label45.Location = new System.Drawing.Point(8, 468);
 			this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);

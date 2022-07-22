@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FullDemo</RootNamespace>
     <AssemblyName>FullDemo</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>\\LOCALHOST\Deploy\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
@@ -87,7 +88,7 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup>
-    <ManifestCertificateThumbprint>B18FC2187F94C6C73AE0B0EBECB6AEC0D3817266</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8EF6BABA551A663C7AE292D5BDD6835BBFCE8249</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>FullDemo_TemporaryKey.pfx</ManifestKeyFile>
