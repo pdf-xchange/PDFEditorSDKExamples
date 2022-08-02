@@ -2236,8 +2236,8 @@ namespace FullDemo
 
 			PDFXEdit.ICabNode pr = pdfCtl.Inst.Settings["CustomUI"];
 
-            // setup colors
-            {
+			// setup colors
+			{
 				PDFXEdit.ICabNode clrArr = pr["Colors"];
 				SetCustColor(clrArr, "base",		clr2str(btnFaceClr.BackColor));
 				SetCustColor(clrArr, "window",		clr2str(btnWndClr.BackColor));

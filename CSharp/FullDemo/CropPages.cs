@@ -93,10 +93,10 @@ namespace FullDemo
 					if (ckAdjustMedia.Checked)
 					{
 						nameBoxes.Add("MediaBox");
-						rectBoxes.Add(m_rcCropBox);
+						rectBoxes.Add(m_rcMediaBox);
 						flags += (int)eOperaionFlags.Media;
 					}
-				}				
+				}
 				else if (ckArt.Checked)
 				{
 					nameBoxes.Add("ArtBox");

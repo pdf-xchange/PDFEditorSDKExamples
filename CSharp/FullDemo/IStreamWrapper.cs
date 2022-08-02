@@ -44,8 +44,13 @@ namespace FullDemo
 			m_sync = streamWrapper.m_sync;
 		}
 
+		void IStream.SetSize(long libNewSize)
+		{
+			m_stream.SetLength(libNewSize); // +++
+		}
 
-#region IStream implementation
+
+		#region IStream implementation
 
 		void IStream.Clone(out IStream clone)
 		{
@@ -95,10 +100,6 @@ namespace FullDemo
 				Marshal.WriteInt64(newPos, m_pos);
 		}
 		
-		void IStream.SetSize(long libNewSize)
-		{
-		}
-		
 		void IStream.Stat(out System.Runtime.InteropServices.ComTypes.STATSTG statStg, int statFlag)
 		{
 			statStg = new System.Runtime.InteropServices.ComTypes.STATSTG();
@@ -136,8 +137,7 @@ namespace FullDemo
 			if (pcbWritten != IntPtr.Zero)
 				Marshal.WriteInt32(pcbWritten, cbWrite);
 		}
-
-#endregion // IStream implementation
+		#endregion // IStream implementation
 
 	}
 }
