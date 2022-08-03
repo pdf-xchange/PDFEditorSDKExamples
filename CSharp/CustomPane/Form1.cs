@@ -275,40 +275,33 @@ namespace CustomPane
 			public IUIX_CmdPane CmdPaneLeft { get { return null; } }
 			public IUIX_CmdPane CmdPaneRight { get { return null; } }
 			public bool IsRibbonMode { get { return false; } }
-		}
 
-		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			pdfCtl.Inst.SaveUserSettings(settingsLocation); // save all user settings, including actual layout of panes
-			
-			// It is critical to call Inst.Shutdown() directly because we already called Inst.Init() in MainFrm() constructor
-			pdfCtl.Inst.Shutdown();
-
-			/////////////////////////////////////////////////////////////////////////////////////
-			// Forced release of all COM-objects that may still captured by Garbage Collector. //
-			// It is critical to release them before destroying of pdfCtl!                     //
-			/////////////////////////////////////////////////////////////////////////////////////
 			public bool IsDuplicate(IPXV_View pOther)
 			{
 				throw new NotImplementedException();
 			}
 			public void OnBeforeSaveSession(int nFlags = 0)
 			{
-					throw new NotImplementedException();
+				throw new NotImplementedException();
 			}
 			public void Close(int nFlags = 0)
 			{
 				throw new NotImplementedException();
 			}
-
-			public PDFXEdit.IPXV_ViewPanesCollection Panes
+			public int StateFlags
 			{
-				get { return m_Panes; }
+				get
+				{
+					throw new NotImplementedException();
+				}
 			}
-
-			GC.Collect();
-			GC.WaitForPendingFinalizers();
 		}
+
+
+		/////////////////////////////////////////////////////////////////////////////////////
+		// Forced release of all COM-objects that may still captured by Garbage Collector. //
+		// It is critical to release them before destroying of pdfCtl!                     //
+		/////////////////////////////////////////////////////////////////////////////////////
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
@@ -356,40 +349,11 @@ namespace CustomPane
 					return true;
 			}
 			return false;
-			public IUIX_CmdPane CmdPaneLeft
-			{
-				get
-				{
-					throw new NotImplementedException();
-				}
-			}
-
-			public IUIX_CmdPane CmdPaneRight
-			{
-				get
-				{
-					throw new NotImplementedException();
-				}
-			}
-
-			public bool IsRibbonMode
-			{
-				get
-				{
-					throw new NotImplementedException();
-				}
-			}
-			public int StateFlags
-			{
-				get
-				{
-					throw new NotImplementedException();
-				}
-			}
 		}
 
 		private void Form1_FormClosed(object sender, FormClosedEventArgs e)
 		{
+			pdfCtl.Inst.SaveUserSettings(settingsLocation); // save all user settings, including actual layout of panes
 			// It is critical to call Inst.Shutdown() directly because we already called Inst.Init() in MainFrm() constructor
 			pdfCtl.Inst.Shutdown();
 
@@ -402,9 +366,5 @@ namespace CustomPane
 			GC.WaitForPendingFinalizers();
 		}
 
-		private void Form1_Load(object sender, EventArgs e)
-		{
-
-		}
 	}
 }
