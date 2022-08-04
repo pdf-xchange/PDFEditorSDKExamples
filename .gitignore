@@ -208,3 +208,5 @@ ModelManifest.xml
 /CPP/ImportConverter
 /tempbuild
 *.stat
+packages/
+*.bml
