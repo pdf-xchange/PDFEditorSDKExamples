@@ -339,8 +339,8 @@ namespace RoboReader
 						{
 							if (wb >= 0)
 							{
-								wordsRanges.Insert(wb);
-								wordsRanges.Insert(we - wb + 1);
+								wordsRanges.Insert(wb, uint.MaxValue);
+								wordsRanges.Insert(we - wb + 1, uint.MaxValue);
 							}
 							if (wordSep)
 								wb = -1;
@@ -350,8 +350,8 @@ namespace RoboReader
 					}
 					if (wb >= 0)
 					{
-						wordsRanges.Insert(wb);
-						wordsRanges.Insert(we - wb + 1);
+						wordsRanges.Insert(wb, uint.MaxValue);
+						wordsRanges.Insert(we - wb + 1, uint.MaxValue);
 					}
 
 					curWord = -1;
@@ -386,8 +386,8 @@ namespace RoboReader
 					if (useDocHighlighter)
 					{
 						wordRange.Clear();
-						wordRange.Insert(wb);
-						wordRange.Insert(wl);
+						wordRange.Insert(wb, uint.MaxValue);
+						wordRange.Insert(wl, uint.MaxValue);
 
 						if (pageSolidHighlight != null)
 						{
