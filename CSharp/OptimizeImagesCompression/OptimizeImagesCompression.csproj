@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="initial_path">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OptimizeImagesCompression</RootNamespace>
     <AssemblyName>OptimizeImagesCompression</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -27,13 +27,24 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+   <OutputPath>$(SolutionDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
+   <IntermediateOutputPath>$(SolutionDir)..\..\tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
   </PropertyGroup>
+  <Target Name="initial_path">
+      <ConvertToAbsolutePath Paths="..\..\">
+          <Output TaskParameter="AbsolutePaths" PropertyName="OutputSample" />
+      </ConvertToAbsolutePath>
+      <PropertyGroup>
+          <BaseIntermediateOutputPath>$(OutputSample)tempbuild\$(RootNamespace).obj\</BaseIntermediateOutputPath>
+          <IntermediateOutputPath>$(OutputSample)tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
+      </PropertyGroup>
+  </Target>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>$(SolutionDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -42,14 +53,12 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>$(SolutionDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
-    <OutputPath>$(SolutionDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <Optimize>false</Optimize>
     <WarningLevel>0</WarningLevel>
@@ -58,7 +67,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <PlatformTarget>x64</PlatformTarget>
-    <OutputPath>$(SolutionDir)..\..\PDFEditorSDKExamples.$(Platform)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>OptimizeImagesCompression.Program</StartupObject>
@@ -68,7 +76,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>$(SolutionDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -77,7 +84,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>$(SolutionDir)..\..\PDFEditorSDKExamples.$(Platform)\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
