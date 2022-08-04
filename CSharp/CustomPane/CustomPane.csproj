@@ -1,6 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets="initial_path" DefaultTargets="initial_path">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <Target Name="initial_path">
+    <ConvertToAbsolutePath Paths="..\..\">
+      <Output TaskParameter="AbsolutePaths" PropertyName="OutputSample" />
+    </ConvertToAbsolutePath>
+    <Message Text="_sdksampleAbsolute: $(OutputSample)" Importance="high" />
+    <PropertyGroup>
+      <BaseIntermediateOutputPath>$(OutputSample)tempbuild\$(RootNamespace).obj\</BaseIntermediateOutputPath>
+      <IntermediateOutputPath>$(OutputSample)tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
+    </PropertyGroup>
+  </Target>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -8,10 +18,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>CustomPane</RootNamespace>
     <AssemblyName>CustomPane</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <OutputPath>$(SolutionDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>$(SolutionDir)..\..\tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -138,6 +150,7 @@
       <Lcid>0</Lcid>
       <WrapperTool>aximp</WrapperTool>
       <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="PDFXEdit">
       <Guid>{0AAFF38C-CB91-4424-A8B9-F8B504ACBE0C}</Guid>
@@ -146,7 +159,7 @@
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

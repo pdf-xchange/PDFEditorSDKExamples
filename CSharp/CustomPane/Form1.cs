@@ -188,7 +188,8 @@ namespace CustomPane
 				}
 				else
 				{
-					throw new System.ArgumentException();
+					//throw new System.ArgumentException();
+					return;
 				}
 
 				UserControl1 userCtrl = new UserControl1();
