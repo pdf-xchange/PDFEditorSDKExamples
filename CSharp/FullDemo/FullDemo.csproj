@@ -13,8 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <OutputPath>$(SolutionDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>$(SolutionDir)..\..\tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
+    <OutputPath>$(ProjectDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>$(ProjectDir)..\..\tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
   </PropertyGroup>
   <Target Name="initial_path">
     <ConvertToAbsolutePath Paths="..\..\">

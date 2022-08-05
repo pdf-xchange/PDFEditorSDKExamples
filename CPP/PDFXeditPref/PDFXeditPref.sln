@@ -31,6 +31,7 @@ Global
 		SolutionGuid = {DAC2BE15-B1DE-411B-89D8-3D1878FDDA48}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\PDFXEditSDK\PDFXEditSDK.vcxitems*{2d2710c2-7246-48bf-bab8-5e3978bc1723}*SharedItemsImports = 4
 		..\PDFXEditSDK\PDFXEditSDK.vcxitems*{45d41acc-2c3c-43d2-bc10-02aa73ffc7c7}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
