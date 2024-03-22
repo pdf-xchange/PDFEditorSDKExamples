@@ -69,7 +69,7 @@ class CmdBarTree
 		public void Load()
 		{
 			m_Tree.Nodes.Clear();
-			m_bEnabled = m_uiInst.CmdManager.LockedToolbars;
+			m_bEnabled = m_uiInst.get_CmdManager().LockedToolbars;
 			CollectAllTabsAndBars();
 			IPXV_MainView MainView = m_Inst.ActiveMainView;
 			m_nActiveTabID = 0;
@@ -239,7 +239,7 @@ class CmdBarTree
 				sTitle = m_Inst.GetLocalStr2(Bar.ID);
 			RemoveAllPrefixes(sTitle, out BarInfo.m_sTitle, out n);
 			
-			BarInfo.m_bStd = m_uiInst.CmdManager.IsStdBar(BarInfo.m_nID);
+			BarInfo.m_bStd = m_uiInst.get_CmdManager().IsStdBar(BarInfo.m_nID);
 			BarInfo.m_bHidden = Bar.IsHidden || ((Bar.Line != null) && (Bar.Line.Pane != null) && Bar.Line.Pane.IsHidden);
 			BarInfo.m_bVisible = !BarInfo.m_bHidden;
 			BarInfo.m_bSpecial = Bar.IsSpecial;
@@ -256,7 +256,7 @@ class CmdBarTree
 			m_DocBars.Clear();
 			m_bRibbonUI = false;
 
-			IUIX_CmdManager CMan = m_uiInst.CmdManager;
+			IUIX_CmdManager CMan = m_uiInst.get_CmdManager();
 			IPXV_MainView MainView = m_Inst.ActiveMainView;
 
 			IUIX_CmdPane ICPane = MainView.CmdPaneTop;

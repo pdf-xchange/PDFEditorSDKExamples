@@ -80,7 +80,7 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup>
-    <ManifestCertificateThumbprint>8EF6BABA551A663C7AE292D5BDD6835BBFCE8249</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>F755E8D98E9B9E375DC5DAA3979CA2B1F8F8E56B</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>FullDemo_TemporaryKey.pfx</ManifestKeyFile>
@@ -246,6 +246,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AddWatermarkForm.resx">
       <DependentUpon>AddWatermarkForm.cs</DependentUpon>

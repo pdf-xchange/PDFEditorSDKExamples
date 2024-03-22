@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using Microsoft.Win32;
+using PDFXEdit;
+using System.Reflection;
 
 namespace FullDemo
 {
@@ -577,7 +579,7 @@ namespace FullDemo
 			// unregister UI-events demo-monitor
 			if (uiEventMon != null)
 			{
-				uiInst.CurrentThreadCtx.UnregisterEventMonitor(uiEventMon);
+				uiInst.get_CurrentThreadCtx().UnregisterEventMonitor(uiEventMon);
 				uiEventMon = null;
 			}
 
@@ -798,7 +800,7 @@ namespace FullDemo
 			if (fNeedLoadAllCommands)
 			{
 				fNeedLoadAllCommands = false;
-				PDFXEdit.IUIX_CmdCollection cmds = uiInst.CmdManager.Cmds;
+				PDFXEdit.IUIX_CmdCollection cmds = uiInst.get_CmdManager().Cmds;
 				uint cnt = cmds.Count;
 				for (uint i = 0; i < cnt; i++)
 				{
@@ -1603,7 +1605,7 @@ namespace FullDemo
 				btnCmdShowHide.Enabled = false;
 				return null;
 			}
-			return uiInst.CmdManager.Cmds.Find(lvCmds.SelectedItems[0].SubItems[0].Text);
+			return uiInst.get_CmdManager().Cmds.Find(lvCmds.SelectedItems[0].SubItems[0].Text);
 		}
 
 		private void UpdateCmdItem(PDFXEdit.IUIX_Cmd cmd)
@@ -1679,7 +1681,7 @@ namespace FullDemo
 			ListViewItem item = info.Item;
 			if (item == null)
 				return;
-			PDFXEdit.IUIX_Cmd cmd = uiInst.CmdManager.Cmds.Find(item.SubItems[0].Text);
+			PDFXEdit.IUIX_Cmd cmd = uiInst.get_CmdManager().Cmds.Find(item.SubItems[0].Text);
 			if (cmd == null)
 				return;
 			pdfCtl.Inst.ExecUICmd2(cmd.ID);
@@ -2193,7 +2195,7 @@ namespace FullDemo
 		{
 			fUpdateControls++;
 
-			PDFXEdit.IUIX_Theme th = uiInst.Theme;
+			PDFXEdit.IUIX_Theme th = uiInst.get_Theme();
 
 			// update colors
 			btnFaceClr.BackColor = rgb2clr(th.StdColor[PDFXEdit.UIX_StdColor.UIX_StdColor_Base]);

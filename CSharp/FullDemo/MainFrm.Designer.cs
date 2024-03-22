@@ -61,7 +61,7 @@ namespace FullDemo
 			this.btnCmdExec = new System.Windows.Forms.Button();
 			this.ckAllowShortcuts = new System.Windows.Forms.CheckBox();
 			this.tabView = new System.Windows.Forms.TabPage();
-			this.cmdBarsTree = new FullDemo.MyTreeView();
+			this.label45 = new System.Windows.Forms.Label();
 			this.ckRibbonUI = new System.Windows.Forms.CheckBox();
 			this.ckShowFormViewBar = new System.Windows.Forms.CheckBox();
 			this.label44 = new System.Windows.Forms.Label();
@@ -99,6 +99,7 @@ namespace FullDemo
 			this.ckHideSb = new System.Windows.Forms.CheckBox();
 			this.ckShowCmdPanes = new System.Windows.Forms.CheckBox();
 			this.ckUnlockCmdBars = new System.Windows.Forms.CheckBox();
+			this.cmdBarsTree = new FullDemo.MyTreeView();
 			this.tabDoc = new System.Windows.Forms.TabPage();
 			this.gboxPages = new System.Windows.Forms.GroupBox();
 			this.btnZoomOut = new System.Windows.Forms.Button();
@@ -223,7 +224,6 @@ namespace FullDemo
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.fontDialog1 = new System.Windows.Forms.FontDialog();
 			this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-			this.label45 = new System.Windows.Forms.Label();
 			this.tabJS.SuspendLayout();
 			this.tabCmds.SuspendLayout();
 			this.tabView.SuspendLayout();
@@ -245,7 +245,6 @@ namespace FullDemo
 			this.tabHelp.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
-			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pdfCtl)).BeginInit();
 			this.SuspendLayout();
@@ -261,7 +260,7 @@ namespace FullDemo
 			this.tabJS.Margin = new System.Windows.Forms.Padding(4);
 			this.tabJS.Name = "tabJS";
 			this.tabJS.Padding = new System.Windows.Forms.Padding(4);
-			this.tabJS.Size = new System.Drawing.Size(728, 987);
+			this.tabJS.Size = new System.Drawing.Size(728, 1134);
 			this.tabJS.TabIndex = 4;
 			this.tabJS.Text = "Java Script";
 			this.tabJS.UseVisualStyleBackColor = true;
@@ -330,7 +329,7 @@ namespace FullDemo
 			this.tabCmds.Margin = new System.Windows.Forms.Padding(4);
 			this.tabCmds.Name = "tabCmds";
 			this.tabCmds.Padding = new System.Windows.Forms.Padding(4);
-			this.tabCmds.Size = new System.Drawing.Size(728, 987);
+			this.tabCmds.Size = new System.Drawing.Size(728, 1134);
 			this.tabCmds.TabIndex = 2;
 			this.tabCmds.Text = "Commands";
 			this.tabCmds.UseVisualStyleBackColor = true;
@@ -350,12 +349,12 @@ namespace FullDemo
 			// 
 			this.lvCmds.Alignment = System.Windows.Forms.ListViewAlignment.Default;
 			this.lvCmds.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-			this.colName,
-			this.colTitle,
-			this.colOffline,
-			this.colHidden,
-			this.colAdobeName,
-			this.colTip});
+            this.colName,
+            this.colTitle,
+            this.colOffline,
+            this.colHidden,
+            this.colAdobeName,
+            this.colTip});
 			this.lvCmds.FullRowSelect = true;
 			this.lvCmds.GridLines = true;
 			this.lvCmds.HideSelection = false;
@@ -445,7 +444,6 @@ namespace FullDemo
 			// tabView
 			// 
 			this.tabView.Controls.Add(this.label45);
-			this.tabView.Controls.Add(this.cmdBarsTree);
 			this.tabView.Controls.Add(this.ckRibbonUI);
 			this.tabView.Controls.Add(this.ckShowFormViewBar);
 			this.tabView.Controls.Add(this.label44);
@@ -483,6 +481,7 @@ namespace FullDemo
 			this.tabView.Controls.Add(this.ckHideSb);
 			this.tabView.Controls.Add(this.ckShowCmdPanes);
 			this.tabView.Controls.Add(this.ckUnlockCmdBars);
+			this.tabView.Controls.Add(this.cmdBarsTree);
 			this.tabView.Location = new System.Drawing.Point(4, 29);
 			this.tabView.Margin = new System.Windows.Forms.Padding(4);
 			this.tabView.Name = "tabView";
@@ -493,14 +492,14 @@ namespace FullDemo
 			this.tabView.UseVisualStyleBackColor = true;
 			this.tabView.Click += new System.EventHandler(this.tabView_Click);
 			// 
-			// cmdBarsTree
+			// label45
 			// 
-			this.cmdBarsTree.CheckBoxes = true;
-			this.cmdBarsTree.Location = new System.Drawing.Point(327, 209);
-			this.cmdBarsTree.Name = "cmdBarsTree";
-			this.cmdBarsTree.Size = new System.Drawing.Size(381, 457);
-			this.cmdBarsTree.TabIndex = 60;
-			this.cmdBarsTree.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.cmdBarsTree_DrawNode);
+			this.label45.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.label45.Location = new System.Drawing.Point(8, 468);
+			this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label45.Name = "label45";
+			this.label45.Size = new System.Drawing.Size(314, 1);
+			this.label45.TabIndex = 64;
 			// 
 			// ckRibbonUI
 			// 
@@ -918,6 +917,15 @@ namespace FullDemo
 			this.ckUnlockCmdBars.Text = "Unlock Command Bars (i.e. allow toggle/customize toolbars by user)";
 			this.ckUnlockCmdBars.UseVisualStyleBackColor = true;
 			this.ckUnlockCmdBars.CheckedChanged += new System.EventHandler(this.ckUnlockCmdBars_CheckedChanged);
+			// 
+			// cmdBarsTree
+			// 
+			this.cmdBarsTree.CheckBoxes = true;
+			this.cmdBarsTree.Location = new System.Drawing.Point(327, 209);
+			this.cmdBarsTree.Name = "cmdBarsTree";
+			this.cmdBarsTree.Size = new System.Drawing.Size(381, 457);
+			this.cmdBarsTree.TabIndex = 60;
+			this.cmdBarsTree.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.cmdBarsTree_DrawNode);
 			// 
 			// tabDoc
 			// 
@@ -1666,7 +1674,7 @@ namespace FullDemo
 			this.tabUILang.Margin = new System.Windows.Forms.Padding(4);
 			this.tabUILang.Name = "tabUILang";
 			this.tabUILang.Padding = new System.Windows.Forms.Padding(4);
-			this.tabUILang.Size = new System.Drawing.Size(728, 987);
+			this.tabUILang.Size = new System.Drawing.Size(728, 1134);
 			this.tabUILang.TabIndex = 5;
 			this.tabUILang.Text = "UI-Language";
 			this.tabUILang.UseVisualStyleBackColor = true;
@@ -1714,7 +1722,7 @@ namespace FullDemo
 			this.tabOpers.Margin = new System.Windows.Forms.Padding(4);
 			this.tabOpers.Name = "tabOpers";
 			this.tabOpers.Padding = new System.Windows.Forms.Padding(4);
-			this.tabOpers.Size = new System.Drawing.Size(728, 987);
+			this.tabOpers.Size = new System.Drawing.Size(728, 1134);
 			this.tabOpers.TabIndex = 6;
 			this.tabOpers.Text = "Operations";
 			this.tabOpers.UseVisualStyleBackColor = true;
@@ -1801,7 +1809,7 @@ namespace FullDemo
 			this.tabSettingsIO.Location = new System.Drawing.Point(4, 29);
 			this.tabSettingsIO.Name = "tabSettingsIO";
 			this.tabSettingsIO.Padding = new System.Windows.Forms.Padding(3);
-			this.tabSettingsIO.Size = new System.Drawing.Size(728, 987);
+			this.tabSettingsIO.Size = new System.Drawing.Size(728, 1134);
 			this.tabSettingsIO.TabIndex = 8;
 			this.tabSettingsIO.Text = "Settings I/O";
 			this.tabSettingsIO.UseVisualStyleBackColor = true;
@@ -1998,7 +2006,7 @@ namespace FullDemo
 			this.tabCustomUI.Location = new System.Drawing.Point(4, 29);
 			this.tabCustomUI.Name = "tabCustomUI";
 			this.tabCustomUI.Padding = new System.Windows.Forms.Padding(3);
-			this.tabCustomUI.Size = new System.Drawing.Size(728, 987);
+			this.tabCustomUI.Size = new System.Drawing.Size(728, 1134);
 			this.tabCustomUI.TabIndex = 9;
 			this.tabCustomUI.Text = "Customize UI";
 			this.tabCustomUI.UseVisualStyleBackColor = true;
@@ -2187,7 +2195,7 @@ namespace FullDemo
 			this.tabHelp.Margin = new System.Windows.Forms.Padding(4);
 			this.tabHelp.Name = "tabHelp";
 			this.tabHelp.Padding = new System.Windows.Forms.Padding(4);
-			this.tabHelp.Size = new System.Drawing.Size(728, 987);
+			this.tabHelp.Size = new System.Drawing.Size(728, 1134);
 			this.tabHelp.TabIndex = 7;
 			this.tabHelp.Text = "Help";
 			this.tabHelp.UseVisualStyleBackColor = true;
@@ -2229,7 +2237,7 @@ namespace FullDemo
 			// 
 			this.linkLabel1.AutoSize = true;
 			this.linkLabel1.Location = new System.Drawing.Point(80, 45);
-			this.linkLabel1.Margin=new System.Windows.Forms.Padding(4,0,4,0);			
+			this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(233, 20);
 			this.linkLabel1.TabIndex = 0;
@@ -2240,12 +2248,20 @@ namespace FullDemo
 			// splitContainer1
 			// 
 			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.splitContainer1.Location = new System.Drawing.Point(758, 6);
 			this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
 			this.splitContainer1.Name = "splitContainer1";
-
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.pdfCtl);
+			this.splitContainer1.Panel2Collapsed = true;
+			this.splitContainer1.Size = new System.Drawing.Size(993, 1157);
+			this.splitContainer1.SplitterDistance = 414;
+			this.splitContainer1.SplitterWidth = 6;
+			this.splitContainer1.TabIndex = 3;
 			// 
 			// pdfCtl
 			// 
@@ -2258,24 +2274,6 @@ namespace FullDemo
 			this.pdfCtl.Size = new System.Drawing.Size(993, 1157);
 			this.pdfCtl.TabIndex = 0;
 			this.pdfCtl.OnEvent += new AxPDFXEdit._IPXV_ControlEvents_OnEventEventHandler(this.pdfCtl_OnEvent);
-			// 
-			// splitContainer1.Panel1
-			// 
-			this.splitContainer1.Panel1.Controls.Add(this.pdfCtl);
-			this.splitContainer1.Panel2Collapsed = true;
-			this.splitContainer1.Size = new System.Drawing.Size(993, 1157);
-			this.splitContainer1.SplitterDistance = 414;
-			this.splitContainer1.SplitterWidth = 6;
-			this.splitContainer1.TabIndex = 3;          
-			// 
-														// label45
-														// 
-			this.label45.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-			this.label45.Location = new System.Drawing.Point(8, 468);
-			this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.label45.Name = "label45";
-			this.label45.Size = new System.Drawing.Size(314, 1);
-			this.label45.TabIndex = 64;
 			// 
 			// MainFrm
 			// 
@@ -2323,12 +2321,10 @@ namespace FullDemo
 			this.tabHelp.ResumeLayout(false);
 			this.tabHelp.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
-			this.splitContainer1.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pdfCtl)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 

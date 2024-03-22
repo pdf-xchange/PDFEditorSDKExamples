@@ -29,7 +29,10 @@
 		private void InitializeComponent()
 		{
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label1 = new System.Windows.Forms.Label();
+			this.cbDirection = new System.Windows.Forms.ComboBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.cbOrientation = new System.Windows.Forms.ComboBox();
 			this.label9 = new System.Windows.Forms.Label();
 			this.cbPagesSubset = new System.Windows.Forms.ComboBox();
 			this.lbNumPages = new System.Windows.Forms.Label();
@@ -38,9 +41,6 @@
 			this.rbPages = new System.Windows.Forms.RadioButton();
 			this.rbCurPage = new System.Windows.Forms.RadioButton();
 			this.rbAllPages = new System.Windows.Forms.RadioButton();
-			this.cbDirection = new System.Windows.Forms.ComboBox();
-			this.cbOrientation = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -51,11 +51,37 @@
 			this.groupBox1.Controls.Add(this.cbDirection);
 			this.groupBox1.Controls.Add(this.groupBox2);
 			this.groupBox1.Location = new System.Drawing.Point(0, 0);
+			this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(472, 234);
+			this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.groupBox1.Size = new System.Drawing.Size(708, 360);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Rotate Pages";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(44, 34);
+			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(76, 20);
+			this.label1.TabIndex = 10;
+			this.label1.Text = "Direction:";
+			// 
+			// cbDirection
+			// 
+			this.cbDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbDirection.FormattingEnabled = true;
+			this.cbDirection.Items.AddRange(new object[] {
+            "Clockwise 90 degrees",
+            "180 degrees",
+            "Counterclockwise 90 degrees"});
+			this.cbDirection.Location = new System.Drawing.Point(130, 29);
+			this.cbDirection.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.cbDirection.Name = "cbDirection";
+			this.cbDirection.Size = new System.Drawing.Size(229, 28);
+			this.cbDirection.TabIndex = 9;
 			// 
 			// groupBox2
 			// 
@@ -68,19 +94,36 @@
 			this.groupBox2.Controls.Add(this.rbPages);
 			this.groupBox2.Controls.Add(this.rbCurPage);
 			this.groupBox2.Controls.Add(this.rbAllPages);
-			this.groupBox2.Location = new System.Drawing.Point(7, 46);
+			this.groupBox2.Location = new System.Drawing.Point(10, 71);
+			this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(459, 179);
+			this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.groupBox2.Size = new System.Drawing.Size(688, 275);
 			this.groupBox2.TabIndex = 8;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "Pages Range";
 			// 
+			// cbOrientation
+			// 
+			this.cbOrientation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cbOrientation.FormattingEnabled = true;
+			this.cbOrientation.Items.AddRange(new object[] {
+            "Pages of Any Orientations",
+            "Portrait Pages",
+            "Landscape Pages"});
+			this.cbOrientation.Location = new System.Drawing.Point(120, 225);
+			this.cbOrientation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.cbOrientation.Name = "cbOrientation";
+			this.cbOrientation.Size = new System.Drawing.Size(229, 28);
+			this.cbOrientation.TabIndex = 9;
+			// 
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(32, 122);
+			this.label9.Location = new System.Drawing.Point(48, 188);
+			this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(43, 13);
+			this.label9.Size = new System.Drawing.Size(64, 20);
 			this.label9.TabIndex = 8;
 			this.label9.Text = "Subset:";
 			// 
@@ -92,41 +135,46 @@
             "All",
             "Odd",
             "Even"});
-			this.cbPagesSubset.Location = new System.Drawing.Point(80, 119);
+			this.cbPagesSubset.Location = new System.Drawing.Point(120, 183);
+			this.cbPagesSubset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.cbPagesSubset.Name = "cbPagesSubset";
-			this.cbPagesSubset.Size = new System.Drawing.Size(154, 21);
+			this.cbPagesSubset.Size = new System.Drawing.Size(229, 28);
 			this.cbPagesSubset.TabIndex = 7;
 			// 
 			// lbNumPages
 			// 
 			this.lbNumPages.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.lbNumPages.Location = new System.Drawing.Point(234, 66);
+			this.lbNumPages.Location = new System.Drawing.Point(351, 102);
+			this.lbNumPages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lbNumPages.Name = "lbNumPages";
-			this.lbNumPages.Size = new System.Drawing.Size(153, 14);
+			this.lbNumPages.Size = new System.Drawing.Size(230, 22);
 			this.lbNumPages.TabIndex = 4;
 			// 
 			// label11
 			// 
-			this.label11.Location = new System.Drawing.Point(80, 86);
+			this.label11.Location = new System.Drawing.Point(120, 132);
+			this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label11.Name = "label11";
-			this.label11.Size = new System.Drawing.Size(342, 30);
+			this.label11.Size = new System.Drawing.Size(513, 46);
 			this.label11.TabIndex = 5;
 			this.label11.Text = "Type page numbers and/or page ranges separated by commas counting from the start " +
     "of the document. For example, type 1, 3, 5-12";
 			// 
 			// tPages
 			// 
-			this.tPages.Location = new System.Drawing.Point(80, 63);
+			this.tPages.Location = new System.Drawing.Point(120, 97);
+			this.tPages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tPages.Name = "tPages";
-			this.tPages.Size = new System.Drawing.Size(154, 20);
+			this.tPages.Size = new System.Drawing.Size(229, 26);
 			this.tPages.TabIndex = 3;
 			// 
 			// rbPages
 			// 
 			this.rbPages.AutoSize = true;
-			this.rbPages.Location = new System.Drawing.Point(17, 64);
+			this.rbPages.Location = new System.Drawing.Point(26, 98);
+			this.rbPages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.rbPages.Name = "rbPages";
-			this.rbPages.Size = new System.Drawing.Size(58, 17);
+			this.rbPages.Size = new System.Drawing.Size(83, 24);
 			this.rbPages.TabIndex = 2;
 			this.rbPages.Text = "Pages:";
 			this.rbPages.UseVisualStyleBackColor = true;
@@ -135,9 +183,10 @@
 			// rbCurPage
 			// 
 			this.rbCurPage.AutoSize = true;
-			this.rbCurPage.Location = new System.Drawing.Point(17, 42);
+			this.rbCurPage.Location = new System.Drawing.Point(26, 65);
+			this.rbCurPage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.rbCurPage.Name = "rbCurPage";
-			this.rbCurPage.Size = new System.Drawing.Size(86, 17);
+			this.rbCurPage.Size = new System.Drawing.Size(127, 24);
 			this.rbCurPage.TabIndex = 1;
 			this.rbCurPage.Text = "Current page";
 			this.rbCurPage.UseVisualStyleBackColor = true;
@@ -146,58 +195,25 @@
 			// 
 			this.rbAllPages.AutoSize = true;
 			this.rbAllPages.Checked = true;
-			this.rbAllPages.Location = new System.Drawing.Point(17, 19);
+			this.rbAllPages.Location = new System.Drawing.Point(26, 29);
+			this.rbAllPages.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.rbAllPages.Name = "rbAllPages";
-			this.rbAllPages.Size = new System.Drawing.Size(68, 17);
+			this.rbAllPages.Size = new System.Drawing.Size(99, 24);
 			this.rbAllPages.TabIndex = 0;
 			this.rbAllPages.TabStop = true;
 			this.rbAllPages.Text = "All pages";
 			this.rbAllPages.UseVisualStyleBackColor = true;
 			// 
-			// cbDirection
-			// 
-			this.cbDirection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbDirection.FormattingEnabled = true;
-			this.cbDirection.Items.AddRange(new object[] {
-            "Clockwise 90 degrees",
-            "180 degrees",
-            "Counterclockwise 90 degrees"});
-			this.cbDirection.Location = new System.Drawing.Point(87, 19);
-			this.cbDirection.Name = "cbDirection";
-			this.cbDirection.Size = new System.Drawing.Size(154, 21);
-			this.cbDirection.TabIndex = 9;
-			// 
-			// cbOrientation
-			// 
-			this.cbOrientation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbOrientation.FormattingEnabled = true;
-			this.cbOrientation.Items.AddRange(new object[] {
-            "Pages of Any Orientations",
-            "Portrait Pages",
-            "Landscape Pages"});
-			this.cbOrientation.Location = new System.Drawing.Point(80, 146);
-			this.cbOrientation.Name = "cbOrientation";
-			this.cbOrientation.Size = new System.Drawing.Size(154, 21);
-			this.cbOrientation.TabIndex = 9;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(29, 22);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(52, 13);
-			this.label1.TabIndex = 10;
-			this.label1.Text = "Direction:";
-			// 
 			// RotatePagesForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
 			this.BackColor = System.Drawing.SystemColors.Window;
-			this.ClientSize = new System.Drawing.Size(479, 237);
+			this.ClientSize = new System.Drawing.Size(718, 365);
 			this.Controls.Add(this.groupBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "RotatePagesForm";
 			this.Text = "RotatePagesForm";
 			this.groupBox1.ResumeLayout(false);
