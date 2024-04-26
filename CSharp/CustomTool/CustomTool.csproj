@@ -13,6 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <OutputPath>$(ProjectDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>$(ProjectDir)..\..\tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -74,7 +74,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>E790E4EAB18A81AF63F5A2E677D08E42A820FD57</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>0D36E7B951A33909EEBDC83F9DF61E08C26E858E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>CustomTool_TemporaryKey.pfx</ManifestKeyFile>
