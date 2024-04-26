@@ -105,7 +105,6 @@ var
   AType: PXC_CIType;
   ALen: Cardinal;
   AByte: PByte;
-  ABufByte: TBytes;
   AText: WideString;
 begin
   doc.CoreDoc.Pages.Get_Item(nPage, APage);
@@ -266,7 +265,7 @@ begin
   rc.top := 36;
   rc.right := rc.left + 144;
   rc.bottom := 0;
-  MyContext := PDFXEdit_TLB.PUserType8(hCertCntxt);
+  //Context := PDFXEdit_TLB.PUserType8(hCertCntxt);
   // try
   // Doc.DeferedDigitalSign(MyContext^, MyFlags, 0, rc, 'Signed by', '', 'Support@...', '');
   // Doc.DeferedDigitalSign(PDFXEdit_TLB.PUserType8(hCertCntxt)^, MyFlags, 0, rc, 'Signed by', '', 'Support@...', '');

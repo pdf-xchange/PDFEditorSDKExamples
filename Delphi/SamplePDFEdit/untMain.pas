@@ -203,8 +203,6 @@ begin
   MemType := MemoryType_1bpp;
   NumColors := 0;
   pPalette := nil;
-  Offset := 0;
-  pDataForCodex := nil;
 
   GlobalLock(HDib);
   try
@@ -295,11 +293,6 @@ end;
 
 function TTrackerScanLib.CreateTwainObject: Boolean;
 var
-  UnlockKey, DevKey: string;
-  hr: HRESULT;
-  FRegKey: AnsiString;
-  FDevCode: AnsiString;
-  FErrorStr: string;
   FTwain: pointer;
 begin
   Result := False;
@@ -394,9 +387,6 @@ begin
 end;
 
 procedure TForm1.actSetZoomExecute(Sender: TObject);
-var
-  evtID, objID: integer;
-  evt: PDFXEdit_TLB.IEvent;
 begin
   gInst.EnableSmallIcon(False);
 end;
@@ -520,8 +510,7 @@ end;
 procedure TForm1.FormShow(Sender: TObject);
 var
   inst: PDFXEdit_TLB.IPXV_Inst;
-  evtID, objID: integer;
-  evt: PDFXEdit_TLB.IEvent;
+  objID: integer;
 begin
 	PXV_Control1.SetLicKey(licKeyDEMO);
 
@@ -547,12 +536,9 @@ var
   pOp: IOperation;
   output: ICabNode;
   input: ICabNode;
-  new: ICabNode;
   options: ICabNode;
   imgPath: IAFS_Name;
   ATargetDoc: IPXC_Document;
-
-  pxsInst: PDFXEdit_TLB.IPXS_Inst;
 begin
   //pxsInst := PDFXEdit_TLB.IPXS_Inst(PXV_Control1.Inst.GetExtension('PXS'));
 
