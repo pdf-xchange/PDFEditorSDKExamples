@@ -86,12 +86,12 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)..\..\PDFEditorSDKExamples.$(PlatformTarget)\</OutDir>
+    <OutDir>$(ProjectDir)..\..\PDFEditorSDKExamples.$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\..\tempbuild\$(Configuration).$(PlatformTarget)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)..\..\PDFEditorSDKExamples.$(PlatformTarget)\</OutDir>
+    <OutDir>$(ProjectDir)..\..\PDFEditorSDKExamples.$(PlatformTarget)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)..\..\tempbuild\$(Configuration).$(PlatformTarget)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
