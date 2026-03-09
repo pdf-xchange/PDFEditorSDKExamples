@@ -1,8 +1,9 @@
-﻿using CustomTool.Extensions;
+using CustomTool.Extensions;
 using PDFXEdit;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 public enum MSG
 {
@@ -427,7 +428,8 @@ namespace CustomTool
                     startPt.x = rect.left;
                     startPt.y = rect.top;
                     break;
-            };
+            }
+            ;
 
             EditCtlPtOffset.x = pagePt.x - startPt.x;
             EditCtlPtOffset.y = pagePt.y - startPt.y;
@@ -451,7 +453,8 @@ namespace CustomTool
                     startPt.x = rect.right;
                     startPt.y = rect.top;
                     break;
-            };
+            }
+            ;
 
             CurrOriginPoint = startPt;
             CurrPageBBox = pView.Doc.CoreDoc.Pages[(uint)editPageIndex].get_Box(PXC_BoxType.PBox_ViewBox);
@@ -595,6 +598,16 @@ namespace CustomTool
         public void OnFinalize()
         {
             //throw new NotImplementedException();
+        }
+
+        public bool IsGuidelinesAllowed
+        {
+            get;
+        }
+
+        bool IPXV_Tool.get_IsGuidelinesAllowed(IPXV_PagesView pView, ref tagPOINT pPos)
+        {
+            throw new NotImplementedException();
         }
     }
 }
