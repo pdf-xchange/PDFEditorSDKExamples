@@ -243,6 +243,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="packages\wtl.10.0.10320\build\native\wtl.targets" Condition="Exists('packages\wtl.10.0.10320\build\native\wtl.targets')" />
+    <Import Project="..\..\PDFEditorSDKExamples.sln\packages\wtl.10.0.10320\build\native\wtl.targets" Condition="Exists('..\..\PDFEditorSDKExamples.sln\packages\wtl.10.0.10320\build\native\wtl.targets')" />
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
@@ -254,5 +255,6 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\wtl.10.0.10320\build\native\wtl.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\wtl.10.0.10320\build\native\wtl.targets'))" />
+    <Error Condition="!Exists('..\..\PDFEditorSDKExamples.sln\packages\wtl.10.0.10320\build\native\wtl.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\PDFEditorSDKExamples.sln\packages\wtl.10.0.10320\build\native\wtl.targets'))" />
   </Target>
 </Project>
