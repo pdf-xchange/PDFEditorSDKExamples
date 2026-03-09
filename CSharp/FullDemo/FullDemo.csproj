@@ -80,10 +80,10 @@
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup>
-    <ManifestCertificateThumbprint>F755E8D98E9B9E375DC5DAA3979CA2B1F8F8E56B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6C20D4CE63C443800C531BE7361F13AFD4452CCC</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>FullDemo_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>FullDemo_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
