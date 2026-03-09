@@ -36,6 +36,12 @@
     <ClInclude Include="CustomImportConverter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CIPXV_ControlEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImportConverter.cpp">
@@ -53,6 +59,12 @@
     <ClCompile Include="CustomImportConverter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CIPXV_ControlEvents.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ImportConverter.rc">
@@ -61,6 +73,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\ImportConverter.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="ImportConverter.rgs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
@@ -77,5 +92,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="github_repos.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="ImportConverter.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
   </ItemGroup>
 </Project>

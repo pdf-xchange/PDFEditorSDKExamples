@@ -1,0 +1,17 @@
+// ImportConverter.idl : IDL source for ImportConverter
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ImportConverter.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(CE9B69FA-46CB-4920-A4FB-F6CCA88F4714),
+	version(1.0)	
+]
+library ImportConverterLib
+{
+	importlib("stdole2.tlb");
+};
