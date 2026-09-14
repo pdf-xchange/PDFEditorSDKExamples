@@ -5,6 +5,12 @@ uses
   Unit1 in 'Unit1.pas' {Form1};
 
 {$R *.res}
+{$IFDEF WIN32}
+{$EXTENSION .x86.exe}
+{$ENDIF}
+{$IFDEF WIN64}
+{$EXTENSION .x64.exe}
+{$ENDIF}
 
 begin
   Application.Initialize;

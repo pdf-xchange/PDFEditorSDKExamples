@@ -16,11 +16,24 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 160
-    Top = 56
-    Width = 177
-    Height = 97
+    Left = 8
+    Top = 8
+    Width = 60
+    Height = 25
     Caption = 'Label1'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 39
+    Width = 60
+    Height = 25
+    Caption = 'Label2'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -21

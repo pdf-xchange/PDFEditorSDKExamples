@@ -7,6 +7,14 @@ uses
 
 {$R *.res}
 
+{$IFDEF WIN32}
+{$EXTENSION .x86.exe}
+{$ENDIF}
+{$IFDEF WIN64}
+{$EXTENSION .x64.exe}
+{$ENDIF}
+
+
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;

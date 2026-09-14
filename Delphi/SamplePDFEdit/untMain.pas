@@ -516,7 +516,7 @@ begin
 
   inst := PXV_Control1.Inst;
   gInst.Init(inst);
-  ShowMessage('Start DBG');
+  //ShowMessage('Start DBG');
   gInst.EnableSmallIcon(False);
   RegisterEvents(True);
   PXV_Control1.VisibleCmdPanes := 3;

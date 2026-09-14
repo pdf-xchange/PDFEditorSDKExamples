@@ -9,6 +9,7 @@ uses
 type
   TForm1 = class(TForm)
     Label1: TLabel;
+    Label2: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
@@ -36,7 +37,8 @@ begin
   FInst.Init(nil, '', nil, nil, nil, 0, nil);
   //uses ActiveX
   //CoCreateInstance(CLASS_PXV_Inst, nil, CLSCTX_INPROC_SERVER, IPXV_Inst, FInst);
-  Label1.Caption := FInst.GetLocalStr2(42);
+  Label1.Caption := FInst.GetLocalStr2(56);
+  Label2.Caption := FInst.GetLocalStr2(107);
 end;
 
 procedure TForm1.FormDestroy(Sender: TObject);
