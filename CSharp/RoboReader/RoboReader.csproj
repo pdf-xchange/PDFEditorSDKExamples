@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RoboReader</RootNamespace>
-    <AssemblyName>RoboReader</AssemblyName>
+    <AssemblyName>RoboReader.$(Platform)</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
@@ -27,7 +27,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <OutputPath>$(ProjectDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
+    <OutputPath>$(ProjectDir)..\..\Bin\</OutputPath>
     <IntermediateOutputPath>$(ProjectDir)..\..\tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
     <TargetFrameworkProfile />
   </PropertyGroup>

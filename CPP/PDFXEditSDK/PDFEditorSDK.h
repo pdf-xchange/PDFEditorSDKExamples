@@ -6,9 +6,9 @@
 #include "Macroses.h"
 
 #if defined _M_X64
-#define Api_File "PDFXEditCore.x64.dll"
+#define Api_File "PXCEditorCore.x64.dll"
 #else
-#define Api_File "PDFXEditCore.x86.dll"
+#define Api_File "PXCEditorCore.x86.dll"
 #endif
 
 #pragma warning( disable : 4192 )

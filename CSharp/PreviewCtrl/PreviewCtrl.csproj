@@ -8,12 +8,12 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PreviewCtrl</RootNamespace>
-    <AssemblyName>PreviewCtrl</AssemblyName>
+    <AssemblyName>PreviewCtrl.$(Platform)</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
-    <OutputPath>$(ProjectDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
+    <OutputPath>$(ProjectDir)..\..\Bin\</OutputPath>
     <IntermediateOutputPath>$(ProjectDir)..\..\tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
   </PropertyGroup>
   <Target Name="initial_path">

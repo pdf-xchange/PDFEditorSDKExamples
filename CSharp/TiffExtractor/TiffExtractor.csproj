@@ -8,11 +8,11 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TiffExtractor</RootNamespace>
-    <AssemblyName>TiffExtractor</AssemblyName>
+    <AssemblyName>TiffExtractor.$(Platform)</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <FileAlignment>512</FileAlignment>  
     <PublishUrl>publish\</PublishUrl>
-    <Install>fakse</Install>
+    <Install>false</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
@@ -26,7 +26,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <OutputPath>$(ProjectDir)..\..\PDFEditorSDKExamples.$(Platform)\$(Configuration)\</OutputPath>
+    <OutputPath>$(ProjectDir)..\..\Bin\</OutputPath>
     <IntermediateOutputPath>$(ProjectDir)..\..\tempbuild\$(RootNamespace).obj\$(Configuration).$(Platform)\</IntermediateOutputPath>
     <TargetFrameworkProfile />
   </PropertyGroup>
